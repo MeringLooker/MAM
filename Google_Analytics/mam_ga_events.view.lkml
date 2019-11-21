@@ -116,6 +116,23 @@ view: mam_ga_events {
     sql: ${TABLE}.uniqueevents ;;
   }
 
+######### All measures go below #########
+
+  measure: total_events {
+    label: "Events"
+    type: sum_distinct
+    sql_distinct_key: ${TABLE}.id ;;
+    sql: ${TABLE}.totalevents ;;
+  }
+
+  measure: total_unique_events {
+    label: "Unique Events"
+    type: sum_distinct
+    sql_distinct_key: ${TABLE}.id ;;
+    sql: ${TABLE}.uniqueevents ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: [id]
