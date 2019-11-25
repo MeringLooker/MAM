@@ -8,6 +8,14 @@ include: "/Google_Analytics/**/*.view"
 include: "/TrueView/**/*.view"
 
 
+#### Exploring AdWords Test Data #####
+
+explore: mam_sem_gdn {
+  label: "AdWords"
+  view_label: "AdWords Test"
+  group_label: "Mammoth Lakes Tourism"
+}
+
 #### Exploring Facebook Data #####
 
 explore: mam_fb_view {
