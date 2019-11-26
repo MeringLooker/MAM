@@ -7,7 +7,6 @@ view: mam_sem_gdn {
   dimension: id {
     hidden: yes
     primary_key: yes
-    hidden: yes
     type: string
     sql: ${TABLE}.id ;;
   }
