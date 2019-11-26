@@ -5,6 +5,7 @@ view: mam_fb_view {
 ####### Primary Key ########
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
@@ -14,11 +15,12 @@ view: mam_fb_view {
 
   dimension: comp_key {
     type: string
+    hidden: yes
     sql: ${TABLE}.comp_key ;;
   }
 
 dimension: season {
-    label: "Season"
+    label: "Season/Campaign"
     group_label: "Client Dimensions"
     type: string
     sql:
