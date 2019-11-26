@@ -13,6 +13,28 @@ view: mam_sem_gdn {
 
 ###### All Dimensions go Below #######
 
+  dimension: region {
+    type: string
+    sql:
+      CASE
+        WHEN  ${campaign} ILIKE '%SF' then 'San Francisco'
+        WHEN  ${campaign} ILIKE '%DEN' then 'Denver'
+        WHEN  ${campaign} ILIKE '%NE' then 'Northeast'
+        WHEN  ${campaign} ILIKE '%CA/NV' then 'California/Nevada'
+        ELSE 'Uncategorized'
+        END;;
+  }
+
+  dimension: audience {
+    type: string
+    sql:
+      CASE
+        WHEN  ${ad_group} ILIKE '%Competitive Destinations' then 'Competitive Conquesting'
+        WHEN  ${ad_group} ILIKE '%Site Visitor Lookalike' then 'Site Visitor Lookalike'
+        ELSE 'Uncategorized'
+        END;;
+  }
+
   dimension_group: __senttime {
     hidden:yes
     type: time
