@@ -141,6 +141,22 @@ view: mam_dcm_view {
         ;;
   }
 
+  dimension: dcm_creative {
+    type: string
+    label: "Creative Name"
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${creative} ilike '%Yeti%' then 'Yeti'
+        WHEN ${creative} ilike '%Eagles%' then 'Eagles'
+        WHEN ${creative} ilike '%Fairy%' then 'Fairy'
+        WHEN ${creative} ilike '%Bigfoot%' then 'Bigfoot'
+        ELSE ${creative}
+        END
+        ;;
+  }
+
+
 ######### All Dimensions Native to Source Table Below #########
 
   dimension: __id {
