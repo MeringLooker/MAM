@@ -19,6 +19,8 @@ view: mam_fb_view {
     sql: ${TABLE}.comp_key ;;
   }
 
+##### Dimensions added to this table via LookML ######
+
 dimension: season {
     label: "Season/Campaign"
     group_label: "Client Dimensions"
@@ -28,12 +30,13 @@ dimension: season {
         WHEN ${campaign_name} ilike '%Fall%' THEN 'Fall'
         WHEN ${campaign_name} ilike '%Winter%' THEN 'Winter'
         WHEN ${campaign_name} ilike '%Summer%' THEN 'Summer'
+        WHEN ${campaign_name} ilike '%Spring%' THEN 'Spring'
         ELSE 'Uncategorized'
         END
         ;;
 }
 
-  dimension: fb_layer {
+  dimension: fb_campaign {
     label: "Campaign Layer"
     group_label: "Client Dimensions"
     type: string
@@ -45,7 +48,24 @@ dimension: season {
         ;;
   }
 
-######## Dimensions go below ########
+  dimension: fiscal_year {
+    label: "Fiscal"
+    group_label: "Client Dimensions"
+    type: string
+    sql:
+      CASE
+        WHEN ${date_start_date} BETWEEN '2015-07-01' AND '2016-06-30' THEN 'FY 15/16'
+        WHEN ${date_start_date} BETWEEN '2016-07-01' AND '2017-06-30' THEN 'FY 16/17'
+        WHEN ${date_start_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
+        WHEN ${date_start_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
+        WHEN ${date_start_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
+        ELSE 'Uncategorized'
+        END
+        ;;
+    drill_fields: [campaign_name]
+  }
+
+######### All Dimensions Native to Source Table Below #########
 
   dimension_group: __senttime {
     type: time
@@ -129,23 +149,6 @@ dimension: season {
     type: string
     group_label: "Facebook Dimensions"
     sql: ${TABLE}.campaign_name ;;
-  }
-
-  dimension: fiscal_year {
-    label: "Fiscal"
-    group_label: "Client Dimensions"
-    type: string
-    sql:
-      CASE
-        WHEN ${date_start_date} BETWEEN '2015-07-01' AND '2016-06-30' THEN 'FY 15/16'
-        WHEN ${date_start_date} BETWEEN '2016-07-01' AND '2017-06-30' THEN 'FY 16/17'
-        WHEN ${date_start_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
-        WHEN ${date_start_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
-        WHEN ${date_start_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
-        ELSE 'Uncategorized'
-        END
-        ;;
-    drill_fields: [campaign_name]
   }
 
   dimension: clicks {

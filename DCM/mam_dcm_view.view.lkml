@@ -11,7 +11,7 @@ view: mam_dcm_view {
     sql: ${TABLE}.id ;;
   }
 
-##### Dimensions added to this table via LookML
+##### Dimensions added to this table via LookML ######
 
   dimension: fiscal_year {
     type: string
@@ -156,7 +156,6 @@ view: mam_dcm_view {
         ;;
   }
 
-
 ######### All Dimensions Native to Source Table Below #########
 
   dimension: __id {
@@ -250,6 +249,7 @@ view: mam_dcm_view {
 
   dimension: ad_id {
     type: string
+    hidden: yes
     sql: ${TABLE}."ad id" ;;
   }
 
@@ -285,6 +285,7 @@ view: mam_dcm_view {
 
   dimension: campaign_id {
     type: string
+    hidden: yes
     sql: ${TABLE}."campaign id" ;;
   }
 
@@ -320,6 +321,7 @@ view: mam_dcm_view {
 
   dimension: creative_id {
     type: string
+    hidden: yes
     sql: ${TABLE}."creative id" ;;
   }
 
@@ -359,6 +361,7 @@ view: mam_dcm_view {
 
   dimension: placement_id {
     type: number
+    hidden: yes
     sql: ${TABLE}."placement id" ;;
   }
 
