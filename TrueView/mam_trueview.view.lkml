@@ -13,6 +13,9 @@ view: mam_trueview {
 
 ###### All dimensions go below #######
 
+
+
+
   dimension_group: __senttime {
     type: time
     hidden: yes
@@ -133,9 +136,58 @@ view: mam_trueview {
     group_label: "Client Dimensions"
     sql:
       CASE
-        WHEN ${campaign} ilike '%Fall%' THEN 'Fall'
-        WHEN ${campaign} ilike '%Winter%' THEN 'Winter'
-        WHEN ${campaign} ilike '%Summer%' THEN 'Summer'
+        WHEN ${campaign} ilike '%FY19/20 Fall%' THEN 'Fall'
+        WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Winter'
+        WHEN ${campaign} ilike '%FY19/20 Summer%' THEN 'Summer'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: layer {
+    label: "TrueView Layer"
+    group_label: "TrueView Dimensions"
+    sql:
+        CASE
+        WHEN ${campaign} ilike '%Retargeting%' THEN 'Retargeting'
+        WHEN ${campaign} ilike '%Prospecting%' THEN 'Prospecting'
+        WHEN ${campaign_id} = '6542201483' then 'Prospecting'
+        WHEN ${campaign_id} = '6542201492' then 'Prospecting'
+        WHEN ${campaign_id} = '6542201486' then 'Prospecting'
+        WHEN ${campaign_id} = '6542201474' then 'Prospecting'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: audience {
+    label: "Target Audience"
+    group_label: "Client Dimensions"
+    sql:
+        CASE
+        WHEN ${ad_group} ilike '%InMarket Travel%' THEN 'In-Market Travel'
+        WHEN ${ad_group} ilike '%Retargeting%' THEN 'Retargeting'
+        WHEN ${ad_group} ilike '%Competitive Destinations%' then 'Competitive Destinations'
+        WHEN ${ad_group} ilike '%Skiing Enthusiasts' then 'Brand'
+        WHEN ${ad_group} ilike '%Running Enthusiasts%' then 'Brand'
+        WHEN ${ad_group} ilike '%Outdoor Enthusiasts%' then 'Brand'
+        WHEN ${ad_group} ilike '%Cycling Enthusiasts%' then 'Brand'
+        WHEN ${ad_group} ilike '%Custom%' then 'Custom'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: mam_region {
+    label: "Region"
+    type: string
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${campaign} ilike '%SF' THEN 'San Francisco'
+        WHEN ${campaign} ilike '%NE' THEN 'Northeast'
+        WHEN ${campaign} ilike '%DEN' THEN 'Denver'
+        WHEN ${campaign} ilike '%CA/NV' THEN 'California/Nevada'
         ELSE 'Uncategorized'
         END
         ;;
