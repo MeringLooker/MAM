@@ -80,7 +80,7 @@ view: mam_sem_gdn {
   }
 
   dimension: campaign_id {
-    hidden:  yes
+  #  hidden:  yes
     type: number
     sql: ${TABLE}."campaign id" ;;
   }
@@ -184,8 +184,8 @@ view: mam_sem_gdn {
     group_label: "AdWords Dimensions"
     sql:
       CASE
-        WHEN ${account} ILIKE '%GDN' THEN 'Display'
-        WHEN ${account} ILIKE '%SEM' THEN 'Search'
+        WHEN ${account} ILIKE '%GDN%' THEN 'Display'
+        WHEN ${account} ILIKE '%SEM%' THEN 'Search'
         ELSE 'Uncategorized'
         END
     ;;
