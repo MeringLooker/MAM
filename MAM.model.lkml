@@ -155,6 +155,14 @@ explore: mam_dcm_view {
   }
 }
 
+######## Exploring YouTube Data #########
+
+explore: mam_trueview {
+  label: "YouTube"
+  view_label: "YouTube"
+  group_label: "Mammoth Lakes Tourism"
+}
+
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.

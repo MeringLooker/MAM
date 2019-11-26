@@ -15,6 +15,7 @@ view: mam_dcm_view {
 
   dimension: __id {
     type: string
+    hidden: yes
     sql: ${TABLE}.__id ;;
   }
 
@@ -138,8 +139,7 @@ view: mam_dcm_view {
   }
 
   dimension: campaign_id {
-    type: number
-    hidden: yes
+    type: string
     sql: ${TABLE}."campaign id" ;;
   }
 
