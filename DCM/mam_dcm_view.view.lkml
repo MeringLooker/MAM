@@ -11,7 +11,137 @@ view: mam_dcm_view {
     sql: ${TABLE}.id ;;
   }
 
-######### All Dimensions go Below #########
+##### Dimensions added to this table via LookML
+
+  dimension: fiscal_year {
+    type: string
+    group_label: "Client Dimensions"
+    label: "Fiscal Year"
+    sql:
+      CASE
+        WHEN ${date_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
+        WHEN ${date_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
+        WHEN ${date_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: mam_campaign {
+    type: string
+    label: "Season/Campaign"
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${campaign_id} = '23182329' then 'Winter'
+        WHEN ${campaign_id} = '23188164' then 'Air Service'
+        WHEN ${campaign_id} = '22311158' then 'Winter'
+        WHEN ${campaign_id} = '22439071' then 'Summer'
+        WHEN ${campaign_id} = '23018327' then 'Fall'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: dcm_package {
+    type: string
+    label: "Package Name"
+    group_label: "DCM Dimensions"
+    sql:
+      CASE
+
+        WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_%' then '4 Screen Video'
+        WHEN ${placement} ilike '%\\_AV3ScreenVideoPackage\\_%' then 'AV 3 Screen Video'
+        WHEN ${placement} ilike '%\\_CCDisplay\\_%' then 'Cross-Device Display'
+        WHEN ${placement} ilike '%\\_CDDisplay\\_%' then 'Cross-Device Display'
+        WHEN ${placement} ilike '%\\_NativeDisplayPackage\\_%' then 'Native Display'
+        WHEN ${placement} ilike '%AV Big Box%' then 'AV Big Box'
+        WHEN ${placement} ilike '%AV Half Page Sticky%' then 'Half Page Sticky'
+        WHEN ${placement} ilike '%AVStandard Display Banners%' then 'AV Standard Banners ROS'
+        WHEN ${placement} ilike '%\\_Standard Display Banners%' then 'Standard Banners ROS'
+        WHEN ${placement} ilike '%\\_Video\\_Preroll/Outstream%' then 'Video/PreRoll/Outstream'
+        WHEN ${placement} ilike '%\\_Custom Mobile Unit\\_Expandable Video%' then 'Custom Mobile Unit - Expandable Video'
+        WHEN ${placement} ilike '%\\_Custom Mobile Unit\\_Scroller%' then 'Custom Mobile Unit - Scroller'
+        WHEN ${placement} ilike '%\\_Display\\_Roller%' then 'Roller'
+        WHEN ${placement} ilike '%\\_Rich Media\\_300x600expands%' then 'Rich Media'
+        WHEN ${placement} ilike '%\\_Video In-read%' then 'In-Read Video'
+        WHEN ${placement} ilike '%\\_AV Display\\_%' then 'AV Standard Display'
+        WHEN ${placement} ilike '%\\_Standard\\_Video Billboard\\_%' then 'Standard/Video Billboard'
+        WHEN ${placement} ilike '%\\_Standard Display\\_Roadblock%' then 'Standard Display Roadblock'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Desktop%' then 'Standard Display'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Mobile%' then 'Standard Display'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_App%' then 'Standard Display'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Marquee%' then 'Marquee Display'
+        WHEN ${placement} ilike '%Repromo Matador Content%' then 'Matador Content Distribution'
+        WHEN ${placement} ilike '%Matador Experience%' then 'Matador Experience Distribution'
+        WHEN ${placement} ilike 'Amobee\\_Native Display\\_%' then 'Native Display'
+        WHEN ${placement} ilike 'Amobee\\_NativeDisplay\\_%' then 'Native Display'
+        WHEN ${placement} ilike 'Amobee\\_AV3ScreenDisplay\\_%' then 'AV 3 Screen Display'
+        WHEN ${placement} ilike 'Sharethrough\\_Native Display\\_%' then 'Native Display'
+        WHEN ${placement} ilike 'Sharethrough\\_Native Display Added Value\\_%' then 'AV Native Display'
+        WHEN ${placement} ilike '\\_Pre-Roll :30\\_' then '4-Screen Video'
+        WHEN ${placement} ilike 'Amobee\\_RON\\_%' then '3-Screen Display'
+        WHEN ${placement} ilike 'Amobee\\_R0N%' then '3-Screen Display'
+        WHEN ${placement} ilike 'ROS Big Box%' then 'ROS Big Box'
+        WHEN ${placement} ilike 'Matador Experience-%' then 'Matador Experience Distribution'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: dcm_region {
+    type: string
+    label: "Region"
+    group_label: "Client Dimensions"
+    sql:
+    CASE
+
+    WHEN ${placement} ilike '%\\_SF\\_%' then 'San Francisco'
+    WHEN ${placement} ilike '%\\_NE\\_%' then 'Northeast'
+    WHEN ${placement} ilike '%\\_DEN\\_%' then 'Denver'
+    WHEN ${placement} ilike '%\\_CA+NV\_%' then 'California/Nevada'
+    WHEN ${placement} ilike '%\\_SF' then 'San Francisco'
+    WHEN ${placement} ilike '%\\_ SF' then 'San Francisco'
+    WHEN ${placement} ilike '%\\_NE' then 'Northeast'
+    WHEN ${placement} ilike '%\\_DEN' then 'Denver'
+    WHEN ${placement} ilike '%\\_CA+NV' then 'California/Nevada'
+    WHEN ${placement} ilike '%\\_NTL\\_%' then 'National'
+    WHEN ${placement} = 'Matador_Repromo Matador Content_Distribution_1x1' then 'National'
+    WHEN ${placement} ilike '%Northeast%' then 'Northeast'
+    WHEN ${placement} ilike '%Denver%' then 'Denver'
+    WHEN ${placement} ilike '%AV3ScreenVideoPackage%' then 'National'
+    WHEN ${placement} ilike '%Native Display\\_San Francisco DMA' then 'San Francisco'
+    WHEN ${placement} ilike '%\\_San Francisco DMA' then 'San Francisco'
+    WHEN ${placement} ilike '%Native Display\\_CA & NV%' then 'California/Nevada'
+    WHEN ${placement} ilike '%Native Display Added Value\\_CA & NV%' then 'California/Nevada'
+    WHEN ${placement} ilike '%CA & NV%' then 'California/Nevada'
+    WHEN ${placement_id} = '252643239' then 'California/Nevada'
+    WHEN ${dcm_package} = 'Matador Experience Distribution' then 'National'
+    WHEN ${dcm_package} = 'ROS Big Box' then 'National'
+    WHEN ${placement} ilike '%Native Display\\_ San Diego%' then 'San Diego'
+    WHEN ${placement} ilike '%Native Display\\_ Los Angeles%' then 'Los Angeles'
+    WHEN ${placement} ilike '%Native Display\\_ San Francisco%' then 'San Francisco'
+    WHEN ${placement} ilike '%Native Display\\_ Fresno%' then 'Fresno'
+    WHEN ${placement} ilike '%Native Display\\_ Sacramento%' then 'Sacramento'
+    WHEN ${placement} ilike '%Native Display\\_ California & Nevada%' then 'San Diego'
+        ELSE 'Uncategorized'
+    END;;
+}
+
+  dimension: publisher {
+    type: string
+    label: "Publisher"
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${site_dcm} = 'Matador Ventures%' then 'Matador'
+        WHEN ${site_dcm} = 'Media Rhythm' then 'Snowboarder.com'
+        ELSE ${site_dcm}
+        END
+        ;;
+  }
+
+######### All Dimensions Native to Source Table Below #########
 
   dimension: __id {
     type: string
@@ -104,7 +234,6 @@ view: mam_dcm_view {
 
   dimension: ad_id {
     type: string
-    hidden: yes
     sql: ${TABLE}."ad id" ;;
   }
 
@@ -175,7 +304,6 @@ view: mam_dcm_view {
 
   dimension: creative_id {
     type: string
-    hidden: yes
     sql: ${TABLE}."creative id" ;;
   }
 
@@ -193,20 +321,6 @@ view: mam_dcm_view {
       year
     ]
     sql: ${TABLE}.date ;;
-  }
-
-  dimension: fiscal_year {
-    type: string
-    group_label: "Client Dimensions"
-    label: "Fiscal Year"
-    sql:
-      CASE
-        WHEN ${date_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
-        WHEN ${date_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
-        WHEN ${date_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
-        ELSE 'Uncategorized'
-        END
-        ;;
   }
 
   dimension: impressions {
@@ -229,7 +343,6 @@ view: mam_dcm_view {
 
   dimension: placement_id {
     type: number
-    hidden: yes
     sql: ${TABLE}."placement id" ;;
   }
 
@@ -255,6 +368,7 @@ view: mam_dcm_view {
   dimension: site_dcm {
     type: string
     label: "Site"
+    group_label: "DCM Dimensions"
     sql: ${TABLE}."site (dcm)" ;;
   }
 
