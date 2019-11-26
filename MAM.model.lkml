@@ -7,6 +7,17 @@ include: "/Facebook/**/*.view"
 include: "/Google_Analytics/**/*.view"
 include: "/TrueView/**/*.view"
 
+datagroup: mam_default_datagroup {
+  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  max_cache_age: "1 hour"
+}
+
+label: "Mammoth Lakes Tourism"
+
+persist_with: mam_default_datagroup
+
+
+
 
 #### Exploring AdWords Test Data #####
 
@@ -36,6 +47,30 @@ explore: mam_fb_view {
     type: left_outer
     fields: []
     sql_on: ${facebookads__visit_mammoth_video_p100_watched_actions.facebookads__visit_mammoth_id} = ${mam_fb_view.id} ;;
+    relationship: many_to_one
+  }
+
+  join: facebookads__visit_mammoth_video_p75_watched_actions {
+    view_label: "Vid Completes"
+    type: left_outer
+    fields: []
+    sql_on: ${facebookads__visit_mammoth_video_p75_watched_actions.facebookads__visit_mammoth_id} = ${mam_fb_view.id} ;;
+    relationship: many_to_one
+  }
+
+  join: facebookads__visit_mammoth_video_p50_watched_actions {
+    view_label: "Vid Completes"
+    type: left_outer
+    fields: []
+    sql_on: ${facebookads__visit_mammoth_video_p50_watched_actions.facebookads__visit_mammoth_id} = ${mam_fb_view.id} ;;
+    relationship: many_to_one
+  }
+
+  join: facebookads__visit_mammoth_video_p25_watched_actions {
+    view_label: "Vid Completes"
+    type: left_outer
+    fields: []
+    sql_on: ${facebookads__visit_mammoth_video_p25_watched_actions.facebookads__visit_mammoth_id} = ${mam_fb_view.id} ;;
     relationship: many_to_one
   }
 

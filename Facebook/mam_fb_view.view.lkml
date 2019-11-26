@@ -286,7 +286,7 @@ dimension: season {
   measure: total_impressions {
     type: sum_distinct
     label: "Impressions"
-    group_label: "Facebook Metrics"
+    group_label: "Facebook Delivery"
     sql_distinct_key: ${mam_fb_view.id};;
     sql: ${TABLE}.impressions ;;
   }
@@ -294,7 +294,7 @@ dimension: season {
   measure: total_clicks {
     type: sum_distinct
     label: "Link Clicks"
-    group_label: "Facebook Metrics"
+    group_label: "Facebook Delivery"
     sql_distinct_key: ${mam_fb_view.id};;
     sql: ${TABLE}.inline_link_clicks ;;
   }
@@ -302,7 +302,7 @@ dimension: season {
   measure: total_spend {
     type: sum_distinct
     label: "Media Spend"
-    group_label: "Facebook Metrics"
+    group_label: "Facebook Delivery"
     sql_distinct_key: ${mam_fb_view.id};;
     sql: ${TABLE}.spend ;;
     value_format_name: usd
@@ -311,7 +311,7 @@ dimension: season {
   measure: click_through_rate {
     type: number
     label: "CTR"
-    group_label: "Facebook Metrics"
+    group_label: "Facebook Delivery"
     sql: 1.0*${total_clicks}/nullif(${total_impressions}, 0) ;;
     value_format_name: percent_2
   }
@@ -319,7 +319,7 @@ dimension: season {
   measure: cost_per_click {
     type: number
     label: "CPC"
-    group_label: "Facebook Metrics"
+    group_label: "Facebook Delivery"
     sql: ${total_spend}/nullif(${total_clicks}, 0) ;;
     value_format_name: usd
   }
@@ -327,7 +327,7 @@ dimension: season {
   measure: cost_per_thousand {
     type: number
     label: "CPM"
-    group_label: "Facebook Metrics"
+    group_label: "Facebook Delivery"
     sql: ${total_spend}/nullif(${total_impressions}/1000, 0) ;;
     value_format_name: usd
   }
@@ -340,17 +340,41 @@ dimension: season {
     type: sum_distinct
     sql_distinct_key: ${facebookads__visit_mammoth_actions.id};;
     label: ":03 Video Views"
-    group_label: "Facebook Metrics"
+    group_label: "Video Metrics"
     sql:
       CASE
       WHEN ${facebookads__visit_mammoth_actions.action_type} = 'video_view' THEN ${facebookads__visit_mammoth_actions.value}
       END;;
   }
 
+  measure: view_to_25 {
+    type: sum_distinct
+    label: "Views to 25%"
+    group_label: "Video Metrics"
+    sql_distinct_key: ${facebookads__visit_mammoth_video_p25_watched_actions.id};;
+    sql: ${facebookads__visit_mammoth_video_p25_watched_actions.value} ;;
+  }
+
+  measure: view_to_50 {
+    type: sum_distinct
+    label: "Views to 50%"
+    group_label: "Video Metrics"
+    sql_distinct_key: ${facebookads__visit_mammoth_video_p50_watched_actions.id};;
+    sql: ${facebookads__visit_mammoth_video_p50_watched_actions.value} ;;
+  }
+
+  measure: view_to_75 {
+    type: sum_distinct
+    label: "Views to 75%"
+    group_label: "Video Metrics"
+    sql_distinct_key: ${facebookads__visit_mammoth_video_p75_watched_actions.id};;
+    sql: ${facebookads__visit_mammoth_video_p75_watched_actions.value} ;;
+  }
+
   measure: video_completes {
     type: sum_distinct
     label: "Views to 100%"
-    group_label: "Facebook Metrics"
+    group_label: "Video Metrics"
     sql_distinct_key: ${facebookads__visit_mammoth_video_p100_watched_actions.id};;
     sql: ${facebookads__visit_mammoth_video_p100_watched_actions.value} ;;
   }
@@ -358,10 +382,22 @@ dimension: season {
   measure: video_completion_rate {
     type: number
     label: "Vid. Completion Rate"
-    group_label: "Facebook Metrics"
+    group_label: "Video Metrics"
     sql: 1.0*${video_completes}/nullif(${total_impressions}, 0) ;;
     value_format_name: percent_2
   }
+
+  measure: flight_checkouts {
+    type: sum_distinct
+    sql_distinct_key: ${facebookads__visit_mammoth_actions.id};;
+    label: "Checkouts Initiated"
+    group_label: "Facebook Actions"
+    sql:
+      CASE
+      WHEN ${facebookads__visit_mammoth_actions.action_type} = 'offsite_conversion.fb_pixel_initiate_checkout' THEN ${facebookads__visit_mammoth_actions.value}
+      END;;
+  }
+
 
   ####### Joined GA Measures #######
 
