@@ -1,5 +1,5 @@
 view: facebookads__visit_mammoth_actions {
-  sql_table_name: public.facebookads__visit mammoth_actions ;;
+  sql_table_name: public."facebookads__visit mammoth_actions" ;;
   drill_fields: [id]
 
   dimension: id {
