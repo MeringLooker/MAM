@@ -19,13 +19,37 @@ persist_with: mam_default_datagroup
 
 
 
-#### Exploring AdWords Test Data #####
+#### Exploring AdWords Search Data #####
 
-explore: mam_sem_gdn {
-  label: "AdWords"
-  view_label: "AdWords Test"
+explore: mam_sem {
+  view_name: mam_sem_gdn
+  always_filter: {
+    filters: {
+      field: advertising_channel
+      value: "Search"
+    }
+  }
+  label: "AdWords Search"
+  view_label: "AdWords Search"
   group_label: "Mammoth Lakes Tourism"
 }
+
+
+#### Exploring AdWords Display Data #####
+
+explore: mam_gdn {
+  view_name: mam_sem_gdn
+  always_filter: {
+    filters: {
+      field: advertising_channel
+      value: "Display"
+    }
+  }
+  label: "AdWords Display"
+  view_label: "AdWords Display"
+  group_label: "Mammoth Lakes Tourism"
+}
+
 
 #### Exploring Facebook Data #####
 
