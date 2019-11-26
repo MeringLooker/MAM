@@ -21,6 +21,11 @@ view: mam_sem_gdn {
         WHEN  ${campaign} ILIKE '%DEN' then 'Denver'
         WHEN  ${campaign} ILIKE '%NE' then 'Northeast'
         WHEN  ${campaign} ILIKE '%CA/NV' then 'California/Nevada'
+        WHEN  ${campaign} ILIKE '%SoCal' then 'Southern California'
+        WHEN  ${campaign} ILIKE '%Fresno' then 'Fresno'
+        WHEN  ${campaign} ILIKE '%Sac' then 'Sacramento'
+        WHEN  ${campaign} ILIKE '%SD' then 'San Diego'
+        WHEN  ${campaign} ILIKE '%LA' then 'Los Angeles'
         ELSE 'Uncategorized'
         END;;
   }
@@ -30,7 +35,28 @@ view: mam_sem_gdn {
     sql:
       CASE
         WHEN  ${ad_group} ILIKE '%Competitive Destinations' then 'Competitive Conquesting'
+        WHEN  ${ad_group} ILIKE '%Competitive Destinations%' then 'Competitive Conquesting'
         WHEN  ${ad_group} ILIKE '%Site Visitor Lookalike' then 'Site Visitor Lookalike'
+        WHEN  ${ad_group} ILIKE '%Site Visitor Lookalike%' then 'Site Visitor Lookalike'
+        WHEN  ${ad_group} ILIKE '%Ski Topics' then 'Ski Topics'
+        WHEN  ${ad_group} ILIKE '%Ski Enthusiasts' then 'Ski Enthusiasts'
+        WHEN  ${ad_group} ILIKE '%Retargeting' then 'Retargeting'
+         WHEN  ${ad_group} ILIKE '%Retargeting%' then 'Retargeting'
+        WHEN  ${ad_group} ILIKE '%in-Market Travel'then 'In-Market Travel'
+        WHEN  ${ad_group} ILIKE '%inMarket Travel'then 'In-Market Travel'
+        WHEN  ${ad_group} ILIKE 'in-Market Travel%'then 'In-Market Travel'
+        WHEN  ${ad_group} ILIKE '% Outdoor Enthusiasts' then 'Outdoor Enthusiasts'
+
+        ELSE 'Uncategorized'
+        END;;
+  }
+
+  dimension: strategy {
+    type: string
+    sql:
+      CASE
+        WHEN  ${ad_group} ILIKE 'traffic%' then 'Traffic'
+        WHEN  ${ad_group} ILIKE 'conversion%' then 'Conversion'
         ELSE 'Uncategorized'
         END;;
   }
@@ -78,7 +104,8 @@ view: mam_sem_gdn {
   }
 
   dimension: ad_group_id {
-    hidden: yes
+   # hidden: yes
+    group_label: "AdWords Dimensions"
     type: number
     sql: ${TABLE}."ad group id" ;;
   }
@@ -103,6 +130,7 @@ view: mam_sem_gdn {
 
   dimension: campaign_id {
   #  hidden:  yes
+    group_label: "AdWords Dimensions"
     type: number
     sql: ${TABLE}."campaign id" ;;
   }
