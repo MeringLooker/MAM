@@ -122,16 +122,15 @@ view: mam_ga_events {
     label: "Events"
     type: sum_distinct
     sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.totalevents ;;
+    sql: ${totalevents} ;;
   }
 
   measure: total_unique_events {
     label: "Unique Events"
     type: sum_distinct
     sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.uniqueevents ;;
+    sql: ${uniqueevents} ;;
   }
-
 
   measure: count {
     type: count

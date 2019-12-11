@@ -32,6 +32,14 @@ explore: mam_sem {
   label: "AdWords Search"
   view_label: "AdWords Search"
   group_label: "Mammoth Lakes Tourism"
+
+  join: mam_ga_onsite {
+    view_label: "Google Analytics"
+    type: left_outer
+    fields: []
+    sql_on: ${mam_sem_gdn.join_id} = ${mam_ga_onsite.adwords_join_id} ;;
+    relationship: many_to_one
+  }
 }
 
 
@@ -48,8 +56,15 @@ explore: mam_gdn {
   label: "AdWords Display"
   view_label: "AdWords Display"
   group_label: "Mammoth Lakes Tourism"
-}
 
+  join: mam_ga_onsite {
+    view_label: "Google Analytics"
+    type: left_outer
+    fields: []
+    sql_on: ${mam_sem_gdn.join_id} = ${mam_ga_onsite.adwords_join_id} ;;
+    relationship: many_to_one
+  }
+}
 
 #### Exploring Facebook Data #####
 

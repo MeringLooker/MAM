@@ -11,10 +11,80 @@ view: mam_sem_gdn {
     sql: ${TABLE}.id ;;
   }
 
-###### All Dimensions go Below #######
+###### Join ID #######
+
+  dimension: join_id {
+    hidden: yes
+    type: string
+    sql: ${ad_group_id}||'_'||${day_date}
+      ;;
+  }
+
+######## Dimensions added to this table via LookML ########
+
+  dimension: fiscal_year {
+    label: "Fiscal"
+    type: string
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${day_date} BETWEEN '2015-07-01' AND '2016-06-30' THEN 'FY 15/16'
+        WHEN ${day_date} BETWEEN '2016-07-01' AND '2017-06-30' THEN 'FY 16/17'
+        WHEN ${day_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
+        WHEN ${day_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
+        WHEN ${day_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: advertising_channel {
+    type: string
+    label: "Channel"
+    group_label: "AdWords Dimensions"
+    sql:
+      CASE
+        WHEN ${account} ILIKE '%GDN%' THEN 'Display'
+        WHEN ${account} ILIKE '%SEM%' THEN 'Search'
+        ELSE 'Uncategorized'
+        END
+    ;;
+  }
+
+  dimension: mam_campaign {
+    type: string
+    label: "Campaign/Season"
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${campaign} ILIKE '%FY20 Winter%' THEN 'Winter'
+        WHEN ${campaign} ILIKE '%FY19/20 Fall%' THEN 'Fall'
+
+        ELSE 'Uncategorized'
+        END
+    ;;
+  }
+
+  dimension: mam_campaign_layer {
+    type: string
+    label: "Campaign Layer"
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Seasonal'
+        WHEN ${campaign} ILIKE '%FY20 Winter - Conversion%' THEN 'Seasonal'
+        WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Air Service'
+        WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Seasonal'
+        WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Seasonal'
+        ELSE 'Uncategorized'
+        END
+    ;;
+  }
+
 
   dimension: region {
     type: string
+    group_label: "Client Dimensions"
     sql:
       CASE
         WHEN  ${campaign} ILIKE '%SF' then 'San Francisco'
@@ -30,8 +100,20 @@ view: mam_sem_gdn {
         END;;
   }
 
+  dimension: strategy {
+    type: string
+    group_label: "AdWords Dimensions"
+    sql:
+      CASE
+        WHEN  ${ad_group} ILIKE 'traffic%' then 'Traffic'
+        WHEN  ${ad_group} ILIKE 'conversion%' then 'Conversion'
+        ELSE 'Uncategorized'
+        END;;
+  }
+
   dimension: audience {
     type: string
+    group_label: "Client Dimensions"
     sql:
       CASE
         WHEN  ${ad_group} ILIKE '%Competitive Destinations' then 'Competitive Conquesting'
@@ -46,20 +128,12 @@ view: mam_sem_gdn {
         WHEN  ${ad_group} ILIKE '%inMarket Travel'then 'In-Market Travel'
         WHEN  ${ad_group} ILIKE 'in-Market Travel%'then 'In-Market Travel'
         WHEN  ${ad_group} ILIKE '% Outdoor Enthusiasts' then 'Outdoor Enthusiasts'
-
         ELSE 'Uncategorized'
         END;;
   }
 
-  dimension: strategy {
-    type: string
-    sql:
-      CASE
-        WHEN  ${ad_group} ILIKE 'traffic%' then 'Traffic'
-        WHEN  ${ad_group} ILIKE 'conversion%' then 'Conversion'
-        ELSE 'Uncategorized'
-        END;;
-  }
+
+###### All Dimensions go Below #######
 
   dimension_group: __senttime {
     hidden:yes
@@ -104,7 +178,7 @@ view: mam_sem_gdn {
   }
 
   dimension: ad_group_id {
-   # hidden: yes
+    # hidden: yes
     group_label: "AdWords Dimensions"
     type: number
     sql: ${TABLE}."ad group id" ;;
@@ -129,7 +203,7 @@ view: mam_sem_gdn {
   }
 
   dimension: campaign_id {
-  #  hidden:  yes
+    #  hidden:  yes
     group_label: "AdWords Dimensions"
     type: number
     sql: ${TABLE}."campaign id" ;;
@@ -211,61 +285,36 @@ view: mam_sem_gdn {
     sql: ${TABLE}."total conv. value" ;;
   }
 
-  dimension: fiscal_year {
-    label: "Fiscal"
-    type: string
-    group_label: "Client Dimensions"
-    sql:
-      CASE
-        WHEN ${day_date} BETWEEN '2015-07-01' AND '2016-06-30' THEN 'FY 15/16'
-        WHEN ${day_date} BETWEEN '2016-07-01' AND '2017-06-30' THEN 'FY 16/17'
-        WHEN ${day_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
-        WHEN ${day_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
-        WHEN ${day_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
-        ELSE 'Uncategorized'
-        END
-        ;;
-  }
-
-
-  dimension: advertising_channel {
-    type: string
-    label: "Channel"
-    group_label: "AdWords Dimensions"
-    sql:
-      CASE
-        WHEN ${account} ILIKE '%GDN%' THEN 'Display'
-        WHEN ${account} ILIKE '%SEM%' THEN 'Search'
-        ELSE 'Uncategorized'
-        END
-    ;;
-  }
-
-###### All Measures go Below #######
+  ###### All Measures go Below #######
 
   measure: total_impressions {
     type: sum_distinct
+    group_label: "AdWords Reporting"
     sql_distinct_key: ${TABLE}.id ;;
     sql: ${impressions} ;;
   }
 
   measure: total_clicks {
     type: sum_distinct
+    group_label: "AdWords Reporting"
     sql_distinct_key: ${TABLE}.id ;;
     sql: ${clicks} ;;
   }
 
   measure: total_cost {
     type:  sum_distinct
+    group_label: "AdWords Reporting"
     sql_distinct_key: ${TABLE}.id ;;
     sql:${cost}/1000000.00  ;;
     value_format_name: usd
   }
-measure: total_conversions {
-  type: sum_distinct
-  sql_distinct_key: ${TABLE}.id ;;
-  sql: ${conversions} ;;
-}
+
+  measure: total_conversions {
+    type: sum_distinct
+    group_label: "AdWords Reporting"
+    sql_distinct_key: ${TABLE}.id ;;
+    sql: ${conversions} ;;
+  }
 
   measure: click_through_rate  {
     label: "CTR"
@@ -306,6 +355,81 @@ measure: total_conversions {
     sql: ${total_cost}/nullif(${total_conversions} ,0);;
     value_format_name: usd
   }
+
+######## Joined measures from GA #######
+
+  measure: ga_sessions {
+    group_label: "GA Reporting"
+    type: sum_distinct
+    label: "Sessions"
+    sql_distinct_key: ${mam_ga_onsite.id} ;;
+    sql: ${mam_ga_onsite.sessions} ;;
+  }
+
+  measure: cost_per_session {
+    group_label: "GA Reporting"
+    type: number
+    label: "CPS"
+    sql: ${total_cost}/nullif(${ga_sessions}, 0) ;;
+    value_format_name: usd
+  }
+
+  measure: ga_total_session_duration {
+    hidden: yes
+    type: sum_distinct
+    label: "Total Session Duration"
+    sql_distinct_key: ${mam_ga_onsite.id};;
+    sql: ${mam_ga_onsite.sessionduration};;
+  }
+
+  measure: avg_time_on_site {
+    group_label: "GA Reporting"
+    label: "Avg. TOS"
+    type: number
+    sql:  (${mam_ga_onsite.total_session_duration}/nullif(${mam_ga_onsite.total_sessions}, 0))::float/86400  ;;
+    value_format: "m:ss"
+  }
+
+  measure: ga_total_users {
+    group_label: "GA Reporting"
+    label: "Users"
+    type: sum_distinct
+    sql_distinct_key: ${mam_ga_onsite.id};;
+    sql: ${mam_ga_onsite.users} ;;
+  }
+
+  measure: ga_new_users {
+    group_label: "GA Reporting"
+    label: "New Users"
+    type: sum_distinct
+    sql_distinct_key: ${mam_ga_onsite.id};;
+    sql: ${mam_ga_onsite.newusers} ;;
+  }
+
+  measure: percent_new_users {
+    group_label: "GA Reporting"
+    label: "% New Users"
+    type: number
+    sql: ${mam_ga_onsite.new_users}/nullif(${mam_ga_onsite.total_users}, 0) ;;
+    value_format_name: percent_0
+  }
+
+  measure: ga_total_pageviews {
+    group_label: "GA Reporting"
+    label: "Pageviews"
+    type: sum_distinct
+    sql_distinct_key: ${mam_ga_onsite.id};;
+    sql: ${mam_ga_onsite.pageviews} ;;
+  }
+
+  measure: pages_per_session {
+    group_label: "GA Reporting"
+    label: "Pgs/Session"
+    type: number
+    sql: ${mam_ga_onsite.total_pageviews}/nullif(${mam_ga_onsite.total_sessions}, 0) ;;
+    value_format: "#.0"
+  }
+
 
   measure: count {
     type: count

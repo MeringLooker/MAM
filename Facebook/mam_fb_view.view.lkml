@@ -48,6 +48,99 @@ dimension: season {
         ;;
   }
 
+  dimension: fb_audience {
+    label: "Audience"
+    group_label: "Client Dimensions"
+    type: string
+    sql:
+      CASE
+        WHEN ${adset_name} ilike '%SiteVisitors%' THEN 'Site Visitors'
+        WHEN ${adset_name} ilike '%LandingPage%' THEN 'Landing Page'
+        WHEN ${adset_name} ilike '%FareSale%' THEN 'Fare Sale'
+
+        WHEN ${adset_name} ilike '%\\_LAL\\_%' THEN 'Lookalike'
+        WHEN ${adset_name} ilike '%\\_Brand\\_%' THEN 'Brand'
+        WHEN ${adset_name} ilike '%\\_RT\\_%' THEN 'Retargeting'
+        WHEN ${adset_name} ilike '%\\_RTNonSkippable\\_%' THEN 'Retargeting'
+        WHEN ${adset_name} ilike '%\\_Competitive\\_%' THEN 'Competitive'
+        WHEN ${adset_name} ilike '%\\_RTSkippable\\_%' THEN 'Retargeting'
+        WHEN ${adset_name} ilike '%\\_LakeTahoeCompetitive\\_%' THEN 'Competitive'
+
+        ELSE 'Uncateorized'
+        END
+        ;;
+  }
+
+  dimension: fb_airline {
+    label: "Airline"
+    group_label: "Client Dimensions"
+    type: string
+    sql:
+      CASE
+        WHEN ${ad_name} ilike '%\\_United\\_%' THEN 'United'
+        WHEN ${ad_name} ilike '%\\_jsx\\_%' THEN 'JetSuiteX'
+        END
+        ;;
+  }
+
+  dimension: fb_creative {
+    label: "Creative Name"
+    group_label: "Client Dimensions"
+    type: string
+    sql:
+      CASE
+        WHEN ${ad_name} ilike '%\\_HighPlaces' THEN 'High Places'
+        WHEN ${ad_name} ilike '%\\_GetLost' THEN 'Get Lost'
+        WHEN ${ad_name} ilike '%\\_AboveAverage' THEN 'Above Average'
+        WHEN ${ad_name} ilike '%\\_UphillBattles' THEN 'Uphill Battles'
+        WHEN ${ad_name} ilike '%\\_MorningCommute' THEN 'Morning Commute'
+        WHEN ${ad_name} ilike '%\\_Mondays' THEN 'Mondays'
+        else 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: ad_type {
+    label: "Ad Type"
+    group_label: "Facebook Dimensions"
+    type: string
+    sql:
+      CASE
+        WHEN ${ad_name} ilike '%\\_Video\\_%' THEN 'Video'
+        WHEN ${ad_name} ilike '%\\_SingleImage\\_%' THEN 'Single Image'
+        WHEN ${ad_name} ilike '%\\_Carousel\\_%' THEN 'Carousel'
+        WHEN ${ad_name} ilike '%\\_UphillBattles' THEN 'Uphill Battles'
+        WHEN ${ad_name} ilike '%\\_MorningCommute' THEN 'Morning Commute'
+        WHEN ${ad_name} ilike '%\\_Mondays' THEN 'Mondays'
+        else 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: fb_region {
+    label: "Region"
+    group_label: "Client Dimensions"
+    type: string
+    sql:
+      CASE
+        WHEN ${campaign_name} ilike '%\\_SF\\_%' THEN 'San Francisco'
+        WHEN ${campaign_name} ilike '%\\_NE\\_%' THEN 'Northeast'
+        WHEN ${campaign_name} ilike '%\\_Denver\\_%' THEN 'Denver'
+        WHEN ${campaign_name} ilike '%\\_Den\\_%' THEN 'Denver'
+        WHEN ${campaign_name} ilike '%\\_CA/NV\\_%' THEN 'California/Nevada'
+        WHEN ${campaign_name} ilike '%\\_SF' THEN 'San Francisco'
+        WHEN ${campaign_name} ilike '%\\_NE' THEN 'Northeast'
+        WHEN ${campaign_name} ilike '%\\_Denver' THEN 'Denver'
+        WHEN ${campaign_name} ilike '%\\_Den' THEN 'Denver'
+        WHEN ${campaign_name} ilike '%\\_CA/NV' THEN 'California/Nevada'
+        WHEN ${adset_name} ilike '%\\_SF' THEN 'San Francisco'
+        WHEN ${adset_name} ilike '%\\_DENver' THEN 'Denver'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+
   dimension: fiscal_year {
     label: "Fiscal"
     group_label: "Client Dimensions"
@@ -293,7 +386,7 @@ dimension: season {
     label: "Impressions"
     group_label: "Facebook Delivery"
     sql_distinct_key: ${mam_fb_view.id};;
-    sql: ${TABLE}.impressions ;;
+    sql: ${impressions} ;;
   }
 
   measure: total_clicks {
@@ -301,7 +394,7 @@ dimension: season {
     label: "Link Clicks"
     group_label: "Facebook Delivery"
     sql_distinct_key: ${mam_fb_view.id};;
-    sql: ${TABLE}.inline_link_clicks ;;
+    sql: ${inline_link_clicks} ;;
   }
 
   measure: total_spend {
@@ -309,7 +402,7 @@ dimension: season {
     label: "Media Spend"
     group_label: "Facebook Delivery"
     sql_distinct_key: ${mam_fb_view.id};;
-    sql: ${TABLE}.spend ;;
+    sql: ${spend} ;;
     value_format_name: usd
   }
 

@@ -11,10 +11,88 @@ view: mam_trueview {
     sql: ${TABLE}.id ;;
   }
 
+##### Dimensions added to this table via LookML ######
+
+  dimension: fiscal_year {
+    label: "Fiscal"
+    type: string
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${Date_date} BETWEEN '2015-07-01' AND '2016-06-30' THEN 'FY 15/16'
+        WHEN ${Date_date} BETWEEN '2016-07-01' AND '2017-06-30' THEN 'FY 16/17'
+        WHEN ${Date_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
+        WHEN ${Date_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
+        WHEN ${Date_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: season {
+    label: "Season/Campaign"
+    type: string
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${campaign} ilike '%FY19/20 Fall%' THEN 'Fall'
+        WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Winter'
+        WHEN ${campaign} ilike '%FY19/20 Summer%' THEN 'Summer'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: layer {
+    label: "TrueView Layer"
+    group_label: "TrueView Dimensions"
+    sql:
+        CASE
+        WHEN ${campaign} ilike '%Retargeting%' THEN 'Retargeting'
+        WHEN ${campaign} ilike '%Prospecting%' THEN 'Prospecting'
+        WHEN ${campaign_id} = '6542201483' then 'Prospecting'
+        WHEN ${campaign_id} = '6542201492' then 'Prospecting'
+        WHEN ${campaign_id} = '6542201486' then 'Prospecting'
+        WHEN ${campaign_id} = '6542201474' then 'Prospecting'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: audience {
+    label: "Target Audience"
+    group_label: "Client Dimensions"
+    sql:
+        CASE
+        WHEN ${ad_group} ilike '%InMarket Travel%' THEN 'In-Market Travel'
+        WHEN ${ad_group} ilike '%Retargeting%' THEN 'Retargeting'
+        WHEN ${ad_group} ilike '%Competitive Destinations%' then 'Competitive Destinations'
+        WHEN ${ad_group} ilike '%Skiing Enthusiasts' then 'Brand'
+        WHEN ${ad_group} ilike '%Running Enthusiasts%' then 'Brand'
+        WHEN ${ad_group} ilike '%Outdoor Enthusiasts%' then 'Brand'
+        WHEN ${ad_group} ilike '%Cycling Enthusiasts%' then 'Brand'
+        WHEN ${ad_group} ilike '%Custom%' then 'Custom'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: mam_region {
+    label: "Region"
+    type: string
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${campaign} ilike '%SF' THEN 'San Francisco'
+        WHEN ${campaign} ilike '%NE' THEN 'Northeast'
+        WHEN ${campaign} ilike '%DEN' THEN 'Denver'
+        WHEN ${campaign} ilike '%CA/NV' THEN 'California/Nevada'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
 ###### All dimensions go below #######
-
-
-
 
   dimension_group: __senttime {
     type: time
@@ -130,69 +208,6 @@ view: mam_trueview {
     sql: ${TABLE}.campaign ;;
   }
 
-  dimension: season {
-    label: "Season/Campaign"
-    type: string
-    group_label: "Client Dimensions"
-    sql:
-      CASE
-        WHEN ${campaign} ilike '%FY19/20 Fall%' THEN 'Fall'
-        WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Winter'
-        WHEN ${campaign} ilike '%FY19/20 Summer%' THEN 'Summer'
-        ELSE 'Uncategorized'
-        END
-        ;;
-  }
-
-  dimension: layer {
-    label: "TrueView Layer"
-    group_label: "TrueView Dimensions"
-    sql:
-        CASE
-        WHEN ${campaign} ilike '%Retargeting%' THEN 'Retargeting'
-        WHEN ${campaign} ilike '%Prospecting%' THEN 'Prospecting'
-        WHEN ${campaign_id} = '6542201483' then 'Prospecting'
-        WHEN ${campaign_id} = '6542201492' then 'Prospecting'
-        WHEN ${campaign_id} = '6542201486' then 'Prospecting'
-        WHEN ${campaign_id} = '6542201474' then 'Prospecting'
-        ELSE 'Uncategorized'
-        END
-        ;;
-  }
-
-  dimension: audience {
-    label: "Target Audience"
-    group_label: "Client Dimensions"
-    sql:
-        CASE
-        WHEN ${ad_group} ilike '%InMarket Travel%' THEN 'In-Market Travel'
-        WHEN ${ad_group} ilike '%Retargeting%' THEN 'Retargeting'
-        WHEN ${ad_group} ilike '%Competitive Destinations%' then 'Competitive Destinations'
-        WHEN ${ad_group} ilike '%Skiing Enthusiasts' then 'Brand'
-        WHEN ${ad_group} ilike '%Running Enthusiasts%' then 'Brand'
-        WHEN ${ad_group} ilike '%Outdoor Enthusiasts%' then 'Brand'
-        WHEN ${ad_group} ilike '%Cycling Enthusiasts%' then 'Brand'
-        WHEN ${ad_group} ilike '%Custom%' then 'Custom'
-        ELSE 'Uncategorized'
-        END
-        ;;
-  }
-
-  dimension: mam_region {
-    label: "Region"
-    type: string
-    group_label: "Client Dimensions"
-    sql:
-      CASE
-        WHEN ${campaign} ilike '%SF' THEN 'San Francisco'
-        WHEN ${campaign} ilike '%NE' THEN 'Northeast'
-        WHEN ${campaign} ilike '%DEN' THEN 'Denver'
-        WHEN ${campaign} ilike '%CA/NV' THEN 'California/Nevada'
-        ELSE 'Uncategorized'
-        END
-        ;;
-  }
-
   dimension: campaign_id {
     type: number
     hidden: yes
@@ -297,22 +312,6 @@ view: mam_trueview {
       year
     ]
     sql: ${TABLE}.day ;;
-  }
-
-  dimension: fiscal_year {
-    label: "Fiscal"
-    type: string
-    group_label: "Client Dimensions"
-    sql:
-      CASE
-        WHEN ${Date_date} BETWEEN '2015-07-01' AND '2016-06-30' THEN 'FY 15/16'
-        WHEN ${Date_date} BETWEEN '2016-07-01' AND '2017-06-30' THEN 'FY 16/17'
-        WHEN ${Date_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
-        WHEN ${Date_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
-        WHEN ${Date_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
-        ELSE 'Uncategorized'
-        END
-        ;;
   }
 
   dimension: device {

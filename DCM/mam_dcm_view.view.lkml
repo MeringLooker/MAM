@@ -156,6 +156,23 @@ view: mam_dcm_view {
         ;;
   }
 
+  dimension: ad_size {
+    type: string
+    group_label: "DCM Dimensions"
+    label: "Ad Size"
+    sql:
+      CASE
+        when ${creative} ILIKE '%728x90%' then '728x90'
+        when ${creative} ILIKE '%300x250%' then '300x250'
+        when ${creative} ILIKE '%300x600%' then '300x600'
+        when ${creative} ILIKE '%320x50%' then '320x50'
+        when ${creative} ILIKE '%160x600%' then '160x600'
+        when ${creative} ILIKE '%970x250%' then '970x250'
+        when ${creative} ILIKE '%300x50%' then '300x50'
+      ELSE 'Uncategorized'
+      END;;
+  }
+
 ######### All Dimensions Native to Source Table Below #########
 
   dimension: __id {
@@ -422,7 +439,7 @@ view: mam_dcm_view {
     type: sum_distinct
     label: "Impressions"
     sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.impressions ;;
+    sql: ${impressions} ;;
   }
 
   measure: total_clicks {
@@ -430,7 +447,7 @@ view: mam_dcm_view {
     type: sum_distinct
     label: "Clicks"
     sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.clicks ;;
+    sql: ${clicks} ;;
   }
 
   measure: click_through_rate {
@@ -446,7 +463,7 @@ view: mam_dcm_view {
     type: sum_distinct
     label: "Active View Measureable Impressions"
     sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}."active view: measurable impressions";;
+    sql: ${active_view__measurable_impressions};;
   }
 
   measure: total_active_view_viewable_impressions {
@@ -454,7 +471,7 @@ view: mam_dcm_view {
     type: sum_distinct
     label: "Active View Viewable Impressions"
     sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}."active view: viewable impressions" ;;
+    sql: ${active_view__viewable_impressions} ;;
   }
 
   measure: total_viewability {
@@ -470,7 +487,7 @@ view: mam_dcm_view {
     type: sum_distinct
     label: "Media Spend"
     sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}."media cost" ;;
+    sql: ${media_cost} ;;
     value_format_name: usd
   }
 
@@ -502,7 +519,7 @@ view: mam_dcm_view {
     group_label: "3rd Party Measures"
     type: number
     label: "CPM"
-    sql: 1.0*${total_clicks}/nullif(${total_impressions}/1000, 0) ;;
+    sql: 1.0*${total_media_cost}/nullif(${total_impressions}/1000, 0) ;;
     value_format_name: usd
   }
 

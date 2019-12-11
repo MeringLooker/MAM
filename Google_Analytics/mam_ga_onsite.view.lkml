@@ -145,16 +145,16 @@ view: mam_ga_onsite {
     label: "Sessions"
     group_label: "GA Reporting"
     type: sum_distinct
-    sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.sessions ;;
+    sql_distinct_key: ${id} ;;
+    sql: ${sessions} ;;
   }
 
   measure: total_session_duration {
     label: "Total Time on Site"
     hidden: yes
     type: sum_distinct
-    sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.sessionduration ;;
+    sql_distinct_key: ${id} ;;
+    sql: ${sessionduration} ;;
   }
 
   measure: avg_time_on_site {
@@ -168,15 +168,15 @@ view: mam_ga_onsite {
   measure: total_users {
     label: "Users"
     type: sum_distinct
-    sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.users ;;
+    sql_distinct_key: ${id} ;;
+    sql: ${users} ;;
   }
 
   measure: new_users {
     label: "New Users"
     type: sum_distinct
-    sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.newusers ;;
+    sql_distinct_key: ${id} ;;
+    sql: ${newusers} ;;
   }
 
   measure: percent_new_users {
@@ -189,8 +189,8 @@ view: mam_ga_onsite {
   measure: total_pageviews {
     label: "Pageviews"
     type: sum_distinct
-    sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.pageviews ;;
+    sql_distinct_key: ${id} ;;
+    sql: ${pageviews} ;;
   }
 
   measure: pages_per_session {
@@ -203,8 +203,8 @@ view: mam_ga_onsite {
   measure: total_bounces {
     label: "Bounces"
     type: sum_distinct
-    sql_distinct_key: ${TABLE}.id ;;
-    sql: ${TABLE}.bounces ;;
+    sql_distinct_key: ${adwordsadgroupid} ;;
+    sql: ${bounces} ;;
   }
 
   measure: bounce_rate {
