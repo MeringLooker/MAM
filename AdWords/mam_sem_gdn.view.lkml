@@ -290,21 +290,21 @@ view: mam_sem_gdn {
   measure: total_impressions {
     type: sum_distinct
     group_label: "AdWords Reporting"
-    sql_distinct_key: ${TABLE}.id ;;
+    sql_distinct_key: ${id} ;;
     sql: ${impressions} ;;
   }
 
   measure: total_clicks {
     type: sum_distinct
     group_label: "AdWords Reporting"
-    sql_distinct_key: ${TABLE}.id ;;
+    sql_distinct_key: ${id} ;;
     sql: ${clicks} ;;
   }
 
   measure: total_cost {
     type:  sum_distinct
     group_label: "AdWords Reporting"
-    sql_distinct_key: ${TABLE}.id ;;
+    sql_distinct_key: ${id} ;;
     sql:${cost}/1000000.00  ;;
     value_format_name: usd
   }
@@ -312,7 +312,7 @@ view: mam_sem_gdn {
   measure: total_conversions {
     type: sum_distinct
     group_label: "AdWords Reporting"
-    sql_distinct_key: ${TABLE}.id ;;
+    sql_distinct_key: ${id} ;;
     sql: ${conversions} ;;
   }
 
@@ -328,7 +328,7 @@ view: mam_sem_gdn {
     label: "CPC"
     group_label: "AdWords Reporting"
     type: number
-    sql: ${total_cost}/${total_clicks} ;;
+    sql: ${total_cost}/nullif(${total_clicks}, 0) ;;
     value_format_name: usd
   }
 
@@ -344,7 +344,7 @@ view: mam_sem_gdn {
     label: "CVR"
     group_label: "AdWords Reporting"
     type: number
-    sql: ${total_conversions}/${total_clicks} ;;
+    sql: ${total_conversions}/nullif(${total_clicks}, 0) ;;
     value_format_name: percent_2
   }
 
