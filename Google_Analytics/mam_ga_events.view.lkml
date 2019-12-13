@@ -74,6 +74,7 @@ view: mam_ga_events {
 
   dimension_group: date {
     type: time
+    group_label: "Date Periods"
     timeframes: [
       raw,
       time,
@@ -88,31 +89,37 @@ view: mam_ga_events {
 
   dimension: eventcategory {
     type: string
+    label: "Event Category"
     sql: ${TABLE}.eventcategory ;;
   }
 
   dimension: eventlabel {
     type: string
+    label: "Event Label"
     sql: ${TABLE}.eventlabel ;;
   }
 
   dimension: keyword {
     type: string
+    hidden: yes
     sql: ${TABLE}.keyword ;;
   }
 
   dimension: sourcemedium {
     type: string
+    label: "Source / Medium"
     sql: ${TABLE}.sourcemedium ;;
   }
 
   dimension: totalevents {
     type: number
+    hidden: yes
     sql: ${TABLE}.totalevents ;;
   }
 
   dimension: uniqueevents {
     type: number
+    hidden: yes
     sql: ${TABLE}.uniqueevents ;;
   }
 

@@ -222,6 +222,7 @@ view: mam_trueview {
 
   dimension: city {
     type: string
+    hidden: yes
     group_label: "Geo Dimensions"
     sql: ${TABLE}.city ;;
   }
@@ -270,6 +271,7 @@ view: mam_trueview {
 
   dimension: countryterritory {
     type: number
+    hidden: yes
     group_label: "Geo Dimensions"
     sql: ${TABLE}."country/territory" ;;
   }
@@ -359,12 +361,14 @@ view: mam_trueview {
 
   dimension: metro_area {
     type: string
+    hidden: yes
     group_label: "Geo Dimensions"
     sql: ${TABLE}."metro area" ;;
   }
 
   dimension: most_specific_location {
     type: number
+    hidden: yes
     group_label: "Geo Dimensions"
     sql: ${TABLE}."most specific location" ;;
   }
@@ -383,6 +387,7 @@ view: mam_trueview {
 
   dimension: region {
     type: string
+    hidden: yes
     group_label: "Geo Dimensions"
     sql: ${TABLE}.region ;;
   }
