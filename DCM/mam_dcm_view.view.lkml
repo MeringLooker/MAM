@@ -397,7 +397,6 @@ view: mam_dcm_view {
 
   dimension: platform_type {
     type: string
-    hidden: yes
     sql: ${TABLE}."platform type" ;;
   }
 

@@ -100,11 +100,11 @@ view: mam_ga_goals {
     sql: ${TABLE}.goal10completions ;;
   }
 
-  dimension: goal11completions {
+  dimension: goal13completions {
     type: number
     hidden: yes
-    label: "Flight Search"
-    sql: ${TABLE}.goal11completions ;;
+    label: "Search Flights"
+    sql: ${TABLE}.goal13completions ;;
   }
 
   dimension: goal12completions {
@@ -169,11 +169,11 @@ view: mam_ga_goals {
     sql: ${goal10completions} ;;
   }
 
-  measure: total_goal11completions {
-    label: "Flight Search"
+  measure: total_goal13completions {
+    label: "Flight Searches"
     type: sum_distinct
     sql_distinct_key: ${id} ;;
-    sql: ${goal11completions} ;;
+    sql: ${goal13completions} ;;
   }
 
   measure: total_goal1completions {

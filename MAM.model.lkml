@@ -8,8 +8,8 @@ include: "/Google_Analytics/**/*.view"
 include: "/TrueView/**/*.view"
 
 datagroup: mam_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+  sql_trigger: SELECT current_date;;
+  max_cache_age: "24 hours"
 }
 
 label: "Mammoth Lakes Tourism"
