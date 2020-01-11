@@ -29,15 +29,31 @@ view: mam_dcm_view {
 
   dimension: mam_campaign {
     type: string
-    label: "Season/Campaign"
+    label: "Season"
     group_label: "Client Dimensions"
     sql:
       CASE
         WHEN ${campaign_id} = '23182329' then 'Winter'
-        WHEN ${campaign_id} = '23188164' then 'Air Service'
+        WHEN ${campaign_id} = '23188164' then 'Winter'
         WHEN ${campaign_id} = '22311158' then 'Winter'
         WHEN ${campaign_id} = '22439071' then 'Summer'
         WHEN ${campaign_id} = '23018327' then 'Fall'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: mam_campaign_layer {
+    type: string
+    label: "Campaign Layer"
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${campaign_id} = '23182329' then 'Seasonal'
+        WHEN ${campaign_id} = '23188164' then 'Air Service'
+        WHEN ${campaign_id} = '22311158' then 'Seasonal'
+        WHEN ${campaign_id} = '22439071' then 'Seasonal'
+        WHEN ${campaign_id} = '23018327' then 'Seasonal'
         ELSE 'Uncategorized'
         END
         ;;
