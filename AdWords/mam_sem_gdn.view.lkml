@@ -123,7 +123,7 @@ view: mam_sem_gdn {
         WHEN  ${ad_group} ILIKE '%Ski Topics' then 'Ski Topics'
         WHEN  ${ad_group} ILIKE '%Ski Enthusiasts' then 'Ski Enthusiasts'
         WHEN  ${ad_group} ILIKE '%Retargeting' then 'Retargeting'
-         WHEN  ${ad_group} ILIKE '%Retargeting%' then 'Retargeting'
+        WHEN  ${ad_group} ILIKE '%Retargeting%' then 'Retargeting'
         WHEN  ${ad_group} ILIKE '%in-Market Travel'then 'In-Market Travel'
         WHEN  ${ad_group} ILIKE '%inMarket Travel'then 'In-Market Travel'
         WHEN  ${ad_group} ILIKE 'in-Market Travel%'then 'In-Market Travel'
@@ -131,7 +131,6 @@ view: mam_sem_gdn {
         ELSE 'Uncategorized'
         END;;
   }
-
 
 ###### All Dimensions go Below #######
 
