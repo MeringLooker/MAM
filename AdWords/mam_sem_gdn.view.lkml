@@ -132,6 +132,22 @@ view: mam_sem_gdn {
         END;;
   }
 
+dimension: adwords_publisher {
+  type: string
+  sql:
+   CASE
+        WHEN ${advertising_channel} = 'Display' then 'Google Display'
+        WHEN ${advertising_channel} = 'Search' then 'Google Search'
+        ELSE 'Uncategorized'
+        END ;;
+  }
+
+  dimension: test_date_string  {
+    hidden: yes
+    type: string
+    sql: to_char(${TABLE}.day,'YYYY-MM-DD') ;;
+  }
+
 
 ###### All Dimensions go Below #######
 
@@ -375,7 +391,6 @@ view: mam_sem_gdn {
   }
 
   measure: ga_total_session_duration {
-    hidden: yes
     type: sum_distinct
     label: "Total Session Duration"
     sql_distinct_key: ${mam_ga_onsite.id};;

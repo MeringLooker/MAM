@@ -173,6 +173,43 @@ view: mam_dcm_view {
       END;;
   }
 
+  dimension: ndt_mam_season {   ### for ndt_dcm
+    hidden: yes
+    type: string
+    label: "Season/Campaign"
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${campaign_id} = '23182329' then 'Winter'
+        WHEN ${campaign_id} = '22311158' then 'Winter'
+        WHEN ${campaign_id} = '22439071' then 'Summer'
+        WHEN ${campaign_id} = '23018327' then 'Fall'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: ndt_mam_campaign {
+    hidden: yes
+    type: string
+    sql:
+      CASE
+        WHEN ${campaign_id} = '23182329' then 'Seasonal'
+        WHEN ${campaign_id} = '23188164' then 'Air Service'
+        WHEN ${campaign_id} = '22311158' then 'Seasonal'
+        WHEN ${campaign_id} = '22439071' then 'Seasonal'
+        WHEN ${campaign_id} = '23018327' then 'Seasonal'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: test_date_string  {
+    hidden: yes
+    type: string
+    sql: to_char(${TABLE}.date,'YYYY-MM-DD') ;;
+  }
+
 ######### All Dimensions Native to Source Table Below #########
 
   dimension: __id {
@@ -541,7 +578,7 @@ view: mam_dcm_view {
   }
 
   measure: ga_total_session_duration {
-    hidden: yes
+
     type: sum_distinct
     label: "Total Session Duration"
     sql_distinct_key: ${mam_ga_onsite.id};;

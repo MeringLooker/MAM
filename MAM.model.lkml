@@ -1,11 +1,12 @@
 connection: "mc_panoply"
 
 # include all the views
-include: "/AdWords/**/*.view"
+include: "/AdWords/*.view"
 include: "/DCM/**/*.view"
 include: "/Facebook/**/*.view"
 include: "/Google_Analytics/**/*.view"
 include: "/TrueView/**/*.view"
+include: "publisher_ndt.view"
 
 datagroup: mam_default_datagroup {
   sql_trigger: SELECT current_date;;
@@ -16,7 +17,30 @@ label: "Mammoth Lakes Tourism"
 
 persist_with: mam_default_datagroup
 
+explore: publisher_ndt {
+  hidden:  yes
+  label: "MAM Publisher"
+}
 
+explore: ndt_sem_publisher {
+  hidden:  yes
+  label: "MAM SEM Publisher"
+}
+
+explore: ndt_gdn_publisher {
+  hidden:  yes
+  label: "MAM GDN Publisher"
+}
+
+explore: ndt_dcm_publisher {
+  hidden:  yes
+  label: "MAM DCM Publisher"
+}
+
+explore: ndt_facebook_publisher {
+  hidden:  yes
+  label: "MAM Facebook Publisher"
+}
 
 
 #### Exploring AdWords Search Data #####

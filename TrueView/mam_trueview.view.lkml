@@ -92,6 +92,11 @@ view: mam_trueview {
         ;;
   }
 
+  dimension: trueview_publisher {
+    type: string
+    sql: "YouTube" ;;
+  }
+
 ###### All dimensions go below #######
 
   dimension_group: __senttime {

@@ -158,6 +158,17 @@ dimension: season {
     drill_fields: [campaign_name]
   }
 
+  dimension: fb_publisher {
+    type: string
+    sql: 'Facebook' ;;
+  }
+
+  dimension: test_date_string  {
+    hidden: yes
+    type: string
+    sql: to_char(${TABLE}.date_start,'YYYY-MM-DD') ;;
+  }
+
 ######### All Dimensions Native to Source Table Below #########
 
   dimension_group: __senttime {
@@ -525,7 +536,7 @@ dimension: season {
   }
 
   measure: ga_total_session_duration {
-    hidden: yes
+
     type: sum_distinct
     group_label: "GA Reporting"
     label: "Total Session Duration"
