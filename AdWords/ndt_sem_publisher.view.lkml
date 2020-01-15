@@ -3,7 +3,7 @@ include: "/MAM.model"
 view: ndt_sem_publisher {
  derived_table: {
    explore_source: mam_sem {
-      column:adwords_publisher{field:mam_sem_gdn.adwords_publisher}
+      column:adwords_publisher{field:mam_sem_gdn.publisher}
       column: campaign {field:mam_sem_gdn.campaign}
       column:  test_date_string {field:mam_sem_gdn.test_date_string}
     # column: day {field: mam_sem_gdn.day_date}
