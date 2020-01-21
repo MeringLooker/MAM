@@ -1,5 +1,3 @@
-include: "/MAM.model"
-
 view: ndt_winter_seasonal_gdn {
   derived_table: {
     explore_source: mam_gdn {
@@ -16,7 +14,7 @@ view: ndt_winter_seasonal_gdn {
       column: ga_total_session_duration {field:mam_sem_gdn.ga_total_session_duration}
       filters: {
         field: mam_sem_gdn.mam_campaign
-        value: "Winter Seasonal"
+        value: "Winter Air Service"
       }
     }
   }

@@ -57,11 +57,11 @@ view: mam_sem_gdn {
     group_label: "Client Dimensions"
     sql:
       CASE
-        WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Winter Seasonal'
-        WHEN ${campaign} ILIKE '%FY20 Winter - Conversion%' THEN 'Winter Seasonal'
-        WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Winter Air Service'
-        WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Fall Seasonal'
-        WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Fall Seasonal'
+        WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Winter'
+        WHEN ${campaign} ILIKE '%FY20 Winter - Conversion%' THEN 'Winter'
+        WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Winter'
+        WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Fall'
+        WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Fall'
 
         ELSE 'Uncategorized'
         END
