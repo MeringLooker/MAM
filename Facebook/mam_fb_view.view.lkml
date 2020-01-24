@@ -21,14 +21,36 @@ view: mam_fb_view {
 
 ##### Dimensions added to this table via LookML ######
 
-dimension: season {
-    label: "Season/Campaign"
+dimension: mam_campaign {
+    label: "Campaign"
     group_label: "Client Dimensions"
     type: string
     sql:
       CASE
         WHEN ${campaign_name} ilike '%Fall%' THEN 'Fall'
-        WHEN ${campaign_name} ilike '%Winter%' THEN 'Winter'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_VideoViews_SF_Flight2' THEN 'Winter Seasonal'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_VideoViews_NE_Flight2' THEN 'Winter Seasonal'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_VideoViews_Denver_Flight2' THEN 'Winter Seasonal'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_VideoViews_CA/NV_Flight2' THEN 'Winter Seasonal'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_SF_Flight2' THEN 'Winter Seasonal'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_NE_Flight2' THEN 'Winter Seasonal'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_Denver_Flight2' THEN 'Winter Seasonal'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_CA/NV_Flight2' THEN 'Winter Seasonal'
+
+
+
+
+
+
+
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_AirService_FareSale' THEN 'Winter Air Service'
+        WHEN ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_Widget_AirService%' THEN 'Winter Air Service'
+        WHEN ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_AirService%' THEN 'Winter Air Service'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_AirService_FareSale' THEN 'Winter Air Service'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_AirService_FareSale' THEN 'Winter Air Service'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_AirService_FareSale' THEN 'Winter Air Service'
+        WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_AirService_FareSale' THEN 'Winter Air Service'
+
         WHEN ${campaign_name} ilike '%Summer%' THEN 'Summer'
         WHEN ${campaign_name} ilike '%Spring%' THEN 'Spring'
         ELSE 'Uncategorized'
@@ -36,7 +58,7 @@ dimension: season {
         ;;
 }
 
-  dimension: fb_campaign {
+  dimension: mam_layer {
     label: "Campaign Layer"
     group_label: "Client Dimensions"
     type: string
@@ -117,7 +139,7 @@ dimension: season {
         ;;
   }
 
-  dimension: fb_region {
+  dimension: mam_region {
     label: "Region"
     group_label: "Client Dimensions"
     type: string
@@ -140,7 +162,6 @@ dimension: season {
         ;;
   }
 
-
   dimension: fiscal_year {
     label: "Fiscal"
     group_label: "Client Dimensions"
@@ -158,15 +179,9 @@ dimension: season {
     drill_fields: [campaign_name]
   }
 
-  dimension: fb_publisher {
+  dimension: publisher {
     type: string
     sql: 'Facebook' ;;
-  }
-
-  dimension: test_date_string  {
-    hidden: yes
-    type: string
-    sql: to_char(${TABLE}.date_start,'YYYY-MM-DD') ;;
   }
 
 ######### All Dimensions Native to Source Table Below #########

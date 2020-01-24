@@ -29,12 +29,12 @@ view: mam_dcm_view {
 
   dimension: mam_campaign {
     type: string
-    label: "Season"
+    label: "Campaign"
     group_label: "Client Dimensions"
     sql:
       CASE
         WHEN ${campaign_id} = '23182329' then 'Winter'
-        WHEN ${campaign_id} = '23188164' then 'Winter'
+        WHEN ${campaign_id} = '23188164' then 'Winter Air Service'
         WHEN ${campaign_id} = '22311158' then 'Winter'
         WHEN ${campaign_id} = '22439071' then 'Summer'
         WHEN ${campaign_id} = '23018327' then 'Fall'
@@ -59,7 +59,7 @@ view: mam_dcm_view {
         ;;
   }
 
-  dimension: dcm_package {
+  dimension: mam_package {
     type: string
     label: "Package Name"
     group_label: "DCM Dimensions"
@@ -105,7 +105,7 @@ view: mam_dcm_view {
         ;;
   }
 
-  dimension: dcm_region {
+  dimension: mam_region {
     type: string
     label: "Region"
     group_label: "Client Dimensions"
@@ -132,8 +132,8 @@ view: mam_dcm_view {
     WHEN ${placement} ilike '%Native Display Added Value\\_CA & NV%' then 'California/Nevada'
     WHEN ${placement} ilike '%CA & NV%' then 'California/Nevada'
     WHEN ${placement_id} = '252643239' then 'California/Nevada'
-    WHEN ${dcm_package} = 'Matador Experience Distribution' then 'National'
-    WHEN ${dcm_package} = 'ROS Big Box' then 'National'
+    WHEN ${mam_package} = 'Matador Experience Distribution' then 'National'
+    WHEN ${mam_package} = 'ROS Big Box' then 'National'
     WHEN ${placement} ilike '%Native Display\\_ San Diego%' then 'San Diego'
     WHEN ${placement} ilike '%Native Display\\_ Los Angeles%' then 'Los Angeles'
     WHEN ${placement} ilike '%Native Display\\_ San Francisco%' then 'San Francisco'
