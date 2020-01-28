@@ -18,6 +18,10 @@ view: ndt_winter_air_amobee {
         field: mam_dcm_view.mam_campaign
         value: "Winter Air Service"
       }
+      filters: {
+        field: mam_dcm_view.publisher
+        value: "Amobee"
+      }
     }
     datagroup_trigger: mam_winter_air_datagroup
     distribution_style: all

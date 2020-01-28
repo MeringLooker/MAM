@@ -303,6 +303,12 @@ dimension: publisher {
     sql: ${TABLE}."total conv. value" ;;
   }
 
+  dimension: views {
+    hidden: yes
+    type: number
+    sql: '0' ;;
+  }
+
   ###### All Measures go Below #######
 
   measure: total_impressions {
@@ -372,6 +378,14 @@ dimension: publisher {
     type: number
     sql: ${total_cost}/nullif(${total_conversions} ,0);;
     value_format_name: usd
+  }
+
+  measure: total_views {
+    type: sum_distinct
+    hidden: yes
+    group_label: "AdWords Reporting"
+    sql_distinct_key: ${id} ;;
+    sql: ${views} ;;
   }
 
 ######## Joined measures from GA #######

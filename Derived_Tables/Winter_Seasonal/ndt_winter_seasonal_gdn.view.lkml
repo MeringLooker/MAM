@@ -11,7 +11,7 @@ view: ndt_winter_seasonal_gdn {
       column: total_impressions {field:mam_sem_gdn.total_impressions}
       column: total_clicks {field:mam_sem_gdn.total_clicks}
       column: total_cost {field:mam_sem_gdn.total_cost}
-      column: total_conversions {field:mam_sem_gdn.total_conversions}
+      column: total_views {field:mam_sem_gdn.total_views}
       column: total_sessions {field:mam_sem_gdn.ga_sessions}
       column: total_session_duration {field:mam_sem_gdn.ga_total_session_duration}
       filters: {
@@ -63,7 +63,7 @@ view: ndt_winter_seasonal_gdn {
     type: number
   }
 
-  dimension: total_conversions {
+  dimension: total_views {
     type: number
   }
 
