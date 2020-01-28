@@ -17,6 +17,8 @@ label: "Mammoth Lakes Tourism"
 
 persist_with: mam_default_datagroup
 
+### NDTs for Campaigns ###
+
 explore: publisher_ndt {
   hidden:  yes
   label: "MAM Publisher"

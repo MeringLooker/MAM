@@ -53,19 +53,22 @@ view: mam_sem_gdn {
 
   dimension: mam_campaign {
     type: string
-    label: "Campaign/Season"
+    label: "Campaign"
     group_label: "Client Dimensions"
     sql:
       CASE
-        WHEN ${campaign} ILIKE '%FY20 Winter%' THEN 'Winter'
-        WHEN ${campaign} ILIKE '%FY19/20 Fall%' THEN 'Fall'
+        WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Winter'
+        WHEN ${campaign} ILIKE '%FY20 Winter - Conversion%' THEN 'Winter'
+        WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Winter'
+        WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Fall'
+        WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Fall'
 
         ELSE 'Uncategorized'
         END
     ;;
   }
 
-  dimension: mam_campaign_layer {
+  dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
     type: string
     label: "Campaign Layer"
     group_label: "Client Dimensions"
@@ -80,7 +83,6 @@ view: mam_sem_gdn {
         END
     ;;
   }
-
 
   dimension: region {
     type: string
@@ -132,8 +134,7 @@ view: mam_sem_gdn {
         END;;
   }
 
-
-dimension: adwords_publisher {
+dimension: publisher {
   type: string
   sql:
    CASE
