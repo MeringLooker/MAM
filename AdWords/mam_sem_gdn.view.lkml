@@ -143,11 +143,6 @@ dimension: adwords_publisher {
         END ;;
   }
 
-  dimension: test_date_string  {
-    hidden: yes
-    type: string
-    sql: to_char(${TABLE}.day,'YYYY-MM-DD') ;;
-  }
 
 
 ###### All Dimensions go Below #######

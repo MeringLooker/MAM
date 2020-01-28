@@ -5,8 +5,11 @@ view: ndt_sem_publisher {
    explore_source: mam_sem {
       column:adwords_publisher{field:mam_sem_gdn.adwords_publisher}
       column: campaign {field:mam_sem_gdn.campaign}
-      column:  test_date_string {field:mam_sem_gdn.test_date_string}
-    # column: day {field: mam_sem_gdn.day_date}
+      column: date {field: mam_sem_gdn.day_date}
+      column: week {field: mam_sem_gdn.day_week}
+      column: month {field: mam_sem_gdn.day_month}
+      column: quarter {field: mam_sem_gdn.day_quarter}
+      column: year {field: mam_sem_gdn.day_year}
       column: total_impressions{field:mam_sem_gdn.total_impressions}
       column: total_clicks {field:mam_sem_gdn.total_clicks}
       column: total_cost {field:mam_sem_gdn.total_cost}
@@ -33,21 +36,26 @@ view: ndt_sem_publisher {
     type: string
   }
 
-  dimension: test_date_string  {
-    type: string
+  dimension: date {
+    label: "SEM Date"
+    type: date_time
   }
-#   dimension_group: day {
-#     type: time
-#     timeframes: [
-#       raw,
-#       time,
-#       date,
-#       week,
-#       month,
-#       quarter,
-#       year
-#     ]
-#   }
+
+  dimension: week {
+    label: "SEM Week"
+    type: date_time
+  }
+
+  dimension: month {
+    label: "SEM Month"
+    type: date_time
+  }
+
+  dimension: quarter {
+    label: "SEM Quarter"
+    type: date_time
+  }
+
 
   dimension: total_impressions {
     label: "SEM Total Impressions"
@@ -90,4 +98,4 @@ view: ndt_sem_publisher {
     type: string
   }
 
-}
+  }

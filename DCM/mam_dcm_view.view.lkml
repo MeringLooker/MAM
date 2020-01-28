@@ -220,11 +220,6 @@ view: mam_dcm_view {
         ;;
   }
 
-  dimension: test_date_string  {
-    hidden: yes
-    type: string
-    sql: to_char(${TABLE}.date,'YYYY-MM-DD') ;;
-  }
 
 ######### All Dimensions Native to Source Table Below #########
 

@@ -4,9 +4,12 @@ view: ndt_dcm_publisher{
   derived_table: {
     explore_source: mam_dcm_view {
       column:publisher{}
-      column: campaign {}
-      column: test_date_string {}
-      #column: date_date {}
+      column: mam_campaign {}
+      column: date {field:mam_dcm_view.date_date}
+      column: week {field:mam_dcm_view.date_week}
+      column: month {field:mam_dcm_view.date_month}
+      column: quarter {field:mam_dcm_view.date_quarter}
+      column: year {field:mam_dcm_view.date_year}
       column: total_impressions{}
       column: total_clicks {}
       column: total_media_cost {}
@@ -16,7 +19,7 @@ view: ndt_dcm_publisher{
       column: ndt_mam_campaign {}
       column: ndt_mam_season {}
       filters: {
-        field: mam_dcm_view.mam_campaign
+        field: mam_dcm_view.mam_campaign_layer
         value: "Air Service"
       }
 
@@ -29,27 +32,30 @@ view: ndt_dcm_publisher{
     type: string
   }
 
-  dimension: campaign {
+  dimension: mam_campaign {
     label: "DCM Campaign"
     type: string
   }
-
-  dimension: test_date_string  {
-    type: string
+  dimension: date {
+    label: "DCM Date"
+    type: date_time
   }
-
-#   dimension_group: date {
-#     type: time
-#     timeframes: [
-#       raw,
-#       time,
-#       date,
-#       week,
-#       month,
-#       quarter,
-#       year
-#     ]
-#   }
+  dimension: week {
+    label: "DCM Week"
+    type: date_time
+  }
+  dimension: month {
+    label: "DCM Month"
+    type: date_time
+  }
+  dimension: quarter {
+    label: "DCM Quarter"
+    type: date_time
+  }
+  dimension: year {
+    label: "DCM Year"
+    type: date_time
+  }
 
   dimension: total_impressions {
     label: "DCM Total Impressions"
@@ -82,11 +88,11 @@ view: ndt_dcm_publisher{
     type: string
   }
 
-  dimension: mam_campaign {
+  dimension: ndt_mam_campaign {
     label: "DCM Season"
   }
 
-  dimension: mam_season {
+  dimension: ndt_mam_season {
     label: " DCM Season"
   }
 

@@ -163,12 +163,6 @@ dimension: season {
     sql: 'Facebook' ;;
   }
 
-  dimension: test_date_string  {
-    hidden: yes
-    type: string
-    sql: to_char(${TABLE}.date_start,'YYYY-MM-DD') ;;
-  }
-
 ######### All Dimensions Native to Source Table Below #########
 
   dimension_group: __senttime {

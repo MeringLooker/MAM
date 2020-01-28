@@ -22,9 +22,34 @@ dimension: campaign {
   sql: ${TABLE}.campaign ;;
 }
 
-  dimension: test_date_string  {
-    type: string
-    sql: ${TABLE}.test_date_string ;;
+  dimension: date {
+    type:  date
+    group_label: "Date Periods"
+    sql: ${TABLE}.date;;
+  }
+
+  dimension: week {
+    type:  date
+    group_label: "Date Periods"
+    sql:  ${TABLE}.week ;;
+  }
+
+  dimension: month {
+    type:  date
+    group_label: "Date Periods"
+    sql:  ${TABLE}.month ;;
+  }
+
+  dimension: quarter {
+    type:  date
+    group_label: "Date Periods"
+    sql:  ${TABLE}.quarter ;;
+  }
+
+  dimension: year {
+    type:  date
+    group_label: "Date Periods"
+    sql:${TABLE}.year ;;
   }
 
   dimension: fiscal_year {
@@ -33,42 +58,16 @@ dimension: campaign {
     type: string
     sql:
       CASE
-        WHEN ${test_date_string} BETWEEN '2015-07-01' AND '2016-06-30' THEN 'FY 15/16'
-        WHEN ${test_date_string} BETWEEN '2016-07-01' AND '2017-06-30' THEN 'FY 16/17'
-        WHEN ${test_date_string} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
-        WHEN ${test_date_string} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
-        WHEN ${test_date_string} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
+        WHEN ${date} BETWEEN '2015-07-01' AND '2016-06-30' THEN 'FY 15/16'
+        WHEN ${date} BETWEEN '2016-07-01' AND '2017-06-30' THEN 'FY 16/17'
+        WHEN ${date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
+        WHEN ${date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
+        WHEN ${date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
         ELSE 'Uncategorized'
         END
         ;;
   }
 
-  dimension_group: Test {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.test_date_string;;
-  }
-# dimension_group: date {
-#     type: time
-#   timeframes: [
-#     raw,
-#     time,
-#     date,
-#     week,
-#     month,
-#     quarter,
-#     year
-#   ]
-#     sql: ${TABLE}.date ;;
-# }
 
 dimension: impressions {
   hidden:  yes

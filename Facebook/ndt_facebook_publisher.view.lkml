@@ -5,8 +5,11 @@ view: ndt_facebook_publisher{
     explore_source: mam_fb_view {
       column:fb_publisher{}
       column: campaign_name {}
-      column: test_date_string {}
-      #column: date_start_date {}
+      column: date {field:mam_fb_view.date_start_date}
+      column: week {field:mam_fb_view.date_start_week}
+      column: month {field:mam_fb_view.date_start_month}
+      column: quarter {field:mam_fb_view.date_start_quarter}
+      column: year {field:mam_fb_view.date_start_year}
       column: total_impressions{}
       column: total_clicks {}
       column: total_spend {}
@@ -33,23 +36,27 @@ view: ndt_facebook_publisher{
     type: string
   }
 
-
-dimension: test_date_string  {
-  type: string
+  dimension:date {
+    label: "FB Date"
+    type: date_time
+  }
+  dimension:week {
+    label: "FB Week"
+    type: date_time
+  }
+  dimension:month {
+    label: "FB Month"
+    type: date_time
+  }
+  dimension:quarter{
+    label: "FB Quarter"
+    type: date_time
+  }
+  dimension:year {
+    label: "FB Year"
+    type: date_time
   }
 
-#   dimension_group: date_start {
-#     type: time
-#     timeframes: [
-#       raw,
-#       time,
-#       date,
-#       week,
-#       month,
-#       quarter,
-#       year
-#     ]
-#   }
 
   dimension: total_impressions {
     label: "FB Total Impressions"
