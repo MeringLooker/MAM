@@ -1,69 +1,77 @@
 view: ndt_winter_seasonal_sem {
-  # # You can specify the table name if it's different from the view name:
-  # sql_table_name: my_schema_name.tester ;;
-  #
-  # # Define your dimensions and measures here, like this:
-  # dimension: user_id {
-  #   description: "Unique ID for each user that has ordered"
-  #   type: number
-  #   sql: ${TABLE}.user_id ;;
-  # }
-  #
-  # dimension: lifetime_orders {
-  #   description: "The total number of orders for each user"
-  #   type: number
-  #   sql: ${TABLE}.lifetime_orders ;;
-  # }
-  #
-  # dimension_group: most_recent_purchase {
-  #   description: "The date when each user last ordered"
-  #   type: time
-  #   timeframes: [date, week, month, year]
-  #   sql: ${TABLE}.most_recent_purchase_at ;;
-  # }
-  #
-  # measure: total_lifetime_orders {
-  #   description: "Use this for counting lifetime orders across many users"
-  #   type: sum
-  #   sql: ${lifetime_orders} ;;
-  # }
-}
+    derived_table: {
+      explore_source: mam_sem {
+        column: publisher {field:mam_sem_view.publisher}
+        column: campaign {field:mam_sem_view.mam_campaign}
+        column: region {field:mam_sem_view.region}
+        column: placement {field:mam_sem_view.campaign}
+        column: date {field: mam_sem_view.day_date}
+        column: week {field: mam_sem_view.day_week}
+        column: month {field: mam_sem_view.day_month}
+        column: total_impressions {field:mam_sem_view.total_impressions}
+        column: total_clicks {field:mam_sem_view.total_clicks}
+        column: total_cost {field:mam_sem_view.total_cost}
+        column: total_sessions {field:mam_sem_view.ga_sessions}
+        column: total_session_duration {field:mam_sem_view.ga_total_session_duration}
+        column: total_views {field: mam_sem_view.total_views}
+        filters: {
+          field: mam_sem_view.mam_campaign
+          value: "Winter Seasonal"
+        }
+      }
+      datagroup_trigger: mam_winter_air_datagroup
+      distribution_style: all
+    }
 
-# view: ndt_winter_seasonal_sem {
-#   # Or, you could make this view a derived table, like this:
-#   derived_table: {
-#     sql: SELECT
-#         user_id as user_id
-#         , COUNT(*) as lifetime_orders
-#         , MAX(orders.created_at) as most_recent_purchase_at
-#       FROM orders
-#       GROUP BY user_id
-#       ;;
-#   }
-#
-#   # Define your dimensions and measures here, like this:
-#   dimension: user_id {
-#     description: "Unique ID for each user that has ordered"
-#     type: number
-#     sql: ${TABLE}.user_id ;;
-#   }
-#
-#   dimension: lifetime_orders {
-#     description: "The total number of orders for each user"
-#     type: number
-#     sql: ${TABLE}.lifetime_orders ;;
-#   }
-#
-#   dimension_group: most_recent_purchase {
-#     description: "The date when each user last ordered"
-#     type: time
-#     timeframes: [date, week, month, year]
-#     sql: ${TABLE}.most_recent_purchase_at ;;
-#   }
-#
-#   measure: total_lifetime_orders {
-#     description: "Use this for counting lifetime orders across many users"
-#     type: sum
-#     sql: ${lifetime_orders} ;;
-#   }
-# }
+    dimension: publisher {
+      type: string
+    }
+
+    dimension: campaign {
+      type: string
+    }
+
+    dimension: region {
+      type: string
+    }
+
+    dimension: placement {
+      type: string
+    }
+
+    dimension: date {
+      type: date
+    }
+
+    dimension: week {
+      type: date
+    }
+
+    dimension: month {
+      type: date
+    }
+
+    dimension: total_impressions {
+      type: number
+    }
+
+    dimension: total_clicks {
+      type: number
+    }
+
+    dimension: total_cost {
+      type: number
+    }
+
+    dimension: total_conversions {
+      type: number
+    }
+
+    dimension: total_sessions {
+      type: number
+    }
+
+    dimension: total_session_duration {
+      type: number
+    }
+  }

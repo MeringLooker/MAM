@@ -29,14 +29,14 @@ view: mam_trueview {
         ;;
   }
 
-  dimension: season {
+  dimension: mam_campaign {
     label: "Season/Campaign"
     type: string
     group_label: "Client Dimensions"
     sql:
       CASE
         WHEN ${campaign} ilike '%FY19/20 Fall%' THEN 'Fall'
-        WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Winter'
+        WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Winter Seasonal'
         WHEN ${campaign} ilike '%FY19/20 Summer%' THEN 'Summer'
         ELSE 'Uncategorized'
         END
@@ -92,9 +92,18 @@ view: mam_trueview {
         ;;
   }
 
-  dimension: trueview_publisher {
+  dimension: publisher {
     type: string
-    sql: "YouTube" ;;
+    sql: 'YouTube' ;;
+  }
+
+  dimension: sessions {
+    type: number
+    sql:  '0' ;;
+  }
+  dimension: session_duration {
+    type: number
+    sql:  '0' ;;
   }
 
 ###### All dimensions go below #######
@@ -461,6 +470,23 @@ view: mam_trueview {
   measure: total_views {
     type: sum
     sql: ${views} ;;
+  }
+
+  measure:total_clicks {
+    type: sum
+    sql: ${clicks};;
+  }
+
+  measure:total_conversions {
+    type: sum
+    sql:${conversions} ;;
+  }
+
+  measure: total_sessions {
+    type: sum
+  }
+  measure: total_session_duration {
+    type: sum
   }
 
   measure: total_view_rate {

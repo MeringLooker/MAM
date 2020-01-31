@@ -1,4 +1,4 @@
-view: ndt_winter_air_amobee {
+view: ndt_winter_seasonal_dcm {
   derived_table: {
     explore_source: mam_dcm {
       column: publisher {field: mam_dcm_view.publisher}
@@ -11,16 +11,12 @@ view: ndt_winter_air_amobee {
       column: total_impressions {field: mam_dcm_view.total_impressions}
       column: total_clicks {field: mam_dcm_view.total_clicks}
       column: total_cost {field: mam_dcm_view.total_media_cost}
-      column: total_conversions {field: mam_ga_goals.total_goal13completions}
       column: total_sessions {field: mam_dcm_view.ga_sessions}
       column: total_session_duration {field: mam_dcm_view.ga_total_session_duration}
+      column: total_views {field: mam_dcm_view.total_views}
       filters: {
         field: mam_dcm_view.mam_campaign
-        value: "Winter Air Service"
-      }
-      filters: {
-        field: mam_dcm_view.site_dcm
-        value: "Amobee"
+        value: "Winter Seasonal"
       }
     }
     datagroup_trigger: mam_winter_air_datagroup
@@ -68,15 +64,15 @@ view: ndt_winter_air_amobee {
     value_format_name: usd
   }
 
-  dimension: total_conversions {
-    type: number
-  }
-
   dimension: total_sessions {
     type: number
   }
 
   dimension: total_session_duration {
+    type: number
+  }
+
+  dimension: total_views{
     type: number
   }
 }

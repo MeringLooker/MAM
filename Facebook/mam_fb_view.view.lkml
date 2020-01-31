@@ -179,10 +179,11 @@ dimension: mam_campaign {
     drill_fields: [campaign_name]
   }
 
-  dimension: publisher {
-    type: string
-    sql: 'Facebook' ;;
+dimension: publisher {
+  type: string
+  sql: 'Facebook' ;;
   }
+
 
 ######### All Dimensions Native to Source Table Below #########
 

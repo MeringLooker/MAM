@@ -2,6 +2,7 @@ connection: "mc_panoply"
 
 include: "/AdWords/*.view"
 include: "/Google_Analytics/**/*.view"
+include: "/TrueView/**/*.view"
 
 datagroup: mam_adwords_datagroup {
   sql_trigger: SELECT current_date;;

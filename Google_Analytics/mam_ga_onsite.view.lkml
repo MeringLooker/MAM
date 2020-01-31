@@ -27,6 +27,13 @@ view: mam_ga_onsite {
     sql: ${adwordsadgroupid}||'_'||${date_date} ;;
   }
 
+
+  dimension: concat_join_id {
+    type: string
+    hidden: yes
+    sql: ${adwordsadgroupid}||'_'||${devicecategory}||'_'||${date_date} ;;
+  }
+
 ####### Dimensions go Below ########
 
   dimension: __sampled {

@@ -1,14 +1,18 @@
-view: ndt_winter_air_campaign {
+view: ndt_winter_seasonal_campaign {
+
   derived_table: {
     sql:
-    select * from ${ndt_winter_air_gdn.SQL_TABLE_NAME}
-      union
-    select * from ${ndt_winter_air_sem.SQL_TABLE_NAME}
-      union
-    select * from ${ndt_winter_air_facebook.SQL_TABLE_NAME}
-      union
-    select * from ${ndt_winter_air_amobee.SQL_TABLE_NAME}
-      ;;
+    select * from ${ndt_winter_seasonal_dcm.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_gdn.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_sem.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_facebook.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_trueview.SQL_TABLE_NAME}
+ ;;
+
     sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*1)/(60*60*24)) ;;
     distribution_style: all
   }
@@ -27,24 +31,22 @@ view: ndt_winter_air_campaign {
   dimension: publisher {
     type:  string
     sql:  ${TABLE}.publisher ;;
-    drill_fields: [placement, date]
-  }
-
-  dimension: region {
-    type:  string
-    sql:  ${TABLE}.region ;;
-    drill_fields: [publisher,placement,date]
-  }
-
-  dimension: placement {
-    type:  string
-    sql:  ${TABLE}.placement ;;
   }
 
   dimension: campaign {
     type: string
     hidden: yes
     sql: ${TABLE}.campaign ;;
+  }
+
+  dimension: region {
+    type:  string
+    sql:  ${TABLE}.region ;;
+  }
+
+  dimension: placement {
+    type:  string
+    sql:  ${TABLE}.placement ;;
   }
 
   dimension: date {
@@ -83,12 +85,6 @@ view: ndt_winter_air_campaign {
     sql: ${TABLE}.total_impressions ;;
   }
 
-  dimension: conversions {
-    hidden: yes
-    type: number
-    sql: ${TABLE}.total_conversions ;;
-  }
-
   dimension: clicks{
     hidden:  yes
     type:  number
@@ -113,6 +109,12 @@ view: ndt_winter_air_campaign {
     sql: ${TABLE}.total_session_duration ;;
   }
 
+  dimension: views {
+    hidden:  yes
+    type: number
+    sql: ${TABLE}.total_views ;;
+  }
+
   #### Measures below ####
 
   measure: total_impressions {
@@ -122,8 +124,8 @@ view: ndt_winter_air_campaign {
   }
 
   measure: total_clicks  {
-    type: sum_distinct
-    sql_distinct_key: ${primary_key} ;;
+  type: sum_distinct
+  sql_distinct_key: ${primary_key} ;;
     sql: ${clicks} ;;
   }
 
@@ -135,9 +137,9 @@ view: ndt_winter_air_campaign {
   }
 
   measure: total_spend  {
-    type: sum_distinct
-    sql_distinct_key: ${primary_key} ;;
-    sql: ${media_cost};;
+  type: sum_distinct
+  sql_distinct_key: ${primary_key} ;;
+   sql: ${media_cost};;
     value_format_name: usd
   }
 
@@ -148,21 +150,8 @@ view: ndt_winter_air_campaign {
     value_format_name: usd
   }
 
-  measure: total_conversions {
-    type: sum_distinct
-    label: "Flight Searches"
-    sql: ${conversions} ;;
-  }
-
-  measure: conversion_rate {
-    type: number
-    label: "CVR"
-    sql: 1.0*(${total_conversions})/nullif(${total_clicks},0) ;;
-    value_format_name: percent_2
-  }
-
   measure: total_sessions {
-    type: sum_distinct
+   type: sum_distinct
     sql_distinct_key: ${primary_key} ;;
     sql: ${sessions} ;;
   }
@@ -187,13 +176,9 @@ view: ndt_winter_air_campaign {
     sql: ${total_spend}/nullif(${total_sessions}, 0) ;;
     value_format_name: usd
   }
-
-  measure: cost_per_conversion {
-    type: number
-    label: "CPA"
-    sql: ${total_spend}/nullif(${total_conversions}, 0) ;;
-    value_format_name: usd
+  measure: total_views  {
+    type: sum_distinct
+   sql_distinct_key: ${primary_key} ;;
+    sql: ${views} ;;
   }
-
-
 }

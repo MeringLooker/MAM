@@ -33,7 +33,7 @@ view: mam_dcm_view {
     group_label: "Client Dimensions"
     sql:
       CASE
-        WHEN ${campaign_id} = '23182329' then 'Winter'
+        WHEN ${campaign_id} = '23182329' then 'Winter Seasonal'
         WHEN ${campaign_id} = '23188164' then 'Winter Air Service'
         WHEN ${campaign_id} = '22311158' then 'Winter'
         WHEN ${campaign_id} = '22439071' then 'Summer'
@@ -150,7 +150,7 @@ view: mam_dcm_view {
     group_label: "Client Dimensions"
     sql:
       CASE
-        WHEN ${site_dcm} = 'Matador Ventures%' then 'Matador'
+        WHEN ${site_dcm} ilike 'Matador%' then 'Matador'
         WHEN ${site_dcm} = 'Media Rhythm' then 'Snowboarder.com'
         ELSE ${site_dcm}
         END
@@ -224,6 +224,11 @@ view: mam_dcm_view {
     hidden: yes
     type: string
     sql: to_char(${TABLE}.date,'YYYY-MM-DD') ;;
+  }
+
+  dimension: views {
+    type:  number
+    sql: '0' ;;
   }
 
 ######### All Dimensions Native to Source Table Below #########
@@ -573,6 +578,12 @@ view: mam_dcm_view {
     label: "CPM"
     sql: 1.0*${total_media_cost}/nullif(${total_impressions}/1000, 0) ;;
     value_format_name: usd
+  }
+
+  measure: total_views {
+    type: sum_distinct
+    sql_distinct_key: ${id} ;;
+    sql: ${views} ;;
   }
 
 ######## Joined measures from GA #######
