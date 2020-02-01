@@ -50,7 +50,7 @@ dimension: advertising_channel {
 }
   dimension: publisher {
     type:  string
-    sql: 'Google Search' ;;
+    sql: 'Google Search';;
   }
 
 dimension: mam_campaign {
@@ -59,15 +59,9 @@ dimension: mam_campaign {
   group_label: "Client Dimensions"
   sql:
       CASE
-
       when ${account} = 'MAM SEM - Air Service - Denver' and ${day_date} BETWEEN '2019-10-28' AND '2020-03-01' then 'Winter Air Service'
-
-        WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Winter'
-        WHEN ${campaign} ILIKE '%FY20 Winter - Conversion%' THEN 'Winter'
-        WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Winter Air Service'
-        WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Fall'
-        WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Fall'
-
+      when ${account} = 'MAM SEM - Air Service - SF' and ${day_date} BETWEEN '2019-10-28' AND '2020-04-05' then 'Winter Air Service'
+      when ${account} = 'MAM SEM - Air Service - NE' and ${day_date} BETWEEN '2019-10-28' AND '2020-02-16' then 'Winter Air Service'
         ELSE 'Uncategorized'
         END
     ;;
