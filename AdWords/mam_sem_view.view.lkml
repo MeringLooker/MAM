@@ -94,11 +94,17 @@ dimension: region {
   group_label: "Client Dimensions"
   sql:
       CASE
+        when ${account} = 'MAM SEM - Air Service - Denver' then 'Denver'
+        when ${account} = 'MAM SEM - Air Service - Northeast' then 'Northeast'
+        when ${account} = 'MAM SEM - Air Service - SF' then 'San Francisco'
+
+
         WHEN  ${campaign} ILIKE '%SF' then 'San Francisco'
         WHEN  ${campaign} ILIKE '%DEN' then 'Denver'
+        WHEN  ${campaign} ILIKE 'Air Service - Denver' then 'Denver'
         WHEN  ${campaign} ILIKE '%NE' then 'Northeast'
         WHEN  ${campaign} ILIKE '%CA/NV' then 'California/Nevada'
-        WHEN  ${campaign} ILIKE '%SoCal' then 'Southern California'
+        WHEN  ${campaign} ILIKE '%SoCal' then 'Los Angeles'
         WHEN  ${campaign} ILIKE '%Fresno' then 'Fresno'
         WHEN  ${campaign} ILIKE '%Sac' then 'Sacramento'
         WHEN  ${campaign} ILIKE '%SD' then 'San Diego'
