@@ -4,7 +4,7 @@ view: mam_trueview_view {
 
   dimension: id{
   primary_key: yes
-    hidden: no
+    hidden: yes
     type: string
     sql: ${TABLE}.id ;;
   }
@@ -12,7 +12,7 @@ view: mam_trueview_view {
 ##### Dimensions added to this table via LookML ######
 
   dimension: fiscal_year {
-    label: "Fiscal"
+    label: "Fiscal Year"
     type: string
     group_label: "Client Dimensions"
     sql:
@@ -28,7 +28,7 @@ view: mam_trueview_view {
   }
 
   dimension: mam_campaign {
-    label: "Season/Campaign"
+    label: "Season/Campaign Name"
     type: string
     group_label: "Client Dimensions"
     sql:
@@ -92,16 +92,19 @@ view: mam_trueview_view {
 
   dimension: publisher {
     type: string
+    group_label: "TrueView Dimensions"
     sql: 'YouTube' ;;
   }
 
   dimension: sessions {
     type: number
+    hidden: yes
     sql:  '0' ;;
   }
 
   dimension: session_duration {
     type: number
+    hidden: yes
     sql:  '0' ;;
   }
 
@@ -148,7 +151,7 @@ view: mam_trueview_view {
 
   dimension: campaign_id {
     type: number
-    hidden: yes
+    group_label: "TrueView Dimensions"
     sql: ${TABLE}."campaign id" ;;
   }
 
@@ -170,13 +173,13 @@ view: mam_trueview_view {
 
   dimension: ad_group_id {
     type: number
-    hidden: yes
+    group_label: "TrueView Dimensions"
     sql: ${TABLE}."ad group id" ;;
   }
 
   dimension: device {
     type: string
-    hidden: yes
+    group_label: "TrueView Dimensions"
     sql: ${TABLE}.device ;;
   }
 
@@ -257,10 +260,12 @@ view: mam_trueview_view {
 
   dimension: device_formatted {
     type: string
+    hidden: yes
   }
 
   dimension: comp_key {
     type: string
+    hidden: yes
   }
 
 
@@ -295,16 +300,19 @@ view: mam_trueview_view {
     type: sum_distinct
     sql_distinct_key: ${id} ;;
     sql:${conversions} ;;
+    hidden: yes
   }
 
   measure: total_sessions {
     type: sum_distinct
     sql_distinct_key: ${id} ;;
+    hidden: yes
     sql:${sessions} ;;
   }
   measure: total_session_duration {
     type: sum_distinct
     sql_distinct_key: ${id} ;;
+    hidden: yes
     sql:${session_duration};;
   }
 

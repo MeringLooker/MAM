@@ -14,14 +14,15 @@ view: mam_gdn_view{
 ###### Join ID #######
 
   dimension: join_id {
-   # hidden: yes
     type: string
+    hidden: yes
     sql: ${ad_group_id}||'_'||${day_date}
       ;;
   }
 
   dimension: compkey {
     type: string
+    hidden: yes
     group_label: "AdWords Dimensions"
     sql: ${TABLE}.comp_key ;;
   }
@@ -35,7 +36,7 @@ view: mam_gdn_view{
 ######## Dimensions added to this table via LookML ########
 
   dimension: fiscal_year {
-    label: "Fiscal"
+    label: "Fiscal Year"
     type: string
     group_label: "Client Dimensions"
     sql:
@@ -65,7 +66,7 @@ view: mam_gdn_view{
 
   dimension: mam_campaign {
     type: string
-    label: "Campaign"
+    label: "Campaign/Season"
     group_label: "Client Dimensions"
     sql:
       CASE
@@ -148,25 +149,9 @@ view: mam_gdn_view{
 
   dimension: publisher {
     type:  string
+    group_label: "AdWords Dimensions"
     sql: 'Google Display' ;;
   }
-
-#   dimension: publisher {
-#     type: string
-#     sql:
-#        CASE
-#             WHEN ${advertising_channel} = 'Display' then 'Google Display'
-#             WHEN ${advertising_channel} = 'Search' then 'Google Search'
-#             ELSE 'Uncategorized'
-#             END ;;
-#   }
-
-  dimension: test_date_string  {
-    hidden: yes
-    type: string
-    sql: to_char(${TABLE}.day,'YYYY-MM-DD') ;;
-  }
-
 
 ###### All Dimensions go Below #######
 
@@ -285,7 +270,6 @@ view: mam_gdn_view{
   }
 
   dimension: device {
-    hidden: yes
     type: string
     group_label: "AdWords Dimensions"
     sql: ${TABLE}.device ;;
@@ -293,6 +277,7 @@ view: mam_gdn_view{
 
   dimension: device_formatted {
     type: string
+    hidden: yes
     group_label: "AdWords Dimensions"
     sql: ${TABLE}.device_formatted ;;
   }

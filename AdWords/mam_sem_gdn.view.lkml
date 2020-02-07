@@ -23,7 +23,7 @@ view: mam_sem_gdn {
 ######## Dimensions added to this table via LookML ########
 
   dimension: fiscal_year {
-    label: "Fiscal"
+    label: "Fiscal Year"
     type: string
     group_label: "Client Dimensions"
     sql:

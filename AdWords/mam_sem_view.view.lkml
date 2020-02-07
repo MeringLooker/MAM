@@ -2,6 +2,8 @@ view: mam_sem_view{
 sql_table_name: mam_sem_view;;
 drill_fields: [id]
 
+#### Primary Key ####
+
  dimension: id {
   hidden: yes
   primary_key: yes
@@ -20,6 +22,7 @@ dimension: join_id {
 
 dimension: compkey {
   type: string
+  hidden: yes
   group_label: "AdWords Dimensions"
   sql: ${TABLE}.comp_key ;;
 }
@@ -27,7 +30,7 @@ dimension: compkey {
 ######## Dimensions added to this table via LookML ########
 
 dimension: fiscal_year {
-  label: "Fiscal"
+  label: "Fiscal Year"
   type: string
   group_label: "Client Dimensions"
   sql:
@@ -50,21 +53,24 @@ dimension: advertising_channel {
 }
   dimension: publisher {
     type:  string
+    group_label: "AdWords Dimensions"
     sql: 'Google Search';;
   }
 
 dimension: mam_campaign {
   type: string
-  label: "Campaign"
+  label: "Campaign Name"
   group_label: "Client Dimensions"
   sql:
       CASE
-      when ${account} = 'MAM SEM - Air Service - Denver' and ${day_date} BETWEEN '2019-10-28' AND '2020-03-01' then 'Winter Air Service'
-      when ${account} = 'MAM SEM - Air Service - SF' and ${day_date} BETWEEN '2019-10-28' AND '2020-04-05' then 'Winter Air Service'
-      when ${account} = 'MAM SEM - Air Service - NE' and ${day_date} BETWEEN '2019-10-28' AND '2020-02-16' then 'Winter Air Service'
-      when ${account} = 'MAM SEM - Denver' and ${day_date} BETWEEN '2019-10-28' AND '2020-03-01' then 'Winter Seasonal'
-      when ${account} = 'MAM SEM - SF' and ${day_date} BETWEEN '2019-10-28' AND '2020-04-05' then 'Winter Seasonal'
-      when ${account} = 'MAM SEM - NE' and ${day_date} BETWEEN '2019-10-28' AND '2020-02-16' then 'Winter Seasonal'
+      when ${account} = 'MAM SEM - Air Service - Denver' and ${day_date} BETWEEN '2019-10-14' AND '2020-04-05' then 'Winter Air Service'
+      when ${account} = 'MAM SEM - Air Service - SF' and ${day_date} BETWEEN '2019-10-14' AND '2020-04-05' then 'Winter Air Service'
+      when ${account} = 'MAM SEM - Air Service - NE' and ${day_date} BETWEEN '2019-10-14' AND '2020-04-05' then 'Winter Air Service'
+      when ${account} = 'MAM SEM - Denver' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
+      when ${account} = 'MAM SEM - SF' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
+      when ${account} = 'MAM SEM - NE' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
+
+
         ELSE 'Uncategorized'
         END
     ;;
@@ -142,24 +148,6 @@ dimension: audience {
         END;;
 }
 
-
-
-# dimension: publisher {
-#   type: string
-#   sql:
-#        CASE
-#             WHEN ${advertising_channel} = 'Display' then 'Google Display'
-#             WHEN ${advertising_channel} = 'Search' then 'Google Search'
-#             ELSE 'Uncategorized'
-#             END ;;
-# }
-
-dimension: test_date_string  {
-  hidden: yes
-  type: string
-  sql: to_char(${TABLE}.day,'YYYY-MM-DD') ;;
-}
-
 ###### All Dimensions go Below #######
 
 dimension_group: __senttime {
@@ -205,7 +193,6 @@ dimension: ad_group {
 }
 
 dimension: ad_group_id {
-  # hidden: yes
   group_label: "AdWords Dimensions"
   type: number
   sql: ${TABLE}."ad group id" ;;
@@ -230,7 +217,6 @@ dimension: campaign {
 }
 
 dimension: campaign_id {
-  #  hidden:  yes
   group_label: "AdWords Dimensions"
   type: number
   sql: ${TABLE}."campaign id" ;;
@@ -277,7 +263,6 @@ dimension_group: day {
 }
 
 dimension: device {
-  hidden: yes
   type: string
   group_label: "AdWords Dimensions"
   sql: ${TABLE}.device ;;
@@ -285,6 +270,7 @@ dimension: device {
 
 dimension: device_formatted {
   type: string
+  hidden: yes
   group_label: "AdWords Dimensions"
   sql: ${TABLE}.device_formatted ;;
 }
