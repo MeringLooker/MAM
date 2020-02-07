@@ -1,10 +1,10 @@
 view: mam_trueview_view {
-  sql_table_name: public.mam_trueview_view ;;
+  sql_table_name: public.mam_trueview_view;;
   drill_fields: [id]
 
-  dimension: id {
-    primary_key: yes
-    hidden: yes
+  dimension: id{
+  primary_key: yes
+    hidden: no
     type: string
     sql: ${TABLE}.id ;;
   }
@@ -195,7 +195,7 @@ view: mam_trueview_view {
   dimension: impressions {
     type: number
     hidden: yes
-    sql: ${TABLE}.impressions ;;
+    sql: ${TABLE}.impressions;;
   }
 
   dimension: ad_group {

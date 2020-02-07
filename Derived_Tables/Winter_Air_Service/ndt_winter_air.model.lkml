@@ -14,20 +14,12 @@ datagroup: mam_winter_air_datagroup {
 explore: ndt_winter_air_campaign{
   label: "Winter Air Service"
   view_label: "Winter Air Service"
-  hidden: no
+  hidden: yes
   group_label: "Mammoth Lakes Tourism"
 }
 
 explore: ndt_winter_air_amobee{
   label: "Winter Air Service A"
   view_label: "Winter Air Service A"
-  hidden: yes
-  group_label: "Mammoth Lakes Tourism"
-}
-
-explore: ndt_winter_air_sem{
-  label: "Winter Air Service B"
-  view_label: "Winter Air Service B"
-  hidden: yes
   group_label: "Mammoth Lakes Tourism"
 }

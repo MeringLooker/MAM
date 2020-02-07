@@ -62,6 +62,9 @@ dimension: mam_campaign {
       when ${account} = 'MAM SEM - Air Service - Denver' and ${day_date} BETWEEN '2019-10-28' AND '2020-03-01' then 'Winter Air Service'
       when ${account} = 'MAM SEM - Air Service - SF' and ${day_date} BETWEEN '2019-10-28' AND '2020-04-05' then 'Winter Air Service'
       when ${account} = 'MAM SEM - Air Service - NE' and ${day_date} BETWEEN '2019-10-28' AND '2020-02-16' then 'Winter Air Service'
+      when ${account} = 'MAM SEM - Denver' and ${day_date} BETWEEN '2019-10-28' AND '2020-03-01' then 'Winter Seasonal'
+      when ${account} = 'MAM SEM - SF' and ${day_date} BETWEEN '2019-10-28' AND '2020-04-05' then 'Winter Seasonal'
+      when ${account} = 'MAM SEM - NE' and ${day_date} BETWEEN '2019-10-28' AND '2020-02-16' then 'Winter Seasonal'
         ELSE 'Uncategorized'
         END
     ;;

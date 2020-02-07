@@ -13,12 +13,12 @@ datagroup: mam_adwords_datagroup {
 
   explore: mam_sem_extended {
     extends: [mam_sem]
-    hidden: no
+    hidden: yes
   }
 
 #### Exploring AdWords Display Data #####
 
 explore: mam_gdn_extended {
   extends: [mam_gdn]
-  hidden: no
+  hidden: yes
 }

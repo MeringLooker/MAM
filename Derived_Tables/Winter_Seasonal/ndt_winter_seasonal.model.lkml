@@ -17,3 +17,9 @@ explore: ndt_winter_seasonal_campaign {
   view_label: "Winter Seasonal Service"
   hidden: yes
   group_label: "Mammoth Lakes Tourism"}
+
+explore: ndt_winter_seasonal_trueview {
+  label: "Winter Seasonal Youtube"
+  view_label: "Winter Seasonal Service"
+  hidden: yes
+  group_label: "Mammoth Lakes Tourism"}

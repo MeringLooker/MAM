@@ -21,8 +21,8 @@ view: ndt_winter_seasonal_campaign {
 
   dimension: primary_key {
     type: string
-    hidden: yes
     primary_key: yes
+    hidden: yes
     sql: ${publisher}||'_'||${campaign}||'_'||${region}||'_'||${placement}||'_'||${date} ;;
   }
 
@@ -31,6 +31,7 @@ view: ndt_winter_seasonal_campaign {
   dimension: publisher {
     type:  string
     sql:  ${TABLE}.publisher ;;
+    drill_fields: [region,placement,date,week]
   }
 
   dimension: campaign {
@@ -42,6 +43,7 @@ view: ndt_winter_seasonal_campaign {
   dimension: region {
     type:  string
     sql:  ${TABLE}.region ;;
+    drill_fields: [publisher,placement,date,week]
   }
 
   dimension: placement {
@@ -146,8 +148,14 @@ view: ndt_winter_seasonal_campaign {
   measure: cost_per_click {
     type: number
     label: "CPC"
-    sql: ${total_spend}/nullif(${total_clicks}, 0) ;;
+    sql: ${total_spend}/nullif(${total_clicks}, 0);;
     value_format_name: usd
+  }
+
+  measure: cost_per_thousand {
+    type:  number
+    label: "CPM"
+    sql: ${total_spend}/nullif(${total_impressions}/1000,0);;
   }
 
   measure: total_sessions {
@@ -181,4 +189,6 @@ view: ndt_winter_seasonal_campaign {
    sql_distinct_key: ${primary_key} ;;
     sql: ${views} ;;
   }
+
+
 }
