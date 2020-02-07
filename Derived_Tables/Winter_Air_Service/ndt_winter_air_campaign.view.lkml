@@ -26,13 +26,13 @@ view: ndt_winter_air_campaign {
   dimension: publisher {
     type:  string
     sql:  ${TABLE}.publisher ;;
-    drill_fields: [placement, date]
+    drill_fields: [region,placement,date,week]
   }
 
   dimension: region {
     type:  string
     sql:  ${TABLE}.region ;;
-    drill_fields: [publisher,placement,date]
+    drill_fields: [publisher,placement,date,week]
   }
 
   dimension: placement {
@@ -138,6 +138,12 @@ view: ndt_winter_air_campaign {
     sql_distinct_key: ${primary_key} ;;
     sql: ${media_cost};;
     value_format_name: usd
+  }
+
+  measure: cost_per_thousand {
+    type:  number
+    label: "CPM"
+    sql: ${total_spend}/nullif(${total_impressions}/1000,0);;
   }
 
   measure: cost_per_click {
