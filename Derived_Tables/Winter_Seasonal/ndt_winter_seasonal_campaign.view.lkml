@@ -54,6 +54,7 @@ view: ndt_winter_seasonal_campaign {
   dimension: date {
     type:  date
     group_label: "Date Periods"
+    drill_fields: [region,publisher]
     sql:  ${TABLE}.date ;;
   }
 
@@ -72,12 +73,14 @@ view: ndt_winter_seasonal_campaign {
   dimension: week {
     type:  date
     group_label: "Date Periods"
+    drill_fields: [region,publisher]
     sql:  ${TABLE}.week ;;
   }
 
   dimension: month {
     type:  date
     group_label: "Date Periods"
+    drill_fields: [region,publisher]
     sql:  ${TABLE}.month ;;
   }
 
