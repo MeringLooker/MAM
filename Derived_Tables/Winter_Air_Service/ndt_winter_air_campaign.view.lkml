@@ -67,6 +67,7 @@ view: ndt_winter_air_campaign {
   dimension: week {
     type:  date
     group_label: "Date Periods"
+    drill_fields: [publisher,region]
     sql:  ${TABLE}.week ;;
   }
 
