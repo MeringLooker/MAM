@@ -144,6 +144,7 @@ view: ndt_winter_air_campaign {
     type:  number
     label: "CPM"
     sql: ${total_spend}/nullif(${total_impressions}/1000,0);;
+    value_format_name: usd
   }
 
   measure: cost_per_click {

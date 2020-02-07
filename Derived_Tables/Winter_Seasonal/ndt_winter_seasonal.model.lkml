@@ -6,6 +6,7 @@ include: "/Google_Analytics/**/*.view"
 include: "/Facebook/**/*.view"
 include: "/DCM/**/*.view"
 include: "/TrueView/**/*.view"
+include: "/Pinterest/**/*.view"
 
 datagroup: mam_winter_air_datagroup {
   sql_trigger: SELECT current_date;;

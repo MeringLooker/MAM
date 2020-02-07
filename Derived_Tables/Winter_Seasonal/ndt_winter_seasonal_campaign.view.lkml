@@ -11,6 +11,8 @@ view: ndt_winter_seasonal_campaign {
     select * from ${ndt_winter_seasonal_facebook.SQL_TABLE_NAME}
     union
     select * from ${ndt_winter_seasonal_trueview.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_pinterest.SQL_TABLE_NAME}
  ;;
 
     sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*1)/(60*60*24)) ;;
@@ -159,6 +161,7 @@ view: ndt_winter_seasonal_campaign {
     type:  number
     label: "CPM"
     sql: ${total_spend}/nullif(${total_impressions}/1000,0);;
+    value_format_name: usd
   }
 
   measure: total_sessions {
