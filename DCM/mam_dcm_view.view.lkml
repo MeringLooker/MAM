@@ -489,6 +489,12 @@ view: mam_dcm_view {
     sql: ${TABLE}."view-through revenue" ;;
   }
 
+  dimension: flight_search {
+    type: number
+    sql: '0';;
+
+  }
+
 ############ All Measures go Below #########
 
   measure: total_impressions {
@@ -605,7 +611,6 @@ view: mam_dcm_view {
   }
 
   measure: ga_total_session_duration {
-
     type: sum_distinct
     label: "Total Session Duration"
     sql_distinct_key: ${mam_ga_onsite.id};;
@@ -650,6 +655,12 @@ view: mam_dcm_view {
     type: sum_distinct
     sql_distinct_key: ${mam_ga_onsite.id};;
     sql: ${mam_ga_onsite.pageviews} ;;
+  }
+
+  measure: total_flight_searches {
+    type: sum_distinct
+    sql_distinct_key: ${id} ;;
+    sql: ${flight_search} ;;
   }
 
   measure: pages_per_session {
