@@ -11,7 +11,7 @@ view: ndt_winter_air_amobee {
         column: total_impressions { field: mam_dcm_view.total_impressions }
         column: total_clicks { field: mam_dcm_view.total_clicks }
         column: total_media_cost { field: mam_dcm_view.total_media_cost }
-        column: total_conversions {field: mam_dcm_view.total_flight_searches}
+        column: total_conversions {field: mam_ga_goals.total_goal13completions}
         column: total_sessions { field: mam_dcm_view.ga_sessions }
         column: total_session_duration { field: mam_dcm_view.ga_total_session_duration }
         filters: {

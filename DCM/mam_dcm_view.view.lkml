@@ -11,6 +11,12 @@ view: mam_dcm_view {
     sql: ${TABLE}.id ;;
   }
 
+
+  dimension: ga_join_id {
+    type: string
+    sql: ${ad_id}||'_'||${date_date} ;;
+  }
+
 ##### Dimensions added to this table via LookML ######
 
   dimension: fiscal_year {
@@ -384,7 +390,7 @@ view: mam_dcm_view {
 
   dimension: comp_key {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.comp_key ;;
   }
 

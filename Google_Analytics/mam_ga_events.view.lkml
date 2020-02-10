@@ -15,7 +15,7 @@ view: mam_ga_events {
 
   dimension: join_id {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${keyword}||'_'||${date_date} ;;
   }
 
