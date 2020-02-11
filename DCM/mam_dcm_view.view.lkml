@@ -13,6 +13,7 @@ view: mam_dcm_view {
 
 
   dimension: ga_join_id {
+    hidden: yes
     type: string
     sql: ${ad_id}||'_'||${date_date} ;;
   }
@@ -233,6 +234,7 @@ view: mam_dcm_view {
   }
 
   dimension: views {
+    hidden: yes
     type:  number
     sql: '0' ;;
   }
@@ -390,7 +392,7 @@ view: mam_dcm_view {
 
   dimension: comp_key {
     type: string
-    hidden: no
+    hidden: yes
     sql: ${TABLE}.comp_key ;;
   }
 
@@ -496,6 +498,7 @@ view: mam_dcm_view {
   }
 
   dimension: flight_search {
+    hidden: yes
     type: number
     sql: '0';;
 
