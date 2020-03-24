@@ -41,6 +41,6 @@ explore: mam_gdn {
     type: left_outer
     fields: []
     sql_on: ${mam_gdn_view.join_id} = ${mam_ga_onsite.adwords_join_id}  ;;
-    relationship: many_to_one
+    relationship: one_to_many
   }
 }

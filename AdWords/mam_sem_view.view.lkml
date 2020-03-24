@@ -14,7 +14,7 @@ drill_fields: [id]
 ###### Join ID #######
 
 dimension: join_id {
-  hidden: yes
+  hidden: no
   type: string
   sql: ${ad_group_id}||'_'||${day_date}
     ;;

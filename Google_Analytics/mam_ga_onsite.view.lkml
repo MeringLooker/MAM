@@ -23,7 +23,7 @@ view: mam_ga_onsite {
 
   dimension: adwords_join_id {
     type: string
-    hidden: yes
+    hidden: no
     sql: ${adwordsadgroupid}||'_'||${date_date} ;;
   }
 
