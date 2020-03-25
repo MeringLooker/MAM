@@ -1,5 +1,5 @@
 view: mam_gdn_view{
-  sql_table_name: mam_gdn_view_updated;;
+  sql_table_name: mam_gdn_view;;
   drill_fields: []
 
 ###### Primary Key #######
