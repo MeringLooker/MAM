@@ -11,3 +11,11 @@ explore: mam_trueview_extended {
   extends: [mam_yt]
   hidden: no
 }
+
+explore: mam_yt_extended {
+  extends: [mam_quartiles_yt]
+  hidden: yes
+  label: "YouTube"
+  view_label: "YouTube"
+  group_label: "Mammoth Lakes Tourism"
+}
