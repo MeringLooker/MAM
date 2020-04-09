@@ -1,27 +1,28 @@
 view: mam_sem_view{
 sql_table_name: mam_sem_view;;
-drill_fields: [id]
+drill_fields: []
 
 #### Primary Key ####
 
- dimension: id {
-  hidden: yes
-  primary_key: yes
-  type: string
-  sql: ${TABLE}.id ;;
-}
+#  dimension: id {
+#   hidden: yes
+#   primary_key: yes
+#   type: string
+#   sql: ${TABLE}.id ;;
+# }
 
 ###### Join ID #######
 
-dimension: join_id {
-  hidden: no
-  type: string
-  sql: ${ad_group_id}||'_'||${day_date}
-    ;;
-}
+# dimension: join_id {
+#   hidden: no
+#   type: string
+#   sql: ${ad_group_id}||'_'||${day_date}
+#     ;;
+# }
 
-dimension: compkey {
+dimension: join_id {
   type: string
+  primary_key: yes
   hidden: yes
   group_label: "AdWords Dimensions"
   sql: ${TABLE}.comp_key ;;
@@ -150,35 +151,35 @@ dimension: audience {
 
 ###### All Dimensions go Below #######
 
-dimension_group: __senttime {
-  hidden:yes
-  type: time
-  timeframes: [
-    raw,
-    time,
-    date,
-    week,
-    month,
-    quarter,
-    year
-  ]
-  sql: ${TABLE}.__senttime ;;
-}
-
-dimension_group: __updatetime {
-  hidden: yes
-  type: time
-  timeframes: [
-    raw,
-    time,
-    date,
-    week,
-    month,
-    quarter,
-    year
-  ]
-  sql: ${TABLE}.__updatetime ;;
-}
+# dimension_group: __senttime {
+#   hidden:yes
+#   type: time
+#   timeframes: [
+#     raw,
+#     time,
+#     date,
+#     week,
+#     month,
+#     quarter,
+#     year
+#   ]
+#   sql: ${TABLE}.__senttime ;;
+# }
+#
+# dimension_group: __updatetime {
+#   hidden: yes
+#   type: time
+#   timeframes: [
+#     raw,
+#     time,
+#     date,
+#     week,
+#     month,
+#     quarter,
+#     year
+#   ]
+#   sql: ${TABLE}.__updatetime ;;
+# }
 
 dimension: account {
   type: string
@@ -262,18 +263,18 @@ dimension_group: day {
   sql: ${TABLE}.day ;;
 }
 
-dimension: device {
-  type: string
-  group_label: "AdWords Dimensions"
-  sql: ${TABLE}.device ;;
-}
-
-dimension: device_formatted {
-  type: string
-  hidden: yes
-  group_label: "AdWords Dimensions"
-  sql: ${TABLE}.device_formatted ;;
-}
+# dimension: device {
+#   type: string
+#   group_label: "AdWords Dimensions"
+#   sql: ${TABLE}.device ;;
+# }
+#
+# dimension: device_formatted {
+#   type: string
+#   hidden: yes
+#   group_label: "AdWords Dimensions"
+#   sql: ${TABLE}.device_formatted ;;
+# }
 
 dimension: impressions {
   hidden: yes
@@ -314,31 +315,27 @@ dimension: views {
 ###### All Measures go Below #######
 
 measure: total_impressions {
-  type: sum_distinct
+  type: sum
   group_label: "AdWords Reporting"
-  sql_distinct_key: ${id} ;;
   sql: ${impressions} ;;
 }
 
 measure: total_clicks {
-  type: sum_distinct
+  type: sum
   group_label: "AdWords Reporting"
-  sql_distinct_key: ${id} ;;
   sql: ${clicks} ;;
 }
 
 measure: total_cost {
-  type:  sum_distinct
+  type:  sum
   group_label: "AdWords Reporting"
-  sql_distinct_key: ${id} ;;
   sql:${cost}/1000000.00  ;;
   value_format_name: usd
 }
 
 measure: total_conversions {
-  type: sum_distinct
+  type: sum
   group_label: "AdWords Reporting"
-  sql_distinct_key: ${id} ;;
   sql: ${conversions} ;;
 }
 
@@ -383,10 +380,9 @@ measure: cost_per_conversion {
 }
 
 measure: total_views {
-  type: sum_distinct
+  type: sum
   hidden: yes
   group_label: "AdWords Reporting"
-  sql_distinct_key: ${id} ;;
   sql: ${views} ;;
 }
 
@@ -466,6 +462,6 @@ measure: pages_per_session {
 
 measure: count {
   type: count
-  drill_fields: [id, reportname]
+  drill_fields: []
 }
 }
