@@ -19,7 +19,7 @@ view: ndt_winter_seasonal_pinterest {
         value: "Winter Seasonal"
       }
     }
-    datagroup_trigger: mam_winter_air_datagroup
+    datagroup_trigger: mam_winter_seasonal_datagroup
     distribution_style: all
   }
 

@@ -66,7 +66,7 @@ view: mam_dcm_view {
         ;;
   }
 
-  dimension: mam_package {
+  dimension: mam_placement {
     type: string
     label: "Package Name"
     group_label: "DCM Dimensions"
@@ -139,8 +139,8 @@ view: mam_dcm_view {
     WHEN ${placement} ilike '%Native Display Added Value\\_CA & NV%' then 'California/Nevada'
     WHEN ${placement} ilike '%CA & NV%' then 'California/Nevada'
     WHEN ${placement_id} = '252643239' then 'California/Nevada'
-    WHEN ${mam_package} = 'Matador Experience Distribution' then 'National'
-    WHEN ${mam_package} = 'ROS Big Box' then 'National'
+    WHEN ${mam_placement} = 'Matador Experience Distribution' then 'National'
+    WHEN ${mam_placement} = 'ROS Big Box' then 'National'
     WHEN ${placement} ilike '%Native Display\\_ San Diego%' then 'San Diego'
     WHEN ${placement} ilike '%Native Display\\_ Los Angeles%' then 'Los Angeles'
     WHEN ${placement} ilike '%Native Display\\_ San Francisco%' then 'San Francisco'

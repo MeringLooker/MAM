@@ -24,7 +24,7 @@ view: ndt_winter_seasonal_campaign {
   dimension: primary_key {
     type: string
     primary_key: yes
-    hidden: yes
+    hidden: no
     sql: ${publisher}||'_'||${campaign}||'_'||${region}||'_'||${placement}||'_'||${date} ;;
   }
 
@@ -194,6 +194,10 @@ view: ndt_winter_seasonal_campaign {
     type: sum_distinct
    sql_distinct_key: ${primary_key} ;;
     sql: ${views} ;;
+  }
+
+  measure: count {
+    type: count
   }
 
 

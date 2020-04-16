@@ -4,7 +4,7 @@ view: ndt_winter_seasonal_snowboarder {
         column: publisher {field: mam_dcm_view.publisher}
         column: campaign {field: mam_dcm_view.mam_campaign}
         column: region {field: mam_dcm_view.mam_region}
-        column: placement {field: mam_dcm_view.mam_package}
+        column: placement {field: mam_dcm_view.mam_placement}
         column: date {field: mam_dcm_view.date_date}
         column: week {field: mam_dcm_view.date_week}
         column: month {field: mam_dcm_view.date_month}
@@ -23,7 +23,7 @@ view: ndt_winter_seasonal_snowboarder {
           value: "Snowboarder.com"
         }
       }
-      datagroup_trigger: mam_winter_air_datagroup
+      datagroup_trigger: mam_winter_seasonal_datagroup
       distribution_style: all
     }
 

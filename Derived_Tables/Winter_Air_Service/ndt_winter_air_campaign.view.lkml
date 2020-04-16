@@ -67,14 +67,14 @@ view: ndt_winter_air_campaign {
   }
 
   dimension: week {
-    type:  date
+    type:  date_week
     group_label: "Date Periods"
     drill_fields: [publisher,region]
     sql:  ${TABLE}.week ;;
   }
 
   dimension: month {
-    type:  date
+    type:  date_month
     group_label: "Date Periods"
     sql:  ${TABLE}.month ;;
   }

@@ -1,38 +1,14 @@
 view: mam_gdn_view{
-  sql_table_name: mam_gdn_view;;
-  drill_fields: []
+  sql_table_name: mam_gdn_ga_view;;
 
 ###### Primary Key #######
 
-#   dimension: id {
-#     hidden: yes
-#     primary_key: yes
-#     type: string
-#     sql: ${TABLE}.id ;;
-#   }
-
-###### Join ID #######
-
-#   dimension: join_id {
-#     type: string
-#     hidden: no
-#     sql: ${ad_group_id}||'_'||${day_date}
-#       ;;
-#   }
-
-  dimension: join_id {
+  dimension: comp_key {
     type: string
     primary_key: yes
     hidden: yes
-    group_label: "AdWords Dimensions"
     sql: ${TABLE}.comp_key ;;
   }
-
-#   dimension: ga_join_id{
-#     type: string
-#     sql: ${mam_ga_onsite.concat_join_id} ;;
-#   }
-
 
 ######## Dimensions added to this table via LookML ########
 
@@ -56,18 +32,12 @@ view: mam_gdn_view{
     type: string
     label: "Channel"
     group_label: "AdWords Dimensions"
-    sql:
-      CASE
-        WHEN ${account} ILIKE '%GDN%' THEN 'Display'
-        WHEN ${account} ILIKE '%SEM%' THEN 'Search'
-        ELSE 'Uncategorized'
-        END
-    ;;
+    sql: 'Display'  ;;
   }
 
   dimension: mam_campaign {
     type: string
-    label: "Campaign/Season"
+    label: "Campaign"
     group_label: "Client Dimensions"
     sql:
       CASE
@@ -116,6 +86,21 @@ view: mam_gdn_view{
         END;;
   }
 
+  dimension: mam_placement {
+    type:  string
+    label: "Placement"
+    group_label: "AdWords Dimensions"
+    sql:
+      case
+        when ${ad_group} ilike '%AirService - site Visitor lookalike%' then 'Responsive Display - Site Visitor Lookalikes'
+        when ${ad_group} ilike '%AirService - retargeting%' then 'Responsive Display - Retargeting'
+        when ${ad_group} ilike '%AirService - Competitive Destinations%' then 'Responsive Display - Competitive Destinations'
+        when ${campaign} ilike '%FY20 WINTER - TRAFFIC%' then 'Responsive Display - Click-Driving'
+        when ${campaign} ilike '%FY20 WINTER - Conversion%' then 'Responsive Display - Time On Site Driving'
+        else  'Uncategorized'
+        end;;
+  }
+
   dimension: strategy {
     type: string
     group_label: "AdWords Dimensions"
@@ -156,36 +141,6 @@ view: mam_gdn_view{
 
 ###### All Dimensions go Below #######
 
-#   dimension_group: __senttime {
-#     hidden:yes
-#     type: time
-#     timeframes: [
-#       raw,
-#       time,
-#       date,
-#       week,
-#       month,
-#       quarter,
-#       year
-#     ]
-#     sql: ${TABLE}.__senttime ;;
-#   }
-#
-#   dimension_group: __updatetime {
-#     hidden: yes
-#     type: time
-#     timeframes: [
-#       raw,
-#       time,
-#       date,
-#       week,
-#       month,
-#       quarter,
-#       year
-#     ]
-#     sql: ${TABLE}.__updatetime ;;
-#   }
-
   dimension: account {
     type: string
     group_label: "AdWords Dimensions"
@@ -199,22 +154,15 @@ view: mam_gdn_view{
   }
 
   dimension: ad_group_id {
-    # hidden: yes
-    group_label: "AdWords Dimensions"
     type: number
+    group_label: "AdWords IDs"
     sql: ${TABLE}."ad group id" ;;
   }
 
-  dimension: ad_group_state {
+  dimension: bounces {
+    type: number
     hidden: yes
-    type: string
-    sql: ${TABLE}."ad group state" ;;
-  }
-
-  dimension: avg__position {
-    hidden: yes
-    type: string
-    sql: ${TABLE}."avg. position" ;;
+    sql: ${TABLE}.bounces ;;
   }
 
   dimension: campaign {
@@ -224,40 +172,33 @@ view: mam_gdn_view{
   }
 
   dimension: campaign_id {
-    #  hidden:  yes
-    group_label: "AdWords Dimensions"
     type: number
+    group_label: "AdWords IDs"
     sql: ${TABLE}."campaign id" ;;
   }
 
-  dimension: campaign_state {
-    hidden: yes
-    type: string
-    sql: ${TABLE}."campaign state" ;;
-  }
-
   dimension: clicks {
-    hidden:  yes
     type: number
+    hidden: yes
     sql: ${TABLE}.clicks ;;
   }
 
   dimension: conversions {
-    hidden: yes
     type: number
+    hidden: yes
     sql: ${TABLE}.conversions ;;
   }
 
   dimension: cost {
-    hidden: yes
     type: number
+    hidden: yes
     sql: ${TABLE}.cost ;;
   }
 
   dimension_group: day {
+    type: time
     group_label: "Date Periods"
     label: ""
-    type: time
     timeframes: [
       raw,
       time,
@@ -270,79 +211,76 @@ view: mam_gdn_view{
     sql: ${TABLE}.day ;;
   }
 
-#   dimension: device {
-#     type: string
-#     group_label: "AdWords Dimensions"
-#     sql: ${TABLE}.device ;;
-#   }
-
-#   dimension: device_formatted {
-#     type: string
-#     hidden: yes
-#     group_label: "AdWords Dimensions"
-#     sql: ${TABLE}.device_formatted ;;
-#   }
-
   dimension: impressions {
-    hidden: yes
     type: number
+    hidden: yes
     sql: ${TABLE}.impressions ;;
   }
 
-  dimension: reportname {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.reportname ;;
-  }
-
-  dimension: search_impr__share {
-    hidden: yes
-    type: string
-    sql: ${TABLE}."search impr. share" ;;
-  }
-
-  dimension: search_lost_is_rank {
-    hidden: yes
-    type: string
-    sql: ${TABLE}."search lost is (rank)" ;;
-  }
-
-  dimension: total_conv__value {
-    hidden: yes
+  dimension: pageviews {
     type: number
-    sql: ${TABLE}."total conv. value" ;;
+    hidden: yes
+    sql: ${TABLE}.pageviews ;;
+  }
+
+  dimension: sessionduration {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.sessionduration ;;
+  }
+
+  dimension: sessions {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.sessions ;;
+  }
+
+  dimension: total_conv_value {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.total_conv_value ;;
   }
 
   dimension: views {
-    hidden: yes
     type: number
-    sql: '0' ;;
+    hidden: yes
+    sql: 0 ;;
+  }
+
+  dimension: completes {
+    type: number
+    hidden: yes
+    sql: 0 ;;
   }
 
   ###### All Measures go Below #######
 
   measure: total_impressions {
-    type: sum
+    type: sum_distinct
     group_label: "AdWords Reporting"
+    sql_distinct_key: ${comp_key} ;;
     sql: ${impressions} ;;
   }
 
   measure: total_clicks {
-    type: sum
+    type: sum_distinct
     group_label: "AdWords Reporting"
+    sql_distinct_key: ${comp_key} ;;
     sql: ${clicks} ;;
   }
 
   measure: total_cost {
-    type:  sum
+    type:  sum_distinct
     group_label: "AdWords Reporting"
+    sql_distinct_key: ${comp_key} ;;
     sql:${cost}/1000000.00  ;;
     value_format_name: usd
   }
 
   measure: total_conversions {
-    type: sum
+    type: sum_distinct
     group_label: "AdWords Reporting"
+    sql_distinct_key: ${comp_key} ;;
     sql: ${conversions} ;;
   }
 
@@ -387,85 +325,82 @@ view: mam_gdn_view{
   }
 
   measure: total_views {
-    type: sum
+    type: sum_distinct
     hidden: yes
-    group_label: "AdWords Reporting"
+    sql_distinct_key: ${comp_key} ;;
     sql: ${views} ;;
   }
 
-######## Joined measures from GA #######
+  measure: total_completes {
+    type: sum_distinct
+    hidden: yes
+    sql_distinct_key: ${comp_key} ;;
+    sql: ${completes} ;;
+  }
 
-  measure: ga_sessions {
+  measure: total_sessions {
     group_label: "GA Reporting"
     type: sum_distinct
     label: "Sessions"
-    sql_distinct_key: ${mam_ga_onsite.id} ;;
-    sql: ${mam_ga_onsite.sessions} ;;
+    sql_distinct_key: ${comp_key} ;;
+    sql: ${sessions} ;;
   }
 
   measure: cost_per_session {
     group_label: "GA Reporting"
     type: number
     label: "CPS"
-    sql: ${total_cost}/nullif(${ga_sessions}, 0) ;;
+    sql: ${total_cost}/nullif(${total_sessions}, 0) ;;
     value_format_name: usd
   }
 
-  measure: ga_total_session_duration {
+  measure: total_session_duration {
+    hidden: yes
     type: sum_distinct
     label: "Total Session Duration"
-    sql_distinct_key: ${mam_ga_onsite.id};;
-    sql: ${mam_ga_onsite.sessionduration};;
+    sql_distinct_key: ${comp_key};;
+    sql: ${sessionduration};;
   }
 
   measure: avg_time_on_site {
     group_label: "GA Reporting"
     label: "Avg. TOS"
     type: number
-    sql:  (${mam_ga_onsite.total_session_duration}/nullif(${mam_ga_onsite.total_sessions}, 0))::float/86400  ;;
+    sql:  (${total_session_duration}/nullif(${total_sessions}, 0))::float/86400  ;;
     value_format: "m:ss"
   }
 
-  measure: ga_total_users {
+  measure: total_pageviews {
     group_label: "GA Reporting"
-    label: "Users"
     type: sum_distinct
-    sql_distinct_key: ${mam_ga_onsite.id};;
-    sql: ${mam_ga_onsite.users} ;;
-  }
-
-  measure: ga_new_users {
-    group_label: "GA Reporting"
-    label: "New Users"
-    type: sum_distinct
-    sql_distinct_key: ${mam_ga_onsite.id};;
-    sql: ${mam_ga_onsite.newusers} ;;
-  }
-
-  measure: percent_new_users {
-    group_label: "GA Reporting"
-    label: "% New Users"
-    type: number
-    sql: ${mam_ga_onsite.new_users}/nullif(${mam_ga_onsite.total_users}, 0) ;;
-    value_format_name: percent_0
-  }
-
-  measure: ga_total_pageviews {
-    group_label: "GA Reporting"
     label: "Pageviews"
-    type: sum_distinct
-    sql_distinct_key: ${mam_ga_onsite.id};;
-    sql: ${mam_ga_onsite.pageviews} ;;
+    sql_distinct_key: ${comp_key} ;;
+    sql: ${sessions} ;;
   }
 
   measure: pages_per_session {
     group_label: "GA Reporting"
-    label: "Pgs/Session"
     type: number
-    sql: ${mam_ga_onsite.total_pageviews}/nullif(${mam_ga_onsite.total_sessions}, 0) ;;
-    value_format: "#.0"
+    label: "Pages/Session"
+    sql: ${total_pageviews}/nullif(${total_sessions}, 0) ;;
+    value_format_name: decimal_2
   }
 
+  measure: total_bounces {
+    group_label: "GA Reporting"
+    type: sum_distinct
+    label: "Bounces"
+    sql_distinct_key: ${comp_key} ;;
+    sql: ${bounces} ;;
+  }
+
+  measure: total_bounce_rate  {
+    label: "Bounce Rate"
+    group_label: "GA Reporting"
+    type: number
+    sql: ${total_bounces}/nullif(${total_sessions}, 0) ;;
+    value_format_name: percent_2
+  }
 
   measure: count {
     type: count

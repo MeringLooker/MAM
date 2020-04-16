@@ -17,10 +17,3 @@ explore: ndt_winter_air_campaign{
   hidden: yes
   group_label: "Mammoth Lakes Tourism"
 }
-
-explore: ndt_winter_air_amobee{
-  label: "Winter Air Service A"
-  view_label: "Winter Air Service A"
-  hidden: yes
-  group_label: "Mammoth Lakes Tourism"
-}

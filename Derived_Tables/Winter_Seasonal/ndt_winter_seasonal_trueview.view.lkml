@@ -4,7 +4,7 @@ view: ndt_winter_seasonal_trueview {
         column: publisher {field: mam_quartiles_yt_view.publisher}
         column: campaign {field: mam_quartiles_yt_view.mam_campaign}
         column: region {field: mam_quartiles_yt_view.mam_region}
-        column: placement {field: mam_quartiles_yt_view.campaign}
+        column: placement {field: mam_quartiles_yt_view.mam_placement}
         column: date {field: mam_quartiles_yt_view.day_date}
         column: week {field: mam_quartiles_yt_view.day_week}
         column: month {field: mam_quartiles_yt_view.day_month}
@@ -19,7 +19,7 @@ view: ndt_winter_seasonal_trueview {
           value: "Winter Seasonal"
         }
       }
-      datagroup_trigger: mam_winter_air_datagroup
+      datagroup_trigger: mam_winter_seasonal_datagroup
       distribution_style: all
     }
 

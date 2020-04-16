@@ -93,6 +93,13 @@ dimension: mam_campaign {
         ;;
   }
 
+  dimension: mam_placement {
+    label: "Placement Name"
+    group_label: "Client Dimensions"
+    type: string
+    sql: 'Uncategorized' ;;
+  }
+
   dimension: fb_airline {
     label: "Airline"
     group_label: "Client Dimensions"
@@ -181,6 +188,7 @@ dimension: mam_campaign {
 
 dimension: publisher {
   type: string
+  group_label: "Facebook Dimensions"
   sql: 'Facebook' ;;
   }
 

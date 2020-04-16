@@ -4,7 +4,7 @@ view: ndt_winter_seasonal_facebook {
         column: publisher {field: mam_fb_view.publisher}
         column: campaign {field: mam_fb_view.mam_campaign}
         column: region {field: mam_fb_view.mam_region}
-        column: placement {field: mam_fb_view.ad_name}
+        column: placement {field: mam_fb_view.mam_placement}
         column: date {field: mam_fb_view.date_start_date}
         column: week {field: mam_fb_view.date_start_week}
         column: month {field: mam_fb_view.date_start_month}
@@ -19,7 +19,7 @@ view: ndt_winter_seasonal_facebook {
           value: "Winter Seasonal"
         }
       }
-      datagroup_trigger: mam_winter_air_datagroup
+      datagroup_trigger: mam_winter_seasonal_datagroup
       distribution_style: all
     }
 
