@@ -37,12 +37,6 @@ dimension: mam_campaign {
         WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_Denver_Flight2' THEN 'Winter Seasonal'
         WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_CA/NV_Flight2' THEN 'Winter Seasonal'
 
-
-
-
-
-
-
         WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_AirService_FareSale' THEN 'Winter Air Service'
         WHEN ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_Widget_AirService%' THEN 'Winter Air Service'
         WHEN ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_AirService%' THEN 'Winter Air Service'
@@ -97,7 +91,13 @@ dimension: mam_campaign {
     label: "Placement Name"
     group_label: "Client Dimensions"
     type: string
-    sql: 'Uncategorized' ;;
+    sql:
+      case
+        when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_AirService%' then 'Single Image - Brand Audience'
+        when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_Widget_AirService%' then 'Single Image - Retargeting/Site Lookalikes'
+        when ${campaign_name} ilike 'MAM_Winter_FY20_Conversions_AirService_FareSale%' then 'Single Image - Fare Sale'
+        else 'Uncategorized'
+        end;;
   }
 
   dimension: fb_airline {

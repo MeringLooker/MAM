@@ -4,7 +4,7 @@ view: ndt_winter_air_amobee {
         column: publisher {field: mam_dcm_view.publisher}
         column: campaign { field: mam_dcm_view.mam_campaign }
         column: region { field: mam_dcm_view.mam_region }
-        column: placement { field: mam_dcm_view.placement }
+        column: placement { field: mam_dcm_view.mam_placement }
         column: ddate { field: mam_dcm_view.date_date }
         column: week { field: mam_dcm_view.date_week }
         column: month { field: mam_dcm_view.date_month }

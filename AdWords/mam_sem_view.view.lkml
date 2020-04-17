@@ -97,6 +97,12 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
           WHEN  ${campaign} ILIKE '%Sac' then 'Sacramento'
           WHEN  ${campaign} ILIKE '%SD' then 'San Diego'
           WHEN  ${campaign} ILIKE '%LA' then 'Los Angeles'
+
+          when ${ad_group_id} = '73000137260' then 'San Francisco'
+          when ${ad_group_id} = '73000137300' then 'Denver'
+          when ${ad_group_id} = '73000137340' then 'Los Angeles'
+          when ${ad_group_id} = '73000137500' then 'Los Angeles'
+
           ELSE 'Uncategorized'
           END;;
   }

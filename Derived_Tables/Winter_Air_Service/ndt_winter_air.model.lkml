@@ -12,8 +12,8 @@ datagroup: mam_winter_air_datagroup {
 }
 
 explore: ndt_winter_air_campaign{
-  label: "Winter Air Service"
-  view_label: "Winter Air Service"
-  hidden: yes
+  label: "FY20 Winter Air Service"
+  view_label: "FY20  Winter Air Service"
+  hidden: no
   group_label: "Mammoth Lakes Tourism"
 }

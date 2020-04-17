@@ -68,16 +68,19 @@ view: mam_dcm_view {
 
   dimension: mam_placement {
     type: string
-    label: "Package Name"
-    group_label: "DCM Dimensions"
+    label: "Placement Name"
+    group_label: "Client Dimensions"
     sql:
       CASE
 
         WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_%' then '4 Screen Video'
-        WHEN ${placement} ilike '%\\_AV3ScreenVideoPackage\\_%' then 'AV 3 Screen Video'
-        WHEN ${placement} ilike '%\\_CCDisplay\\_%' then 'Cross-Device Display'
-        WHEN ${placement} ilike '%\\_CDDisplay\\_%' then 'Cross-Device Display'
-        WHEN ${placement} ilike '%\\_NativeDisplayPackage\\_%' then 'Native Display'
+        WHEN ${placement} ilike '%\\_AV3ScreenVideoPackage\\_%' then 'AV - 3 Screen Video Package'
+        WHEN ${placement} ilike '%\\_CDDisplay\\_%' and ${placement} ilike '%Tablet%' then 'Cross-Device Display - Tablet'
+        WHEN ${placement} ilike '%\\_CDDisplay\\_%' and ${placement} ilike '%Smartphone%' then 'Cross-Device Display - Smartphone'
+        WHEN ${placement} ilike '%\\_CDDisplay\\_%' and ${placement} ilike '%Desktop%' then 'Cross-Device Display - Desktop'
+        WHEN ${placement} ilike '%\\_NativeDisplayPackage\\_%' and ${placement} ilike '%Tablet%' then 'Native Display - Tablet'
+        WHEN ${placement} ilike '%\\_NativeDisplayPackage\\_%' and ${placement} ilike '%Smartphone%' then 'Native Display - Smartphone'
+        WHEN ${placement} ilike '%\\_NativeDisplayPackage\\_%' and ${placement} ilike '%Desktop%' then 'Native Display - Desktop'
         WHEN ${placement} ilike '%AV Big Box%' then 'AV Big Box'
         WHEN ${placement} ilike '%AV Half Page Sticky%' then 'Half Page Sticky'
         WHEN ${placement} ilike '%AVStandard Display Banners%' then 'AV Standard Banners ROS'
@@ -97,9 +100,12 @@ view: mam_dcm_view {
         WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Marquee%' then 'Marquee Display'
         WHEN ${placement} ilike '%Repromo Matador Content%' then 'Matador Content Distribution'
         WHEN ${placement} ilike '%Matador Experience%' then 'Matador Experience Distribution'
-        WHEN ${placement} ilike 'Amobee\\_Native Display\\_%' then 'Native Display'
-        WHEN ${placement} ilike 'Amobee\\_NativeDisplay\\_%' then 'Native Display'
-        WHEN ${placement} ilike 'Amobee\\_AV3ScreenDisplay\\_%' then 'AV 3 Screen Display'
+        WHEN ${placement} ilike 'Amobee\\_NativeDisplay\\_%' and ${placement} ilike '%Tablet%' then 'Native Display - Tablet'
+        WHEN ${placement} ilike 'Amobee\\_NativeDisplay\\_%' and ${placement} ilike '%Smartphone%' then 'Native Display - Smartphone'
+        WHEN ${placement} ilike 'Amobee\\_NativeDisplay\\_%' and ${placement} ilike '%Desktop%' then 'Native Display - Desktop'
+        WHEN ${placement} ilike 'Amobee\\_AV3ScreenDisplay\\_%' and ${placement} ilike '%Tablet%' then 'AV 3 Screen Video - Tablet'
+        WHEN ${placement} ilike 'Amobee\\_AV3ScreenDisplay\\_%' and ${placement} ilike '%Smartphone%' then 'AV 3 Screen Video - Smartphone'
+        WHEN ${placement} ilike 'Amobee\\_AV3ScreenDisplay\\_%' and ${placement} ilike '%Desktop%' then 'AV 3 Screen Video - Desktop'
         WHEN ${placement} ilike 'Sharethrough\\_Native Display\\_%' then 'Native Display'
         WHEN ${placement} ilike 'Sharethrough\\_Native Display Added Value\\_%' then 'AV Native Display'
         WHEN ${placement} ilike '\\_Pre-Roll :30\\_' then '4-Screen Video'
