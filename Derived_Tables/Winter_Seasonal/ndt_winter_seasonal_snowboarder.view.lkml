@@ -14,9 +14,10 @@ view: ndt_winter_seasonal_snowboarder {
         column: total_sessions {field: mam_dcm_view.ga_sessions}
         column: total_session_duration {field: mam_dcm_view.ga_total_session_duration}
         column: total_views {field: mam_dcm_view.total_views}
+        column: total_completes {field: mam_dcm_view.total_completes}
         filters: {
-          field: mam_dcm_view.mam_campaign
-          value: "Winter Seasonal"
+          field: mam_dcm_view.campaign
+          value: "MAM: FY20 Winter Seasonal"
         }
         filters: {
           field: mam_dcm_view.publisher

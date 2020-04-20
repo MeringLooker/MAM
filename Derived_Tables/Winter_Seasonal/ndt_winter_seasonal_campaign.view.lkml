@@ -2,8 +2,6 @@ view: ndt_winter_seasonal_campaign {
 
   derived_table: {
     sql:
-    select * from ${ndt_winter_seasonal_dcm.SQL_TABLE_NAME}
-    union
     select * from ${ndt_winter_seasonal_gdn.SQL_TABLE_NAME}
     union
     select * from ${ndt_winter_seasonal_sem.SQL_TABLE_NAME}
@@ -13,6 +11,18 @@ view: ndt_winter_seasonal_campaign {
     select * from ${ndt_winter_seasonal_trueview.SQL_TABLE_NAME}
     union
     select * from ${ndt_winter_seasonal_pinterest.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_amobee.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_matador.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_opensnow.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_powder.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_skimag.SQL_TABLE_NAME}
+    union
+    select * from ${ndt_winter_seasonal_snowboarder.SQL_TABLE_NAME}
  ;;
 
     sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*1)/(60*60*24)) ;;
@@ -122,6 +132,12 @@ view: ndt_winter_seasonal_campaign {
     sql: ${TABLE}.total_views ;;
   }
 
+  dimension: completes {
+    hidden:  yes
+    type: number
+    sql: ${TABLE}.total_completes ;;
+  }
+
   #### Measures below ####
 
   measure: total_impressions {
@@ -164,6 +180,25 @@ view: ndt_winter_seasonal_campaign {
     value_format_name: usd
   }
 
+  measure: total_views {
+    type: sum_distinct
+    sql_distinct_key: ${primary_key} ;;
+    sql: ${views} ;;
+  }
+
+  measure: total_completes {
+    type: sum_distinct
+    sql_distinct_key: ${primary_key} ;;
+    sql: ${completes} ;;
+  }
+
+  measure: completion_rate {
+    type: number
+    label: "Completion Rate"
+    sql: 1.0*(${total_completes})/nullif(${total_impressions},0) ;;
+    value_format_name: percent_2
+  }
+
   measure: total_sessions {
    type: sum_distinct
     sql_distinct_key: ${primary_key} ;;
@@ -189,11 +224,6 @@ view: ndt_winter_seasonal_campaign {
     label: "CPS"
     sql: ${total_spend}/nullif(${total_sessions}, 0) ;;
     value_format_name: usd
-  }
-  measure: total_views  {
-    type: sum_distinct
-   sql_distinct_key: ${primary_key} ;;
-    sql: ${views} ;;
   }
 
   measure: count {

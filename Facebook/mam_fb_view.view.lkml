@@ -102,6 +102,22 @@ dimension: mam_campaign {
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_AirService%' then 'Single Image - Brand Audience'
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_Widget_AirService%' then 'Single Image - Retargeting/Site Lookalikes'
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversions_AirService_FareSale%' then 'Single Image - Fare Sale'
+
+        when ${campaign_name} ilike '%Winter_FY20_Conversions_SF%' and ${ad_name} ilike '%SingleImage%' then 'Traffic-Driving Single Image'
+        when ${campaign_name} ilike '%Winter_FY20_Conversions_SF%' and ${ad_name} ilike '%Carousel%' then 'Traffic-Driving Carousel'
+
+        when ${campaign_name} ilike '%Winter_FY20_Conversions_NE%' and ${ad_name} ilike '%SingleImage%' then 'Traffic-Driving Single Image'
+        when ${campaign_name} ilike '%Winter_FY20_Conversions_NE%' and ${ad_name} ilike '%Carousel%' then 'Traffic-Driving Carousel'
+
+        when ${campaign_name} ilike '%Winter_FY20_Conversions_Denver%' and ${ad_name} ilike '%SingleImage%' then 'Traffic-Driving Single Image'
+        when ${campaign_name} ilike '%Winter_FY20_Conversions_Denver%' and ${ad_name} ilike '%Carousel%' then 'Traffic-Driving Carousel'
+
+        when ${campaign_name} ilike '%Winter_FY20_Conversions_CA/NV%' and ${ad_name} ilike '%SingleImage%' then 'Traffic-Driving Single Image'
+        when ${campaign_name} ilike '%Winter_FY20_Conversions_CA/NV%' and ${ad_name} ilike '%Carousel%' then 'Traffic-Driving Carousel'
+
+        when ${campaign_name} ilike '%Winter_FY20_VideoViews%' and ${adset_name} ilike '%Maladies%' then 'Unskippable In-Feed and In-Stream Video'
+        when ${campaign_name} ilike '%Winter_FY20_VideoViews%' then 'Skippable In-Feed and In-Stream Video'
+
         else 'Uncategorized'
         end;;
   }

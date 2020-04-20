@@ -91,6 +91,30 @@ view: mam_pinterest {
       type: string
       label: "Campaign Placement"
       group_label: "Client Dimensions"
+      sql:
+        CASE
+          WHEN  ${ad_group_name} ILIKE '%Traffic_InterestTargeting%' then 'Traffic Driving Pins - Interest Targeted'
+          WHEN  ${ad_group_name} ILIKE '%Traffic_KeywordTargeting%' then 'Traffic Driving Pins - Keyword Targeted'
+          WHEN  ${ad_group_name} ILIKE '%Traffic_RT%' then 'Traffic Driving Pins - Retargeting'
+          WHEN  ${ad_group_name} ILIKE '%Traffic_SiteLAL%' then 'Traffic Driving Pins - Site Lookalikes'
+
+          WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_InterestTargeting%' then 'Awareness Pins - Interest Targeted'
+          WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_KeywordTargeting%' then 'Awareness Pins - Keyword Targeted'
+          WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_SiteLookalikeAudience%' then 'Awareness Pins - Site Lookalikes'
+
+
+          WHEN  ${campaign_name} ILIKE '%Traffic_SF%' then 'San Francisco'
+          WHEN  ${campaign_name} ILIKE '%TrafficDriving_SF%' then 'San Francisco'
+
+          WHEN  ${campaign_name} ILIKE '%Awareness_NE%' then 'Northeast'
+          WHEN  ${campaign_name} ILIKE '%Traffic_NE%' then 'Northeast'
+
+          WHEN  ${campaign_name} ILIKE '%Awareness_CA/NV%' then 'California/Nevada'
+          WHEN  ${campaign_name} ILIKE '%Traffic_CA/NV%' then 'California/Nevada'
+          WHEN  ${campaign_name} ILIKE '%TrafficDriving_CA/NV%' then 'California/Nevada'
+
+          ELSE 'Uncategorized'
+        END;;
     }
 
 ### Dimensions native to this table ###

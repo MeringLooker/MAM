@@ -13,7 +13,8 @@ view: ndt_winter_seasonal_facebook {
         column: total_cost {field: mam_fb_view.total_spend}
         column: total_sessions {field: mam_fb_view.ga_sessions}
         column: total_session_duration {field: mam_fb_view.ga_total_session_duration}
-        column: total_views {field: mam_fb_view.video_views}
+        column: total_views {field: mam_fb_view.total_thruplays}
+        column: total_completes {field: mam_fb_view.video_completes}
         filters: {
           field: mam_fb_view.mam_campaign
           value: "Winter Seasonal"

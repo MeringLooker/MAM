@@ -65,7 +65,7 @@ view: mam_quartiles_yt_view {
 
   dimension: mam_layer {
     label: "TrueView Layer"
-    group_label: "TrueView Dimensions"
+    group_label: "Trueview Dimensions"
     sql:
         CASE
         WHEN ${campaign} ilike '%Retargeting%' THEN 'Retargeting'
@@ -84,7 +84,15 @@ view: mam_quartiles_yt_view {
     label: "Placement Name"
     group_label: "Client Dimensions"
     hidden: no
-    sql: 'Uncategorized' ;;
+    sql:
+      CASE
+          WHEN ${campaign} ilike '%FY19/20 Winter - Retargeting%' THEN 'Skippable Pre-Roll Video - Retargeting'
+          WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Skippable Pre-Roll Video'
+
+
+          ELSE 'Uncategorized'
+          END
+        ;;
   }
 
   dimension: audience {
@@ -295,7 +303,6 @@ view: mam_quartiles_yt_view {
     sql: ${total_cost}/nullif(${total_conversions} ,0);;
     value_format_name: usd
   }
-
 
   measure: total_views {
     type: sum_distinct

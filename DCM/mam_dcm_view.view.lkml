@@ -73,31 +73,41 @@ view: mam_dcm_view {
     sql:
       CASE
 
-        WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_%' then '4 Screen Video'
-        WHEN ${placement} ilike '%\\_AV3ScreenVideoPackage\\_%' then 'AV - 3 Screen Video Package'
+        WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_Smartphone%' then '4 Screen Video - Smartphone'
+        WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_Desktop%' then '4 Screen Video - Desktop'
+        WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_Tablet%' then '4 Screen Video - Tablet'
+        WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_CTV%' then '4 Screen Video - CTV'
+        WHEN ${placement} ilike '%\\_AV3ScreenVideoPackage\\_Smartphone%' then 'AV - 3 Screen Video Package - Smartphone'
+        WHEN ${placement} ilike '%\\_AV3ScreenVideoPackage\\_Desktop%' then 'AV - 3 Screen Video Package - Desktop'
+        WHEN ${placement} ilike '%\\_AV3ScreenVideoPackage\\_Tablet%' then 'AV - 3 Screen Video Package - Tablet'
         WHEN ${placement} ilike '%\\_CDDisplay\\_%' and ${placement} ilike '%Tablet%' then 'Cross-Device Display - Tablet'
         WHEN ${placement} ilike '%\\_CDDisplay\\_%' and ${placement} ilike '%Smartphone%' then 'Cross-Device Display - Smartphone'
         WHEN ${placement} ilike '%\\_CDDisplay\\_%' and ${placement} ilike '%Desktop%' then 'Cross-Device Display - Desktop'
+        WHEN ${placement} ilike '%\\_CCDisplay\\_%' and ${placement} ilike '%Tablet%' then 'Cross-Device Display - Tablet'
+        WHEN ${placement} ilike '%\\_CCDisplay\\_%' and ${placement} ilike '%Smartphone%' then 'Cross-Device Display - Smartphone'
+        WHEN ${placement} ilike '%\\_CCDisplay\\_%' and ${placement} ilike '%Desktop%' then 'Cross-Device Display - Desktop'
         WHEN ${placement} ilike '%\\_NativeDisplayPackage\\_%' and ${placement} ilike '%Tablet%' then 'Native Display - Tablet'
         WHEN ${placement} ilike '%\\_NativeDisplayPackage\\_%' and ${placement} ilike '%Smartphone%' then 'Native Display - Smartphone'
         WHEN ${placement} ilike '%\\_NativeDisplayPackage\\_%' and ${placement} ilike '%Desktop%' then 'Native Display - Desktop'
-        WHEN ${placement} ilike '%AV Big Box%' then 'AV Big Box'
+        WHEN ${placement} ilike '%AV Big Box%' then 'AV Big Box Display'
         WHEN ${placement} ilike '%AV Half Page Sticky%' then 'Half Page Sticky'
         WHEN ${placement} ilike '%AVStandard Display Banners%' then 'AV Standard Banners ROS'
         WHEN ${placement} ilike '%\\_Standard Display Banners%' then 'Standard Banners ROS'
         WHEN ${placement} ilike '%\\_Video\\_Preroll/Outstream%' then 'Video/PreRoll/Outstream'
         WHEN ${placement} ilike '%\\_Custom Mobile Unit\\_Expandable Video%' then 'Custom Mobile Unit - Expandable Video'
         WHEN ${placement} ilike '%\\_Custom Mobile Unit\\_Scroller%' then 'Custom Mobile Unit - Scroller'
-        WHEN ${placement} ilike '%\\_Display\\_Roller%' then 'Roller'
-        WHEN ${placement} ilike '%\\_Rich Media\\_300x600expands%' then 'Rich Media'
+        WHEN ${placement} ilike '%\\_Display\\_Roller%' then 'Roller Display'
+        WHEN ${placement} ilike '%\\_Rich Media\\_300x600expands%' then 'Expandable Rich Media Display'
         WHEN ${placement} ilike '%\\_Video In-read%' then 'In-Read Video'
         WHEN ${placement} ilike '%\\_AV Display\\_%' then 'AV Standard Display'
         WHEN ${placement} ilike '%\\_Standard\\_Video Billboard\\_%' then 'Standard/Video Billboard'
         WHEN ${placement} ilike '%\\_Standard Display\\_Roadblock%' then 'Standard Display Roadblock'
-        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Desktop%' then 'Standard Display'
-        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Mobile%' then 'Standard Display'
-        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_App%' then 'Standard Display'
-        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Marquee%' then 'Marquee Display'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Desktop%' then 'Standard Display - Desktop Site'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Mobile%' then 'Standard Display - Mobile Site'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_App%' then 'Standard Display - App'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Marquee App%' then 'Marquee Display - App'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Marquee Desktop%' then 'Marquee Display - Desktop'
+        WHEN ${placement} ilike 'Opensnow.com\\_Display\\_Marquee Mobile%' then 'Marquee Display - Mobile Site'
         WHEN ${placement} ilike '%Repromo Matador Content%' then 'Matador Content Distribution'
         WHEN ${placement} ilike '%Matador Experience%' then 'Matador Experience Distribution'
         WHEN ${placement} ilike 'Amobee\\_NativeDisplay\\_%' and ${placement} ilike '%Tablet%' then 'Native Display - Tablet'
@@ -242,7 +252,13 @@ view: mam_dcm_view {
   dimension: views {
     hidden: yes
     type:  number
-    sql: '0' ;;
+    sql: 0 ;;
+  }
+
+  dimension: completes {
+    hidden: yes
+    type:  number
+    sql: 0 ;;
   }
 
 ######### All Dimensions Native to Source Table Below #########
@@ -506,7 +522,7 @@ view: mam_dcm_view {
   dimension: flight_search {
     hidden: yes
     type: number
-    sql: '0';;
+    sql: 0 ;;
 
   }
 
@@ -605,6 +621,12 @@ view: mam_dcm_view {
     type: sum_distinct
     sql_distinct_key: ${id} ;;
     sql: ${views} ;;
+  }
+
+  measure: total_completes {
+    type: sum_distinct
+    sql_distinct_key: ${id} ;;
+    sql: ${completes} ;;
   }
 
 ######## Joined measures from GA #######

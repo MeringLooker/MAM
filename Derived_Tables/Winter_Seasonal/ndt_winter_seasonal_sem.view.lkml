@@ -14,6 +14,7 @@ view: ndt_winter_seasonal_sem {
         column: total_sessions {field:mam_sem_view.total_sessions}
         column: total_session_duration {field:mam_sem_view.total_session_duration}
         column: total_views {field: mam_sem_view.total_views}
+        column: total_completes {field: mam_sem_view.total_completes}
         filters: {
           field: mam_sem_view.mam_campaign
           value: "Winter Seasonal"

@@ -1,4 +1,4 @@
-view: ndt_winter_seasonal_matador_network {
+view: ndt_winter_seasonal_matador {
   derived_table: {
     explore_source: mam_dcm {
       column: publisher {field: mam_dcm_view.publisher}
@@ -8,15 +8,16 @@ view: ndt_winter_seasonal_matador_network {
       column: date {field: mam_dcm_view.date_date}
       column: week {field: mam_dcm_view.date_week}
       column: month {field: mam_dcm_view.date_month}
-      column: total_impressions {field: mam_dcm_view.impressions}
-      column: total_clicks {field: mam_dcm_view.clicks}
-      column: total_cost {field: mam_dcm_view.media_cost}
+      column: total_impressions {field: mam_dcm_view.total_impressions}
+      column: total_clicks {field: mam_dcm_view.total_clicks}
+      column: total_cost {field: mam_dcm_view.total_media_cost}
       column: total_sessions {field: mam_dcm_view.ga_sessions}
       column: total_session_duration {field: mam_dcm_view.ga_total_session_duration}
       column: total_views {field: mam_dcm_view.total_views}
+      column: total_completes {field: mam_dcm_view.total_completes}
       filters: {
-        field: mam_dcm_view.mam_campaign
-        value: "Winter Seasonal"
+        field: mam_dcm_view.campaign
+        value: "MAM: FY20 Winter Seasonal"
       }
       filters: {
         field: mam_dcm_view.publisher
