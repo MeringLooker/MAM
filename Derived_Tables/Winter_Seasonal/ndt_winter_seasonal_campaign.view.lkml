@@ -24,7 +24,6 @@ view: ndt_winter_seasonal_campaign {
     union
     select * from ${ndt_winter_seasonal_snowboarder.SQL_TABLE_NAME}
  ;;
-
     sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*1)/(60*60*24)) ;;
     distribution_style: all
   }
@@ -34,7 +33,7 @@ view: ndt_winter_seasonal_campaign {
   dimension: primary_key {
     type: string
     primary_key: yes
-    hidden: no
+    hidden: yes
     sql: ${publisher}||'_'||${campaign}||'_'||${region}||'_'||${placement}||'_'||${date} ;;
   }
 
@@ -60,6 +59,7 @@ view: ndt_winter_seasonal_campaign {
 
   dimension: placement {
     type:  string
+    label: "Placement Name"
     sql:  ${TABLE}.placement ;;
   }
 
@@ -72,6 +72,7 @@ view: ndt_winter_seasonal_campaign {
 
   dimension: fiscal_year {
     type:  string
+    hidden: yes
     sql:
       CASE
       WHEN ${date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
@@ -83,14 +84,14 @@ view: ndt_winter_seasonal_campaign {
   }
 
   dimension: week {
-    type:  date
+    type:  date_week
     group_label: "Date Periods"
     drill_fields: [region,publisher]
     sql:  ${TABLE}.week ;;
   }
 
   dimension: month {
-    type:  date
+    type:  date_month
     group_label: "Date Periods"
     drill_fields: [region,publisher]
     sql:  ${TABLE}.month ;;
@@ -228,6 +229,7 @@ view: ndt_winter_seasonal_campaign {
 
   measure: count {
     type: count
+    hidden: yes
   }
 
 

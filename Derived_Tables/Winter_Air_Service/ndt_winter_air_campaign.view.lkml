@@ -39,6 +39,7 @@ view: ndt_winter_air_campaign {
 
   dimension: placement {
     type:  string
+    label: "Placement Name"
     sql:  ${TABLE}.placement ;;
   }
 
@@ -56,6 +57,7 @@ view: ndt_winter_air_campaign {
 
   dimension: fiscal_year {
     type:  string
+    hidden: yes
     sql:
       CASE
       WHEN ${date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
