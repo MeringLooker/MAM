@@ -19,6 +19,12 @@ view: mam_fb_view {
     sql: ${TABLE}.comp_key ;;
   }
 
+  dimension: thruplay_join_id {
+    hidden: yes
+    type: string
+    sql: ${ad_id}||'_'||${date_start_date} ;;
+  }
+
 ##### Dimensions added to this table via LookML ######
 
 dimension: mam_campaign {
@@ -531,6 +537,32 @@ dimension: publisher {
       END;;
   }
 
+  #### Joined FB ThruPlays #####
+
+  measure: total_thruplays {
+    type: sum_distinct
+    sql_distinct_key: ${mam_fb_thruplays.id};;
+    label: "ThruPlays"
+    description: "This metrics is currently only available beyond January 1, 2019."
+    group_label: "Video Reporting"
+    sql: ${mam_fb_thruplays.thruplays} ;;
+  }
+
+  measure: thruplay_rate {
+    type: number
+    group_label: "Video Reporting"
+    label: "ThruPlay Rate"
+    sql: 1.0*${total_thruplays}/nullif(${total_impressions}, 0) ;;
+    value_format_name: percent_2
+  }
+
+  measure: cost_per_thruplay {
+    type: number
+    group_label: "Video Reporting"
+    label: "Cost/ThruPlay"
+    sql: ${total_spend}/nullif(${total_thruplays}, 0);;
+    value_format_name: usd
+  }
 
   ####### Joined GA Measures #######
 

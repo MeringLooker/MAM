@@ -48,6 +48,13 @@ explore: mam_fb {
     relationship: many_to_one
   }
 
+  join: mam_fb_thruplays {
+    type: left_outer
+    fields: []
+    sql_on: ${mam_fb_view.thruplay_join_id} = ${mam_fb_thruplays.thruplay_join} ;;
+    relationship: one_to_many
+  }
+
   join: mam_ga_onsite {
     view_label: "Google Analytics"
     type: left_outer
