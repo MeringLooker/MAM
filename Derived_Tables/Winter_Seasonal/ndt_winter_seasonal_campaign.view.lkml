@@ -189,6 +189,7 @@ view: ndt_winter_seasonal_campaign {
 
   measure: total_completes {
     type: sum_distinct
+    value_format_name: decimal_0
     sql_distinct_key: ${primary_key} ;;
     sql: ${completes} ;;
   }
@@ -208,14 +209,14 @@ view: ndt_winter_seasonal_campaign {
   measure: view_rate {
     type: number
     label: "View Rate"
-    sql: 1.0*${total_views}/nullif(${video_impressions}, 0) ;;
+    sql: 1.0*${total_views}/nullif(${total_impressions}, 0) ;;
     value_format_name: percent_2
   }
 
   measure: completion_rate {
     type: number
     label: "Completion Rate"
-    sql: 1.0*${total_completes}/nullif(${video_impressions}, 0) ;;
+    sql: 1.0*${total_completes}/nullif(${total_impressions}, 0) ;;
     value_format_name: percent_2
   }
 
