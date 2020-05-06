@@ -193,11 +193,49 @@ view: ndt_winter_seasonal_campaign {
     sql: ${completes} ;;
   }
 
+  measure: video_impressions {
+    type: sum_distinct
+    hidden: yes
+    sql_distinct_key: ${primary_key} ;;
+    sql:
+      case
+        when ${views} > 0 then ${impressions}
+        else null
+        end
+        ;;
+  }
+
+  measure: view_rate {
+    type: number
+    label: "View Rate"
+    sql: 1.0*${total_views}/nullif(${video_impressions}, 0) ;;
+    value_format_name: percent_2
+  }
+
   measure: completion_rate {
     type: number
     label: "Completion Rate"
-    sql: 1.0*(${total_completes})/nullif(${total_impressions},0) ;;
+    sql: 1.0*${total_completes}/nullif(${video_impressions}, 0) ;;
     value_format_name: percent_2
+  }
+
+  measure: video_cost {
+    type: sum_distinct
+    hidden: yes
+    sql_distinct_key: ${primary_key} ;;
+    sql:
+      case
+        when ${views} > 0 then ${media_cost}
+        else null
+        end
+        ;;
+  }
+
+  measure: cost_per_view {
+    type: number
+    label: "CPV"
+    value_format_name: usd
+    sql: ${video_cost}/nullif(${total_views}, 0) ;;
   }
 
   measure: total_sessions {
@@ -231,6 +269,4 @@ view: ndt_winter_seasonal_campaign {
     type: count
     hidden: yes
   }
-
-
 }

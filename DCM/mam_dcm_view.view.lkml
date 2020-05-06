@@ -18,6 +18,12 @@ view: mam_dcm_view {
     sql: ${ad_id}||'_'||${date_date} ;;
   }
 
+  dimension: passback_join {
+    hidden: yes
+    type: string
+    sql: ${placement_id}||'_'||${date_date} ;;
+  }
+
 ##### Dimensions added to this table via LookML ######
 
   dimension: fiscal_year {

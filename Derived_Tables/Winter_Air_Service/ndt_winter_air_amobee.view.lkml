@@ -8,9 +8,9 @@ view: ndt_winter_air_amobee {
         column: ddate { field: mam_dcm_view.date_date }
         column: week { field: mam_dcm_view.date_week }
         column: month { field: mam_dcm_view.date_month }
-        column: total_impressions { field: mam_dcm_view.total_impressions }
-        column: total_clicks { field: mam_dcm_view.total_clicks }
-        column: total_media_cost { field: mam_dcm_view.total_media_cost }
+        column: total_impressions { field: mam_fy20_winter_air_amobee.total_impressions }
+        column: total_clicks { field: mam_fy20_winter_air_amobee.total_clicks }
+        column: total_media_cost { field: mam_fy20_winter_air_amobee.total_media_cost }
         column: total_conversions {field: mam_ga_goals.total_goal13completions}
         column: total_sessions { field: mam_dcm_view.ga_sessions }
         column: total_session_duration { field: mam_dcm_view.ga_total_session_duration }
