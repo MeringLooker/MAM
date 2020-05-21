@@ -1,25 +1,25 @@
 view: ndt_winter_air_amobee {
     derived_table: {
       explore_source: mam_dcm {
-        column: publisher {field: mam_dcm_view.publisher}
-        column: campaign { field: mam_dcm_view.mam_campaign }
-        column: region { field: mam_dcm_view.mam_region }
-        column: placement { field: mam_dcm_view.mam_placement }
-        column: ddate { field: mam_dcm_view.date_date }
-        column: week { field: mam_dcm_view.date_week }
-        column: month { field: mam_dcm_view.date_month }
+        column: publisher {field: mam_dcm_ga_view.publisher}
+        column: campaign { field: mam_dcm_ga_view.mam_campaign }
+        column: region { field: mam_dcm_ga_view.mam_region }
+        column: placement { field: mam_dcm_ga_view.mam_placement }
+        column: ddate { field: mam_dcm_ga_view.date_date }
+        column: week { field: mam_dcm_ga_view.date_week }
+        column: month { field: mam_dcm_ga_view.date_month }
         column: total_impressions { field: mam_fy20_winter_air_amobee.total_impressions }
         column: total_clicks { field: mam_fy20_winter_air_amobee.total_clicks }
         column: total_media_cost { field: mam_fy20_winter_air_amobee.total_media_cost }
-        column: total_conversions {field: mam_ga_goals.total_goal13completions}
-        column: total_sessions { field: mam_dcm_view.ga_sessions }
-        column: total_session_duration { field: mam_dcm_view.ga_total_session_duration }
+        column: total_conversions {field: mam_dcm_ga_view.total_search_flights_button}
+        column: total_sessions { field: mam_dcm_ga_view.total_sessions }
+        column: total_session_duration { field: mam_dcm_ga_view.total_session_duration }
         filters: {
-          field: mam_dcm_view.campaign
+          field: mam_dcm_ga_view.campaign
           value: "MAM: FY20 Winter Air Service"
         }
         filters: {
-          field: mam_dcm_view.publisher
+          field: mam_dcm_ga_view.publisher
           value: "Amobee"
         }
       }
