@@ -134,12 +134,20 @@ view: mam_fb_ga_view {
     type: string
     sql:
       CASE
-        WHEN ${ad_name} ilike '%\\_HighPlaces' THEN 'High Places'
-        WHEN ${ad_name} ilike '%\\_GetLost' THEN 'Get Lost'
-        WHEN ${ad_name} ilike '%\\_AboveAverage' THEN 'Above Average'
-        WHEN ${ad_name} ilike '%\\_UphillBattles' THEN 'Uphill Battles'
-        WHEN ${ad_name} ilike '%\\_MorningCommute' THEN 'Morning Commute'
-        WHEN ${ad_name} ilike '%\\_Mondays' THEN 'Mondays'
+        WHEN ${ad_name} ilike '%\\_HighPlaces' THEN 'No Small Backyard: High Places (:30)'
+        WHEN ${ad_name} ilike '%\\_GetLost' THEN 'No Small Backyard: Get Lost (:30)'
+        WHEN ${ad_name} ilike '%\\_AboveAverage' THEN 'No Small Backyard: Above Average (:30)'
+        WHEN ${ad_name} ilike '%\\_UphillBattles' THEN 'Maladies: Uphill Battles (:15)'
+        WHEN ${ad_name} ilike '%\\_MorningCommute' THEN 'Maladies: Morning Commute (:15)'
+        WHEN ${ad_name} ilike '%\\_Mondays' THEN 'Maladies: Mondays (:15)'
+        when ${ad_name} = 'MAM_Winter_FY20_Video_LAL_NE_Brand' then 'No Small Adventure (:30)'
+        when ${ad_name} = 'MAM_Winter_FY20_Video_LAL_Denver_Brand' then 'No Small Adventure (:30)'
+        when ${ad_name} = 'MAM_Winter_FY20_Video_Brand_NE_BrandVid' then 'No Small Adventure (:30)'
+        when ${ad_name} = 'MAM_Winter_FY20_Video_Brand_Denver_BrandVid' then 'No Small Adventure (:30)'
+        when ${ad_name} = 'MAM_Winter_FY20_Video_LAL_NE_Flights' then 'No Small Adventure (:30)'
+        when ${ad_name} = 'MAM_Winter_FY20_Video_LAL_Denver_Flights' then 'No Small Adventure (:30)'
+        when ${ad_name} = 'MAM_Winter_FY20_Video_Brand_NE_Flights' then 'No Small Adventure (:30)'
+        when ${ad_name} = 'MAM_Winter_FY20_Video_Brand_Denver_Flights' then 'No Small Adventure (:30)'
         else 'Uncategorized'
         END
         ;;
