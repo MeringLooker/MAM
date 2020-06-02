@@ -1,13 +1,13 @@
-view: mam_quartiles_yt_view {
-  sql_table_name: public.mam_quartiles_yt_view ;;
+view: mam_yt_ga_view {
+  sql_table_name: public.mam_yt_ga_view ;;
 
 #### Primary Key ####
 
-  dimension: comp_key {
+  dimension: ga_join_id {
     type: string
     primary_key: yes
     hidden: yes
-    sql: ${TABLE}.comp_key ;;
+    sql: ${TABLE}.ga_join_id ;;
   }
 
   dimension: join_id_onsite {
@@ -150,6 +150,12 @@ view: mam_quartiles_yt_view {
     sql: ${TABLE}."ad group id" ;;
   }
 
+  dimension: bounces {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.bounces ;;
+  }
+
   dimension: campaign {
     type: string
     group_label: "Trueview Dimensions"
@@ -203,6 +209,60 @@ view: mam_quartiles_yt_view {
     sql: ${TABLE}.impressions ;;
   }
 
+  dimension: newsletter_signup {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.newsletter_signup ;;
+  }
+
+  dimension: newusers {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.newusers ;;
+  }
+
+  dimension: pageviews {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.pageviews ;;
+  }
+
+  dimension: search_flights_button {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.search_flights_button ;;
+  }
+
+  dimension: sessionduration {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.sessionduration ;;
+  }
+
+  dimension: sessions {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.sessions ;;
+  }
+
+  dimension: tos_above_30s {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.tos_above_30s ;;
+  }
+
+  dimension: united_airlines_referral {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.united_airlines_referral ;;
+  }
+
+  dimension: users {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.users ;;
+  }
+
   dimension: views {
     type: number
     hidden: yes
@@ -233,26 +293,32 @@ view: mam_quartiles_yt_view {
     sql: ${TABLE}.views_to_q100 ;;
   }
 
+  dimension: visitor_guide_order {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.visitor_guide_order ;;
+  }
+
   ###### All Measures go Below #######
 
   measure: total_impressions {
     type: sum_distinct
     group_label: "Trueview Reporting"
-    sql_distinct_key: ${comp_key} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${impressions} ;;
   }
 
   measure: total_clicks {
     type: sum_distinct
     group_label: "Trueview Reporting"
-    sql_distinct_key: ${comp_key} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${clicks} ;;
   }
 
   measure: total_cost {
     type:  sum_distinct
     group_label: "Trueview Reporting"
-    sql_distinct_key: ${comp_key} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql:${cost}/1000000.00  ;;
     value_format_name: usd
   }
@@ -260,7 +326,7 @@ view: mam_quartiles_yt_view {
   measure: total_conversions {
     type: sum_distinct
     group_label: "Conversion Reporting"
-    sql_distinct_key: ${comp_key} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${conversions} ;;
   }
 
@@ -308,7 +374,7 @@ view: mam_quartiles_yt_view {
     type: sum_distinct
     label: "Video Views"
     group_label: "Trueview Reporting"
-    sql_distinct_key: ${comp_key} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${views} ;;
   }
 
@@ -318,7 +384,7 @@ view: mam_quartiles_yt_view {
     label: "Views To 25%"
     value_format_name: decimal_0
     hidden: no
-    sql_distinct_key: ${comp_key} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${views_to_q25} ;;
   }
 
@@ -328,7 +394,7 @@ view: mam_quartiles_yt_view {
     label: "Views To 50%"
     value_format_name: decimal_0
     hidden: no
-    sql_distinct_key: ${comp_key} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${views_to_q50} ;;
   }
 
@@ -338,7 +404,7 @@ view: mam_quartiles_yt_view {
     label: "Views To 75%"
     value_format_name: decimal_0
     hidden: no
-    sql_distinct_key: ${comp_key} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${views_to_q75} ;;
   }
 
@@ -348,7 +414,7 @@ view: mam_quartiles_yt_view {
     label: "Video Completes"
     group_label: "Trueview Reporting"
     hidden: no
-    sql_distinct_key: ${comp_key} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${video_completes} ;;
   }
 
@@ -393,17 +459,103 @@ view: mam_quartiles_yt_view {
   }
 
   measure: total_sessions {
+    group_label: "GA Reporting"
     type: sum_distinct
-    hidden: yes
-    sql_distinct_key: ${comp_key} ;;
-    sql: 0 ;;
+    sql_distinct_key: ${ga_join_id} ;;
+    label: "Sessions"
+    sql: ${sessions} ;;
+  }
+
+  measure: cost_per_session {
+    group_label: "GA Reporting"
+    type: number
+    label: "CPS"
+    sql: ${total_cost}/nullif(${total_sessions}, 0) ;;
+    value_format_name: usd
   }
 
   measure: total_session_duration {
-    type: sum_distinct
     hidden: yes
-    sql_distinct_key: ${comp_key} ;;
-    sql: 0 ;;
+    type: sum_distinct
+    sql_distinct_key: ${ga_join_id} ;;
+    label: "Total Session Duration"
+    sql: ${sessionduration};;
+  }
+
+  measure: avg_time_on_site {
+    group_label: "GA Reporting"
+    label: "Avg. TOS"
+    type: number
+    sql:  (${total_session_duration}/nullif(${total_sessions}, 0))::float/86400  ;;
+    value_format: "m:ss"
+  }
+
+  measure: total_pageviews {
+    group_label: "GA Reporting"
+    type: sum_distinct
+    sql_distinct_key: ${ga_join_id} ;;
+    label: "Pageviews"
+    sql: ${sessions} ;;
+  }
+
+  measure: pages_per_session {
+    group_label: "GA Reporting"
+    type: number
+    label: "Pages/Session"
+    sql: ${total_pageviews}/nullif(${total_sessions}, 0) ;;
+    value_format_name: decimal_2
+  }
+
+  measure: total_bounces {
+    group_label: "GA Reporting"
+    type: sum_distinct
+    sql_distinct_key: ${ga_join_id} ;;
+    label: "Bounces"
+    sql: ${bounces} ;;
+  }
+
+  measure: total_bounce_rate  {
+    label: "Bounce Rate"
+    group_label: "GA Reporting"
+    type: number
+    sql: ${total_bounces}/nullif(${total_sessions}, 0) ;;
+    value_format_name: percent_2
+  }
+
+
+## MAM Google Analytics Goals ##
+  measure: total_newsletter_signup {
+    group_label: "GA Goals Reporting"
+    type:sum_distinct
+    sql_distinct_key: ${ga_join_id} ;;
+    sql: ${newsletter_signup} ;;
+  }
+
+  measure: total_search_flights_button {
+    group_label: "GA Goals Reporting"
+    type: sum_distinct
+    sql_distinct_key: ${ga_join_id} ;;
+    sql: ${search_flights_button};;
+  }
+
+  measure: total_tos_above_30s {
+    type: sum_distinct
+    sql_distinct_key: ${ga_join_id} ;;
+    sql: ${tos_above_30s} ;;
+  }
+
+  measure: total_united_airlines_referral {
+    group_label: "GA Goals Reporting"
+    type: sum_distinct
+    sql_distinct_key: ${ga_join_id} ;;
+    sql: ${united_airlines_referral} ;;
+  }
+
+  measure: total_visitor_guide_order {
+    group_label: "GA Goals Reporting"
+    type: sum_distinct
+    sql_distinct_key: ${ga_join_id} ;;
+    sql: ${visitor_guide_order} ;;
   }
 
 #   measure: count {

@@ -241,11 +241,11 @@ view: mam_gdn_view{
     sql: ${TABLE}.newusers ;;
   }
 
-#   dimension: total_conv_value {
-#     type: number
-#     hidden: yes
-#     sql: ${TABLE}.total_conv_value ;;
-#   }
+  dimension: users {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.users ;;
+  }
 
   dimension: views {
     type: number
