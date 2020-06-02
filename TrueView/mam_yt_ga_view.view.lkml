@@ -540,6 +540,7 @@ view: mam_yt_ga_view {
 
   measure: total_tos_above_30s {
     type: sum_distinct
+    group_label: "GA Goals Reporting"
     sql_distinct_key: ${ga_join_id} ;;
     sql: ${tos_above_30s} ;;
   }
