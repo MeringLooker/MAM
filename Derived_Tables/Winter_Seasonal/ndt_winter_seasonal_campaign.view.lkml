@@ -143,12 +143,14 @@ view: ndt_winter_seasonal_campaign {
 
   measure: total_impressions {
     type: sum_distinct
+    label: "Impressions"
     sql_distinct_key: ${primary_key} ;;
     sql: ${impressions} ;;
   }
 
   measure: total_clicks  {
   type: sum_distinct
+    label: "Clicks"
   sql_distinct_key: ${primary_key} ;;
     sql: ${clicks} ;;
   }
@@ -162,8 +164,9 @@ view: ndt_winter_seasonal_campaign {
 
   measure: total_spend  {
   type: sum_distinct
+  label: "Gross Spend"
   sql_distinct_key: ${primary_key} ;;
-   sql: ${media_cost};;
+   sql: ${media_cost}*1.17647;;
     value_format_name: usd
   }
 
@@ -183,12 +186,14 @@ view: ndt_winter_seasonal_campaign {
 
   measure: total_views {
     type: sum_distinct
+    label: "Video Views"
     sql_distinct_key: ${primary_key} ;;
     sql: ${views} ;;
   }
 
   measure: total_completes {
     type: sum_distinct
+    label: "Video Completes"
     value_format_name: decimal_0
     sql_distinct_key: ${primary_key} ;;
     sql: ${completes} ;;
@@ -241,6 +246,7 @@ view: ndt_winter_seasonal_campaign {
 
   measure: total_sessions {
    type: sum_distinct
+    label: "Sessions"
     sql_distinct_key: ${primary_key} ;;
     sql: ${sessions} ;;
   }
@@ -264,10 +270,5 @@ view: ndt_winter_seasonal_campaign {
     label: "CPS"
     sql: ${total_spend}/nullif(${total_sessions}, 0) ;;
     value_format_name: usd
-  }
-
-  measure: count {
-    type: count
-    hidden: yes
   }
 }
