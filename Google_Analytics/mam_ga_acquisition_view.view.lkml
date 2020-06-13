@@ -238,7 +238,7 @@ view: mam_ga_acquisition_view {
   }
 
   measure: pages_per_session {
-    label: "Pages per Session"
+    label: "Pages/Session"
     group_label: "Traffic Metrics"
     type: number
     sql: ${total_pageviews}/nullif(${total_sessions}, 0);;
@@ -283,7 +283,7 @@ view: mam_ga_acquisition_view {
     type: sum_distinct
     sql_distinct_key: ${acq_join_id} ;;
     sql: ${visitor_guide_orders} ;;
-    label: "Vistor Guide Orders"
+    label: "Visitor Guide Orders"
     group_label: "Website Goals"
   }
 

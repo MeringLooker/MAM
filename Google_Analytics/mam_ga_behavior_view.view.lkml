@@ -55,11 +55,14 @@ view: mam_ga_behavior_view {
 
   dimension: city {
     type: string
+    map_layer_name: us_counties_fips
     group_label: "Google Analytics Dimensions"
     sql: ${TABLE}.city ;;
   }
 
   dimension_group: date {
+    group_label: "Date Periods"
+    label: ""
     type: time
     timeframes: [
       raw,
