@@ -10,12 +10,6 @@ view: mam_yt_ga_view {
     sql: ${TABLE}.ga_join_id ;;
   }
 
-  dimension: join_id_onsite {
-    type: string
-    hidden: yes
-    sql: ${ad_group_id}||'_'||${day_date} ;;
-  }
-
   #### Dimensions Added to this Table Via LookML ####
 
   dimension: fiscal_year {

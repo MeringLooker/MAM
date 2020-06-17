@@ -1,4 +1,4 @@
-view: mam_sem_view{
+view: mam_sem_ga_view {
 sql_table_name: mam_sem_ga_view;;
 drill_fields: []
 

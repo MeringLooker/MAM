@@ -1,4 +1,4 @@
-view: mam_gdn_view{
+view: mam_gdn_ga_view{
   sql_table_name: mam_gdn_ga_view;;
 
 ###### Primary Key #######
