@@ -681,7 +681,7 @@ view: mam_pinterest_ga_view {
     type: sum_distinct
     label: "Pageviews"
     sql_distinct_key: ${comp_key} ;;
-    sql: ${sessions} ;;
+    sql: ${pageviews} ;;
   }
 
   measure: pages_per_session {

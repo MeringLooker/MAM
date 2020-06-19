@@ -411,7 +411,7 @@ view: mam_gdn_ga_view{
     type: sum_distinct
     sql_distinct_key: ${comp_key} ;;
     label: "Pageviews"
-    sql: ${sessions} ;;
+    sql: ${pageviews} ;;
   }
 
   measure: pages_per_session {

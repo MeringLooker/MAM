@@ -673,7 +673,7 @@ view: mam_fb_ga_view {
     type: sum_distinct
     label: "Pageviews"
     sql_distinct_key: ${id} ;;
-    sql: ${sessions} ;;
+    sql: ${pageviews} ;;
   }
 
   measure: pages_per_session {

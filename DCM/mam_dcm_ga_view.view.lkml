@@ -341,7 +341,7 @@ view: mam_dcm_ga_view {
   dimension: newsletter_signup {
     type: number
     hidden: yes
-    sql: ${TABLE}.newsletter_signup ;;
+    sql: ${TABLE}.newsletter_sign_up ;;
   }
 
   dimension: newusers {
