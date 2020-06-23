@@ -53,11 +53,11 @@ view: mam_ga_behavior_view {
     sql: ${TABLE}.adwordsadgroupid ;;
   }
 
-  dimension: city {
+  dimension: metro {
     type: string
-    map_layer_name: us_counties_fips
     group_label: "Google Analytics Dimensions"
-    sql: ${TABLE}.city ;;
+    description: "DMAs"
+    sql: ${TABLE}.metro ;;
   }
 
   dimension_group: date {
@@ -110,6 +110,7 @@ view: mam_ga_behavior_view {
   dimension: medium {
     type: string
     group_label: "Google Analytics Dimensions"
+    drill_fields: [source]
     sql: ${TABLE}.medium ;;
   }
 

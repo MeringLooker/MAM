@@ -59,10 +59,11 @@ view: mam_ga_audience_view {
     sql: ${TABLE}.bounces ;;
   }
 
-  dimension: city {
+  dimension: metro {
     type: string
     group_label: "Google Analytics Dimensions"
-    sql: ${TABLE}.city ;;
+    description: "DMAs"
+    sql: ${TABLE}.metro ;;
   }
 
   dimension_group: date {
@@ -107,6 +108,7 @@ view: mam_ga_audience_view {
   dimension: medium {
     type: string
     group_label: "Google Analytics Dimensions"
+    drill_fields: [source]
     sql: ${TABLE}.medium ;;
   }
 
