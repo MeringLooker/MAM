@@ -33,8 +33,15 @@ view: mam_yt_ga_view {
     hidden: yes
     label: "Channel"
     group_label: "TrueView Dimensions"
-    sql: 'Video'
-      ;;
+    sql: 'Video' ;;
+  }
+
+  dimension: ad_size {
+    type: string
+    hidden: yes
+    label: "Ad Size"
+    group_label: "TrueView Dimensions"
+    sql: 'Video' ;;
   }
 
   dimension: publisher {
@@ -52,14 +59,15 @@ view: mam_yt_ga_view {
         WHEN ${campaign} ilike '%FY19/20 Fall%' THEN 'Fall'
         WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Winter Seasonal'
         WHEN ${campaign} ilike '%FY19/20 Summer%' THEN 'Summer'
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'FY21 Summer Recovery'
         ELSE 'Uncategorized'
         END
         ;;
   }
 
   dimension: mam_layer {
-    label: "TrueView Layer"
-    group_label: "Trueview Dimensions"
+    label: "Campaign Layer"
+    group_label: "Client Dimensions"
     sql:
         CASE
         WHEN ${campaign} ilike '%Retargeting%' THEN 'Retargeting'
@@ -68,6 +76,9 @@ view: mam_yt_ga_view {
         WHEN ${campaign_id} = '6542201492' then 'Prospecting'
         WHEN ${campaign_id} = '6542201486' then 'Prospecting'
         WHEN ${campaign_id} = '6542201474' then 'Prospecting'
+
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'Phase 1 - Awareness'
+
         ELSE 'Uncategorized'
         END
         ;;
@@ -83,13 +94,15 @@ view: mam_yt_ga_view {
           WHEN ${campaign} ilike '%FY19/20 Winter - Retargeting%' THEN 'Skippable Pre-Roll Video - Retargeting'
           WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Skippable Pre-Roll Video'
 
+          when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'YouTube Skippable Pre-Roll Video'
+
 
           ELSE 'Uncategorized'
           END
         ;;
   }
 
-  dimension: audience {
+  dimension: mam_audience {
     label: "Target Audience"
     group_label: "Client Dimensions"
     sql:
@@ -102,6 +115,9 @@ view: mam_yt_ga_view {
         WHEN ${ad_group} ilike '%Outdoor Enthusiasts%' then 'Brand'
         WHEN ${ad_group} ilike '%Cycling Enthusiasts%' then 'Brand'
         WHEN ${ad_group} ilike '%Custom%' then 'Custom'
+
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'Brand'
+
         ELSE 'Uncategorized'
         END
         ;;
@@ -117,6 +133,19 @@ view: mam_yt_ga_view {
         WHEN ${campaign} ilike '%NE' THEN 'Northeast'
         WHEN ${campaign} ilike '%DEN' THEN 'Denver'
         WHEN ${campaign} ilike '%CA/NV' THEN 'California/Nevada'
+        ELSE 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: creative_name {
+    label: "Creative Name"
+    type: string
+    group_label: "Client Dimensions"
+    sql:
+      CASE
+        WHEN ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' THEN 'Territory (:30)'
+
         ELSE 'Uncategorized'
         END
         ;;

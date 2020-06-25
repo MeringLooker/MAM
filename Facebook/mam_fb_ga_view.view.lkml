@@ -45,6 +45,8 @@ view: mam_fb_ga_view {
         WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_AirService_FareSale' THEN 'Winter Air Service'
         WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_AirService_FareSale' THEN 'Winter Air Service'
 
+        WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' THEN 'FY21 Summer Recovery'
+
         WHEN ${campaign_name} ilike '%Summer%' THEN 'Summer'
         WHEN ${campaign_name} ilike '%Spring%' THEN 'Spring'
         ELSE 'Uncategorized'
@@ -59,12 +61,13 @@ view: mam_fb_ga_view {
     sql:
       CASE
         WHEN ${campaign_name} ilike '%AirService%' THEN 'Air Service'
+        WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' THEN 'Phase 1 - Awareness'
         ELSE 'Seasonal'
         END
         ;;
   }
 
-  dimension: fb_audience {
+  dimension: mam_audience {
     label: "Audience"
     group_label: "Client Dimensions"
     type: string
@@ -81,6 +84,10 @@ view: mam_fb_ga_view {
         WHEN ${adset_name} ilike '%\\_Competitive\\_%' THEN 'Competitive'
         WHEN ${adset_name} ilike '%\\_RTSkippable\\_%' THEN 'Retargeting'
         WHEN ${adset_name} ilike '%\\_LakeTahoeCompetitive\\_%' THEN 'Competitive'
+
+        WHEN ${adset_name} ilike '%\\_LAL' THEN 'Lookalike'
+        WHEN ${adset_name} ilike '%\\_Brand' THEN 'Brand'
+        WHEN ${adset_name} ilike '%\\_RT' THEN 'Retargeting'
 
         ELSE 'Uncateorized'
         END
@@ -112,6 +119,9 @@ view: mam_fb_ga_view {
         when ${campaign_name} ilike '%Winter_FY20_VideoViews%' and ${adset_name} ilike '%Maladies%' then 'Unskippable In-Feed and In-Stream Video'
         when ${campaign_name} ilike '%Winter_FY20_VideoViews%' then 'Skippable In-Feed and In-Stream Video'
 
+        when ${campaign_name} ilike 'MAM_SummerRecovery_FY21_Conversions%' and ${ad_name} ilike '%SingleImage%' then 'Traffic-Driving Single Image'
+        when ${campaign_name} ilike 'MAM_SummerRecovery_FY21_VideoViews%' then 'Skippable In-Feed and In-Stream Video'
+
         else 'Uncategorized'
         end;;
   }
@@ -124,11 +134,12 @@ view: mam_fb_ga_view {
       CASE
         WHEN ${ad_name} ilike '%\\_United\\_%' THEN 'United'
         WHEN ${ad_name} ilike '%\\_jsx\\_%' THEN 'JetSuiteX'
+        else null
         END
         ;;
   }
 
-  dimension: fb_creative {
+  dimension: creative_name {
     label: "Creative Name"
     group_label: "Client Dimensions"
     type: string
@@ -148,6 +159,26 @@ view: mam_fb_ga_view {
         when ${ad_name} = 'MAM_Winter_FY20_Video_LAL_Denver_Flights' then 'No Small Adventure (:30)'
         when ${ad_name} = 'MAM_Winter_FY20_Video_Brand_NE_Flights' then 'No Small Adventure (:30)'
         when ${ad_name} = 'MAM_Winter_FY20_Video_Brand_Denver_Flights' then 'No Small Adventure (:30)'
+
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_Video_LAL_Territory' then 'Territory (:30)'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_Video_Brand_Territory' then 'Territory (:30)'
+
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_ReleaseYourself' then 'Release Yourself Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_Escape' then 'Escape Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_EndlessSupply' then 'Endless Supply Single Image'
+
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_EnjoyInfiniteMoments' then 'Enjoy Infinite Moments Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_ReleaseYourself' then 'Release Yourself Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_Escape' then 'Escape Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_EndlessSupply' then 'Endless Supply Single Image'
+
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_EnjoyInfiniteMoments' then 'Enjoy Infinite Moments Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_ReleaseYourself' then 'Release Yourself Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_Escape' then 'Escape Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_EndlessSupply' then 'Endless Supply Single Image'
+
+
+
         else 'Uncategorized'
         END
         ;;
@@ -162,10 +193,25 @@ view: mam_fb_ga_view {
         WHEN ${ad_name} ilike '%\\_Video\\_%' THEN 'Video'
         WHEN ${ad_name} ilike '%\\_SingleImage\\_%' THEN 'Single Image'
         WHEN ${ad_name} ilike '%\\_Carousel\\_%' THEN 'Carousel'
-        WHEN ${ad_name} ilike '%\\_UphillBattles' THEN 'Uphill Battles'
-        WHEN ${ad_name} ilike '%\\_MorningCommute' THEN 'Morning Commute'
-        WHEN ${ad_name} ilike '%\\_Mondays' THEN 'Mondays'
+
         else 'Uncategorized'
+        END
+        ;;
+  }
+
+  dimension: ad_size {
+    label: "Ad Size"
+    group_label: "Facebook Dimensions"
+    type: string
+    sql:
+      CASE
+        WHEN ${ad_name} ilike '%\\_Video\\_%' THEN 'Video'
+        WHEN ${ad_name} ilike '%\\_SingleImage\\_%' THEN 'Single Image'
+        WHEN ${ad_name} ilike '%\\_Carousel\\_%' THEN 'Carousel'
+
+        when ${ad_name} ilike 'MAM_SummerRecovery_FY21_SingleImage%' then 'Landscape Single Image'
+        when ${ad_name} ilike 'MAM_SummerRecovery_FY21_Video%' then 'Landscape Video'
+
         END
         ;;
   }
@@ -204,6 +250,7 @@ view: mam_fb_ga_view {
         WHEN ${date_start_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
         WHEN ${date_start_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
         WHEN ${date_start_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
+        WHEN ${date_start_date} BETWEEN '2020-07-01' AND '2021-06-30' THEN 'FY 19/20'
         ELSE 'Uncategorized'
         END
         ;;
