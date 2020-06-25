@@ -24,11 +24,11 @@ explore: mam_ga {
     relationship: many_to_one
   }
 
-#   join: tds_ga_ads_lookup {
-#     view_label: "Paid Traffic - Ads Information"
-#     type: inner
-#     fields: []
-#     sql_on: ${tds_ga_ads_lookup.ad_id} = ${tds_ga_acquisition_view.ga_ads_lookup_id} ;;
-#     relationship: one_to_many
-#   }
+  join: mam_ga_ads_lookup {
+    view_label: "Paid Traffic - Ads Information"
+    type: inner
+    fields: []
+    sql_on: ${mam_ga_ads_lookup.ad_id} = ${mam_ga_acquisition_view.ga_ads_lookup_id} ;;
+    relationship: one_to_many
+  }
 }

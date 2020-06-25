@@ -12,7 +12,23 @@ view: mam_ga_behavior_view {
 
   ## Dimensions joined from Ads Lookup File ##
 
-  ## Not Yet Made ##
+  dimension: ad_name {
+    type: string
+    group_label: "Paid Traffic Info"
+    sql: ${mam_ga_ads_lookup.ad_name};;
+  }
+
+  dimension: creative_name {
+    type: string
+    group_label: "Paid Traffic Info"
+    sql: ${mam_ga_ads_lookup.creative_name};;
+  }
+
+  dimension: publisher {
+    type: string
+    group_label: "Paid Traffic Info"
+    sql: ${mam_ga_ads_lookup.publisher};;
+  }
 
   ## Dimensions added to this Table ##
 
