@@ -13,7 +13,7 @@ view: pdt_summer_recovery_campaign {
 
   dimension: primary_key {
     type: string
-    hidden: no
+    hidden: yes
     primary_key: yes
     sql: ${publisher}||'_'||${campaign}||'_'||${phase}||'_'||${placement}||'_'||${audience}||'_'||${ad_size}||'_'||${creative_name}||'_'||${date} ;;
   }
