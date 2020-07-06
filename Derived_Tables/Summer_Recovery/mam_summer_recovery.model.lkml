@@ -13,8 +13,8 @@ datagroup: mam_summer_recovery_datagroup {
 }
 
 explore: pdt_summer_recovery_campaign {
-  label: "FY21 Summer Recovery"
-  view_label: "FY21 Summer Recovery"
+  label: "FY21 Recovery"
+  view_label: "FY21 Recovery"
   hidden: no
   group_label: "Mammoth Lakes Tourism"
 }
