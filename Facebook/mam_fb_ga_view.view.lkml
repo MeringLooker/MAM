@@ -166,6 +166,7 @@ view: mam_fb_ga_view {
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_ReleaseYourself' then 'Release Yourself Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_Escape' then 'Escape Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_EndlessSupply' then 'Endless Supply Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_EnjoyInfiniteMoments' then 'Enjoy Infinite Moments Single Image'
 
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_EnjoyInfiniteMoments' then 'Enjoy Infinite Moments Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_ReleaseYourself' then 'Release Yourself Single Image'
@@ -176,6 +177,8 @@ view: mam_fb_ga_view {
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_ReleaseYourself' then 'Release Yourself Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_Escape' then 'Escape Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_EndlessSupply' then 'Endless Supply Single Image'
+
+
 
 
 
