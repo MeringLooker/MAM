@@ -47,12 +47,14 @@ view: mam_gdn_ga_view{
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Fall'
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Fall'
 
+        WHEN ${campaign} ILIKE '%MAM - FY21 - Summer Recovery%' THEN 'FY21 Summer Recovery'
+
         ELSE 'Uncategorized'
         END
     ;;
   }
 
-  dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
+  dimension: mam_layer { # this may no longer be used 1/14 - JJ
     type: string
     label: "Campaign Layer"
     group_label: "Client Dimensions"
@@ -63,6 +65,7 @@ view: mam_gdn_ga_view{
         WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Air Service'
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Seasonal'
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Seasonal'
+        WHEN ${campaign} ILIKE '%MAM - FY21 - Summer Recovery%' THEN 'Phase 1'
         ELSE 'Uncategorized'
         END
     ;;
@@ -97,6 +100,10 @@ view: mam_gdn_ga_view{
         when ${ad_group} ilike '%AirService - Competitive Destinations%' then 'Responsive Display - Competitive Destinations'
         when ${campaign} ilike '%FY20 WINTER - TRAFFIC%' then 'Responsive Display - Click-Driving'
         when ${campaign} ilike '%FY20 WINTER - Conversion%' then 'Responsive Display - Time On Site Driving'
+
+        WHEN ${campaign} ILIKE '%MAM - FY21 - Summer Recovery - Responsive%' THEN 'Traffic-Driving Responsive Display'
+        WHEN ${campaign} ILIKE '%MAM - FY21 - Summer Recovery - Discovery%' THEN 'Traffic-Driving Google Discovery'
+
         else  'Uncategorized'
         end;;
   }
@@ -112,9 +119,10 @@ view: mam_gdn_ga_view{
         END;;
   }
 
-  dimension: audience {
+  dimension: mam_audience {
     type: string
     group_label: "Client Dimensions"
+    label: "Audience"
     sql:
       CASE
         WHEN  ${ad_group} ILIKE '%Competitive Destinations' then 'Competitive Conquesting'
@@ -129,8 +137,32 @@ view: mam_gdn_ga_view{
         WHEN  ${ad_group} ILIKE '%inMarket Travel'then 'In-Market Travel'
         WHEN  ${ad_group} ILIKE 'in-Market Travel%'then 'In-Market Travel'
         WHEN  ${ad_group} ILIKE '% Outdoor Enthusiasts' then 'Outdoor Enthusiasts'
+
+        WHEN  ${ad_group} ILIKE '% Lookalike Site Visitors' then 'Lookalike Site Visitors'
+        WHEN  ${ad_group} ILIKE '% Outdoor - Custom Intent' then 'Brand'
+        WHEN  ${ad_group} ILIKE '% Retarget Site Visitors' then 'Retargeting Site Visitors'
+        WHEN  ${ad_group} ILIKE '% Retarget Video Viewers' then 'Retargeting Video Viewers'
+
         ELSE 'Uncategorized'
         END;;
+  }
+
+  dimension: ad_size {
+    type:  string
+    group_label: "AdWords Dimensions"
+    sql:
+      case
+        when ${campaign} ilike '%Responsive%' then 'Responsive Display'
+        when ${campaign} ilike '%Discovery%' then 'Discovery Display'
+        else 'Uncategorized'
+        end
+    ;;
+  }
+
+  dimension: creative_name {
+    type:  string
+    group_label: "AdWords Dimensions"
+    sql: 'Uncategorized' ;;
   }
 
   dimension: publisher {

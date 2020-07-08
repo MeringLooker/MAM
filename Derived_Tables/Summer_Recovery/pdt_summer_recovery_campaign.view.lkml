@@ -4,6 +4,8 @@ view: pdt_summer_recovery_campaign {
     select * from ${pdt_summer_recovery_fb.SQL_TABLE_NAME}
       union
     select * from ${pdt_summer_recovery_yt.SQL_TABLE_NAME}
+      union
+    select * from ${pdt_summer_recovery_gdn.SQL_TABLE_NAME}
     ;;
     sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*1)/(60*60*24)) ;;
     distribution_style: all
