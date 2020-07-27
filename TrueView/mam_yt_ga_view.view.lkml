@@ -59,7 +59,7 @@ view: mam_yt_ga_view {
         WHEN ${campaign} ilike '%FY19/20 Fall%' THEN 'Fall'
         WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Winter Seasonal'
         WHEN ${campaign} ilike '%FY19/20 Summer%' THEN 'Summer'
-        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'FY21 Summer Recovery'
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery%' then 'FY21 Summer Recovery'
         ELSE 'Uncategorized'
         END
         ;;
@@ -78,6 +78,7 @@ view: mam_yt_ga_view {
         WHEN ${campaign_id} = '6542201474' then 'Prospecting'
 
         when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'Phase 1 - Awareness'
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' then 'Phase 1 - Awareness'
 
         ELSE 'Uncategorized'
         END
@@ -95,7 +96,7 @@ view: mam_yt_ga_view {
           WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Skippable Pre-Roll Video'
 
           when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'YouTube Skippable Pre-Roll Video'
-
+          when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' then 'YouTube Skippable Pre-Roll Video'
 
           ELSE 'Uncategorized'
           END
@@ -114,6 +115,8 @@ view: mam_yt_ga_view {
         WHEN ${ad_group} ilike '%Running Enthusiasts%' then 'Brand'
         WHEN ${ad_group} ilike '%Outdoor Enthusiasts%' then 'Brand'
         WHEN ${ad_group} ilike '%Cycling Enthusiasts%' then 'Brand'
+        WHEN ${ad_group} ilike '%Travel + Fitness Buffs%' then 'Brand'
+        WHEN ${ad_group} ilike '%Luxury Travelers%' then 'Brand'
         WHEN ${ad_group} ilike '%Custom%' then 'Custom'
 
         when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'Brand'
@@ -145,6 +148,7 @@ view: mam_yt_ga_view {
     sql:
       CASE
         WHEN ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' THEN 'Territory (:30)'
+        WHEN ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' THEN 'Territory (:30)'
 
         ELSE 'Uncategorized'
         END
