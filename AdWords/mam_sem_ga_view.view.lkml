@@ -42,6 +42,18 @@ dimension: fiscal_year {
     sql: 'Google Search';;
   }
 
+  dimension: creative_name {
+    type: string
+    group_label: "Client Dimensions"
+    sql: 'Text Ad';;
+  }
+
+  dimension: ad_size {
+    type: string
+    group_label: "Client Dimensions"
+    sql: 'Text Ad' ;;
+  }
+
 dimension: mam_campaign {
   type: string
   label: "Campaign Name"
@@ -56,6 +68,7 @@ dimension: mam_campaign {
       when ${account} = 'MAM SEM - SF' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
       when ${account} = 'MAM SEM - Northeast' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
       when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
+      when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-07-13' AND '2020-09-30' then 'FY21 Summer Recovery'
         ELSE 'Uncategorized'
         END
     ;;
@@ -72,6 +85,8 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
         WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Air Service'
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Seasonal'
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Seasonal'
+        when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-07-13' AND '2020-07-31' then 'Phase 1 - Awareness'
+        when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-08-01' AND '2020-09-30' then 'Phase 2'
         ELSE 'Uncategorized'
         END
     ;;
@@ -124,6 +139,8 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
         when ${campaign_id} = '6543946536' then 'Generic Winter'
         when ${campaign_id} = '6543946512' then 'Generic Winter'
 
+        when ${campaign_id} = '1344739354' then 'Generic Summer'
+
         when ${ad_group} ilike '%Mammoth Flights%' then 'Mammoth Flights'
         when ${ad_group} ilike '%Generic Flights%' then 'Generic Flights'
         when ${ad_group} ilike '%Generic Winter%' then 'Generic Winter'
@@ -169,25 +186,10 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
           END;;
   }
 
-dimension: audience {
+dimension: mam_audience {
   type: string
   group_label: "Client Dimensions"
-  sql:
-      CASE
-        WHEN  ${ad_group} ILIKE '%Competitive Destinations' then 'Competitive Conquesting'
-        WHEN  ${ad_group} ILIKE '%Competitive Destinations%' then 'Competitive Conquesting'
-        WHEN  ${ad_group} ILIKE '%Site Visitor Lookalike' then 'Site Visitor Lookalike'
-        WHEN  ${ad_group} ILIKE '%Site Visitor Lookalike%' then 'Site Visitor Lookalike'
-        WHEN  ${ad_group} ILIKE '%Ski Topics' then 'Ski Topics'
-        WHEN  ${ad_group} ILIKE '%Ski Enthusiasts' then 'Ski Enthusiasts'
-        WHEN  ${ad_group} ILIKE '%Retargeting' then 'Retargeting'
-        WHEN  ${ad_group} ILIKE '%Retargeting%' then 'Retargeting'
-        WHEN  ${ad_group} ILIKE '%in-Market Travel'then 'In-Market Travel'
-        WHEN  ${ad_group} ILIKE '%inMarket Travel'then 'In-Market Travel'
-        WHEN  ${ad_group} ILIKE 'in-Market Travel%'then 'In-Market Travel'
-        WHEN  ${ad_group} ILIKE '% Outdoor Enthusiasts' then 'Outdoor Enthusiasts'
-        ELSE 'Uncategorized'
-        END;;
+  sql: 'N/A - Paid Search Results';;
 }
 
 ###### All Dimensions go Below #######
