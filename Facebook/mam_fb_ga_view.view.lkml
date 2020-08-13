@@ -162,6 +162,7 @@ view: mam_fb_ga_view {
 
         when ${ad_name} = 'MAM_SummerRecovery_FY21_Video_LAL_Territory' then 'Territory (:30)'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_Video_Brand_Territory' then 'Territory (:30)'
+        when ${ad_name} ilike '%_Locals' then 'Locals Welcome (:30)'
 
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_ReleaseYourself' then 'Release Yourself Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_Escape' then 'Escape Single Image'
