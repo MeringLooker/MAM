@@ -92,7 +92,7 @@ view: mam_gdn_ga_view{
   dimension: mam_placement {
     type:  string
     label: "Placement"
-    group_label: "AdWords Dimensions"
+    group_label: "Client Dimensions"
     sql:
       case
         when ${ad_group} ilike '%AirService - site Visitor lookalike%' then 'Responsive Display - Site Visitor Lookalikes'
@@ -161,13 +161,13 @@ view: mam_gdn_ga_view{
 
   dimension: creative_name {
     type:  string
-    group_label: "AdWords Dimensions"
+    group_label: "Client Dimensions"
     sql: 'Uncategorized' ;;
   }
 
   dimension: publisher {
     type:  string
-    group_label: "AdWords Dimensions"
+    group_label: "Client Dimensions"
     sql: 'Google Display' ;;
   }
 
