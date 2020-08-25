@@ -16,5 +16,5 @@ datagroup: mam_winter_seasonal_datagroup {
 explore: ndt_winter_seasonal_campaign {
  label: "FY20 Winter Seasonal"
   view_label: "Winter Seasonal"
-  hidden: no
+  hidden: yes
   group_label: "Mammoth Lakes Tourism"}
