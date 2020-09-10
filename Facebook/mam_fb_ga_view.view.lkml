@@ -61,6 +61,8 @@ view: mam_fb_ga_view {
     sql:
       CASE
         WHEN ${campaign_name} ilike '%AirService%' THEN 'Air Service'
+        WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21_VideoViews_September%' THEN 'Phase 2'
+        WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21_Conversions_September%' THEN 'Phase 2'
         WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' THEN 'Phase 1 - Awareness'
         ELSE 'Seasonal'
         END
@@ -168,20 +170,27 @@ view: mam_fb_ga_view {
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_Escape' then 'Escape Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_EndlessSupply' then 'Endless Supply Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_EnjoyInfiniteMoments' then 'Enjoy Infinite Moments Single Image'
-
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_EnjoyInfiniteMoments' then 'Enjoy Infinite Moments Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_ReleaseYourself' then 'Release Yourself Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_Escape' then 'Escape Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_EndlessSupply' then 'Endless Supply Single Image'
-
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_EnjoyInfiniteMoments' then 'Enjoy Infinite Moments Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_ReleaseYourself' then 'Release Yourself Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_Escape' then 'Escape Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_EndlessSupply' then 'Endless Supply Single Image'
 
-
-
-
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_Fall_MotherNature' then 'Mother Nature Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_Fall_LocalsKnow' then 'Locals Know Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_Fall_HikeBikePaddle' then 'Hike, Bike, Paddle Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_RT_Fall_AmazingAutumn' then 'Amazing Autumn Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_Fall_MotherNature' then 'Mother Nature Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_Fall_LocalsKnow' then 'Locals Know Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_Fall_HikeBikePaddle' then 'Hike, Bike, Paddle Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_LAL_Fall_AmazingAutumn' then 'Amazing Autumn Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_Fall_MotherNature' then 'Mother Nature Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_Fall_LocalsKnow' then 'Locals Know Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_Fall_HikeBikePaddle' then 'Hike, Bike, Paddle Single Image'
+        when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_Fall_AmazingAutumn' then 'Amazing Autumn Single Image'
 
         else 'Uncategorized'
         END
