@@ -139,6 +139,9 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
         when ${campaign_id} = '6543946536' then 'Generic Winter'
         when ${campaign_id} = '6543946512' then 'Generic Winter'
 
+        when ${campaign_id} = '889031484' then 'Generic Fall'
+        when ${campaign_id} = '11006169119' then 'Responsible Travel'
+
         when ${campaign_id} = '1344739354' then 'Generic Summer'
 
         when ${ad_group} ilike '%Mammoth Flights%' then 'Mammoth Flights'

@@ -79,6 +79,7 @@ view: mam_yt_ga_view {
 
         when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'Phase 1 - Awareness'
         when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' then 'Phase 1 - Awareness'
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Locals' then 'Phase 2'
 
         ELSE 'Uncategorized'
         END
@@ -97,6 +98,7 @@ view: mam_yt_ga_view {
 
           when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'YouTube Skippable Pre-Roll Video'
           when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' then 'YouTube Skippable Pre-Roll Video'
+          when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Locals' then 'YouTube Skippable Pre-Roll Video'
 
           ELSE 'Uncategorized'
           END
@@ -149,6 +151,7 @@ view: mam_yt_ga_view {
       CASE
         WHEN ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' THEN 'Territory (:30)'
         WHEN ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' THEN 'Territory (:30)'
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Locals' then 'Locals Welcome (:30)'
 
         ELSE 'Uncategorized'
         END
