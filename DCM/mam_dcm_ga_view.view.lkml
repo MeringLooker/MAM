@@ -29,6 +29,7 @@ view: mam_dcm_ga_view {
         WHEN ${date_date} BETWEEN '2017-07-01' AND '2018-06-30' THEN 'FY 17/18'
         WHEN ${date_date} BETWEEN '2018-07-01' AND '2019-06-30' THEN 'FY 18/19'
         WHEN ${date_date} BETWEEN '2019-07-01' AND '2020-06-30' THEN 'FY 19/20'
+        WHEN ${date_date} BETWEEN '2020-07-01' AND '2021-06-30' THEN 'FY 20/21'
         ELSE 'Uncategorized'
         END
         ;;
@@ -40,11 +41,15 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        when ${ad} = '(not set)' then 'Uncategorized'
+        when ${ad} = 'Tracking Ad-AdTheorent_SummerRecovery_Phase2_PredictiveAudienceContextual_CA+NV_SeptemberVideo_0:15_1x1' then 'Uncategorized'
         WHEN ${campaign_id} = '23182329' then 'Winter Seasonal'
         WHEN ${campaign_id} = '23188164' then 'Winter Air Service'
         WHEN ${campaign_id} = '22311158' then 'Winter'
         WHEN ${campaign_id} = '22439071' then 'Summer'
         WHEN ${campaign_id} = '23018327' then 'Fall'
+        WHEN ${campaign_id} = '24464016' THEN 'FY21 Summer Recovery'
+
         ELSE 'Uncategorized'
         END
         ;;
@@ -60,7 +65,7 @@ view: mam_dcm_ga_view {
         WHEN ${campaign_id} = '23188164' then 'Air Service'
         WHEN ${campaign_id} = '22311158' then 'Seasonal'
         WHEN ${campaign_id} = '22439071' then 'Seasonal'
-        WHEN ${campaign_id} = '23018327' then 'Seasonal'
+        WHEN ${campaign_id} = '24464016' THEN 'Phase 2'
         ELSE 'Uncategorized'
         END
         ;;
@@ -123,6 +128,11 @@ view: mam_dcm_ga_view {
         WHEN ${placement} ilike 'Amobee\\_R0N%' then '3-Screen Display'
         WHEN ${placement} ilike 'ROS Big Box%' then 'ROS Big Box'
         WHEN ${placement} ilike 'Matador Experience-%' then 'Matador Experience Distribution'
+
+        when ${placement} ilike 'AdTheorent_SummerRecovery_Phase2_PredictiveAudienceContextual_CA+NV_SeptemberStandardDisplay%' then 'Standard Display'
+        when ${placement} ilike 'AdTheorent_SummerRecovery_Phase2_PredictiveAudienceContextual_CA+NV_AVStandardDisplay%' then 'AV - Standard Display'
+        when ${placement} ilike 'AdTheorent_SummerRecovery_Phase2_PredictiveAudienceContextual_CA+NV_SeptemberVideo_0:15%' then ':15 Video'
+
         ELSE 'Uncategorized'
         END
         ;;
@@ -175,17 +185,37 @@ view: mam_dcm_ga_view {
       CASE
         WHEN ${site_dcm} ilike 'Matador%' then 'Matador'
         WHEN ${site_dcm} = 'Media Rhythm' then 'Snowboarder.com'
+        WHEN ${site_dcm} = 'Adtheorant' then 'AdTheorant'
         ELSE ${site_dcm}
         END
         ;;
   }
 
-  dimension: dcm_creative {
+  dimension: creative_name {
     type: string
     label: "Creative Name"
     group_label: "Client Dimensions"
     sql:
       CASE
+        when ${creative} ilike '%P2_728x90_YourAdventure' then 'YourAdventure_728x90'
+        when ${creative} ilike '%P2_728x90_ReleaseYourself' then 'ReleaseYourself_728x90'
+        when ${creative} ilike '%P2_728x90_ComeBack' then 'ComeBack_728x90'
+
+        when ${creative} ilike '%P2_320x50_ReleaseYourself_Yeti' then 'ReleaseYourself_Yeti_320x50'
+        when ${creative} ilike '%P2_320x50_ReleaseYourself_Ogre' then 'ReleaseYourself_Ogre_320x50'
+
+        when ${creative} ilike '%P2_300x600_YourAdventure' then 'YourAdventure_300x600'
+        when ${creative} ilike '%P2_300x600_ReleaseYourself' then 'ReleaseYourself_300x600'
+        when ${creative} ilike '%P2_300x600_ComeBack' then 'ComeBack_300x600'
+
+        when ${creative} ilike '%P2_160x600_YourAdventure' then 'YourAdventure_160x600'
+        when ${creative} ilike '%P2_160x600_ReleaseYourself' then 'ReleaseYourself_160x600'
+        when ${creative} ilike '%P2_160x600_ComeBack' then 'ComeBack_160x600'
+
+        when ${creative} ilike '%P2_300x250_YourAdventure' then 'YourAdventure_300x250'
+        when ${creative} ilike '%P2_300x250_ReleaseYourself' then 'ReleaseYourself_300x250'
+        when ${creative} ilike '%P2_300x250_ComeBack' then 'ComeBack_300x250'
+
         WHEN ${creative} ilike '%Yeti%' then 'Yeti'
         WHEN ${creative} ilike '%Eagles%' then 'Eagles'
         WHEN ${creative} ilike '%Fairy%' then 'Fairy'
@@ -208,8 +238,20 @@ view: mam_dcm_ga_view {
         when ${creative} ILIKE '%160x600%' then '160x600'
         when ${creative} ILIKE '%970x250%' then '970x250'
         when ${creative} ILIKE '%300x50%' then '300x50'
+        when ${placement} = 'AdTheorent_SummerRecovery_Phase2_PredictiveAudienceContextual_CA+NV_SeptemberVideo_0:15_1x1' then 'Video'
       ELSE 'Uncategorized'
       END;;
+  }
+
+  dimension: mam_audience {
+    type: string
+    group_label: "Client Dimensions"
+    label: "Audience"
+    sql:
+      CASE
+        WHEN  ${placement} ILIKE '%PredictiveAudienceContextual%' then 'Predictive Audience Contextual'
+        ELSE 'Uncategorized'
+        END;;
   }
 
   dimension: views {
