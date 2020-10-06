@@ -22,6 +22,10 @@ view: pdt_summer_recovery_fb {
         field: mam_fb_ga_view.mam_campaign
         value: "FY21 Summer Recovery"
       }
+      filters: {
+        field: mam_fb_ga_view.date_start_date
+        value: "after 2020/06/22"
+      }
     }
     datagroup_trigger: mam_summer_recovery_datagroup
     distribution_style: all
