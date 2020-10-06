@@ -22,6 +22,10 @@ view: ndt_winter_air_amobee {
           field: mam_dcm_ga_view.publisher
           value: "Amobee"
         }
+        filters: {
+          field: mam_dcm_ga_view.date_date
+          value: "2019/09/30 to 2020/03/17"
+        }
       }
     }
 

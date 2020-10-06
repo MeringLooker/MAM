@@ -23,6 +23,10 @@ derived_table: {
       field: mam_dcm_ga_view.publisher
       value: "Skimag.com"
     }
+    filters: {
+      field: mam_dcm_ga_view.date_date
+      value: "2019/09/30 to 2020/03/17"
+    }
   }
   datagroup_trigger: mam_winter_seasonal_datagroup
   distribution_style: all

@@ -18,6 +18,10 @@ view: ndt_winter_air_gdn {
         field: mam_gdn_ga_view.mam_campaign
         value: "Winter Air Service"
       }
+      filters: {
+        field: mam_gdn_ga_view.day_date
+        value: "2019/09/30 to 2020/03/17"
+      }
     }
     datagroup_trigger: mam_winter_air_datagroup
     distribution_style: all
