@@ -61,9 +61,9 @@ view: mam_fb_ga_view {
     sql:
       CASE
         WHEN ${campaign_name} ilike '%AirService%' THEN 'Air Service'
-        WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21_VideoViews_September%' THEN 'Phase 2'
-        WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21_Conversions_September%' THEN 'Phase 2'
-        WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' THEN 'Phase 1 - Awareness'
+        when ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' and ${date_start_date} between '2020-06-22' and '2020-08-23' then 'Phase 1'
+        when ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' and ${date_start_date} between '2020-08-24' and '2020-10-05' then 'Phase 2'
+        when ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' and ${date_start_date} between '2020-10-06' and '2020-10-23' then 'Phase 2.5'
         ELSE 'Seasonal'
         END
         ;;

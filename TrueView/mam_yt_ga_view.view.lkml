@@ -77,9 +77,9 @@ view: mam_yt_ga_view {
         WHEN ${campaign_id} = '6542201486' then 'Prospecting'
         WHEN ${campaign_id} = '6542201474' then 'Prospecting'
 
-        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'Phase 1 - Awareness'
-        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' then 'Phase 1 - Awareness'
-        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Locals' then 'Phase 2'
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery%' and ${day_date} between '2020-06-22' and '2020-08-23' then 'Phase 1'
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery%' and ${day_date} between '2020-08-24' and '2020-10-05' then 'Phase 2'
+        when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery%' and ${day_date} between '2020-10-06' and '2020-10-23' then 'Phase 2.5'
 
         ELSE 'Uncategorized'
         END

@@ -2,6 +2,7 @@ connection: "mc_panoply"
 
 include: "*.view.lkml"
 include: "/AdWords/*.view"
+include: "/Pinterest/*.view"
 include: "/Google_Analytics/**/*.view"
 include: "/Facebook/**/*.view"
 include: "/DCM/**/*.view"

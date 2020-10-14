@@ -65,7 +65,9 @@ view: mam_gdn_ga_view{
         WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Air Service'
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Seasonal'
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Seasonal'
-        WHEN ${campaign} ILIKE '%MAM - FY21 - Summer Recovery%' THEN 'Phase 1'
+        when ${campaign} ilike '%MAM - FY21 - Summer Recovery%' and ${day_date} between '2020-07-07' and '2020-08-23' then 'Phase 1'
+        when ${campaign} ilike '%MAM - FY21 - Summer Recovery%' and ${day_date} between '2020-08-24' and '2020-10-05' then 'Phase 2'
+        when ${campaign} ilike '%MAM - FY21 - Summer Recovery%' and ${day_date} between '2020-10-06' and '2020-10-23' then 'Phase 2.5'
         ELSE 'Uncategorized'
         END
     ;;

@@ -85,8 +85,9 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
         WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Air Service'
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Traffic%' THEN 'Seasonal'
         WHEN ${campaign} ILIKE '%FY19/20 Fall - Conversion%' THEN 'Seasonal'
-        when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-07-13' AND '2020-07-31' then 'Phase 1 - Awareness'
-        when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-08-01' AND '2020-09-30' then 'Phase 2'
+        when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-07-13' AND '2020-07-31' then 'Phase 1'
+        when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-08-01' AND '2020-10-05' then 'Phase 2'
+        when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-10-06' and '2020-10-31' then 'Phase 2.5'
         ELSE 'Uncategorized'
         END
     ;;

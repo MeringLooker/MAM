@@ -10,6 +10,8 @@ view: pdt_summer_recovery_campaign {
     select * from ${pdt_summer_recovery_sem.SQL_TABLE_NAME}
       union
     select * from ${pdt_summer_recovery_adtheorant.SQL_TABLE_NAME}
+      union
+    select * from ${pdt_summer_recovery_pin.SQL_TABLE_NAME}
     ;;
     sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*1)/(60*60*24)) ;;
     distribution_style: all

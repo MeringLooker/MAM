@@ -24,6 +24,12 @@ view: mam_pinterest_ga_view {
     sql: 'Social' ;;
   }
 
+  dimension: ad_size {
+    type: string
+    group_label: "Pinterest Dimensions"
+    sql: 'Standard Pin' ;;
+  }
+
   dimension: fiscal_year {
     type:  string
     group_label: "Date Periods"
@@ -45,8 +51,19 @@ view: mam_pinterest_ga_view {
       case
         when ${campaign_name} ilike 'MAM_FY20_Winter_%' then 'Winter Seasonal'
         when ${campaign_name} ilike 'MAM_FY20Fall_%' then 'Fall Seasonal'
-        when ${campaign_name} ilike 'SDT_FY20_FallPromo%' then 'Fall Promos'
-        when ${campaign_name} ilike 'SDT_FY20_AlwaysOnContent%' then 'Always On Content'
+        when ${campaign_name} ilike 'MAM_FY21_SummerRecovery%' then 'FY21 Summer Recovery'
+        else 'Uncategorized'
+        end;;
+  }
+
+  dimension: mam_layer {
+    type: string
+    label: "Campaign Layer"
+    group_label: "Client Dimensions"
+    sql:
+      case
+        when ${campaign_name} ilike 'MAM_FY21_SummerRecovery%' and ${date_date} between '2020-08-24' and '2020-10-05' then 'Phase 2'
+        when ${campaign_name} ilike 'MAM_FY21_SummerRecovery%' and ${date_date} between '2020-10-06' and '2020-10-23' then 'Phase 2.5'
         else 'Uncategorized'
         end;;
   }
@@ -85,6 +102,12 @@ view: mam_pinterest_ga_view {
     group_label: "Client Dimensions"
     sql:
         CASE
+          WHEN  ${ad_group_name} ILIKE '%MAM_FY21_SummerRecovery_Traffic_Interests%' then 'Traffic Driving Pins - Interest Targeted'
+          WHEN  ${ad_group_name} ILIKE '%MAM_FY21_SummerRecovery_Traffic_Keywords%' then 'Traffic Driving Pins - Keyword Targeted'
+          WHEN  ${ad_group_name} ILIKE '%MAM_FY21_SummerRecovery_Traffic_SiteLAL%' then 'Traffic Driving Pins - Site Lookalikes'
+          WHEN  ${ad_group_name} ILIKE '%MAM_FY21_SummerRecovery_Traffic_SiteRT%' then 'Traffic Driving Pins - Site Retargeting'
+
+
           WHEN  ${ad_group_name} ILIKE '%Traffic_InterestTargeting%' then 'Traffic Driving Pins - Interest Targeted'
           WHEN  ${ad_group_name} ILIKE '%Traffic_KeywordTargeting%' then 'Traffic Driving Pins - Keyword Targeted'
           WHEN  ${ad_group_name} ILIKE '%Traffic_RT%' then 'Traffic Driving Pins - Retargeting'
@@ -95,16 +118,47 @@ view: mam_pinterest_ga_view {
           WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_SiteLookalikeAudience%' then 'Awareness Pins - Site Lookalikes'
 
 
-          WHEN  ${campaign_name} ILIKE '%Traffic_SF%' then 'San Francisco'
-          WHEN  ${campaign_name} ILIKE '%TrafficDriving_SF%' then 'San Francisco'
+          ELSE 'Uncategorized'
+        END;;
+  }
 
-          WHEN  ${campaign_name} ILIKE '%Awareness_NE%' then 'Northeast'
-          WHEN  ${campaign_name} ILIKE '%Traffic_NE%' then 'Northeast'
+  dimension: mam_audience {
+    type: string
+    label: "Campaign Audience"
+    group_label: "Client Dimensions"
+    sql:
+        CASE
+          WHEN  ${ad_group_name} ILIKE '%MAM_FY21_SummerRecovery_Traffic_Interests%' then 'Interest Targeted'
+          WHEN  ${ad_group_name} ILIKE '%MAM_FY21_SummerRecovery_Traffic_Keywords%' then 'Keyword Targeted'
+          WHEN  ${ad_group_name} ILIKE '%MAM_FY21_SummerRecovery_Traffic_SiteLAL%' then 'Site Lookalikes'
+          WHEN  ${ad_group_name} ILIKE '%MAM_FY21_SummerRecovery_Traffic_SiteRT%' then 'Site Retargeting'
+          WHEN  ${ad_group_name} ILIKE '%Traffic_InterestTargeting%' then 'Interest Targeted'
+          WHEN  ${ad_group_name} ILIKE '%Traffic_KeywordTargeting%' then 'Keyword Targeted'
+          WHEN  ${ad_group_name} ILIKE '%Traffic_RT%' then 'Retargeting'
+          WHEN  ${ad_group_name} ILIKE '%Traffic_SiteLAL%' then 'Site Lookalikes'
+          WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_InterestTargeting%' then 'Interest Targeted'
+          WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_KeywordTargeting%' then 'Keyword Targeted'
+          WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_SiteLookalikeAudience%' then 'Site Lookalikes'
 
-          WHEN  ${campaign_name} ILIKE '%Awareness_CA/NV%' then 'California/Nevada'
-          WHEN  ${campaign_name} ILIKE '%Traffic_CA/NV%' then 'California/Nevada'
-          WHEN  ${campaign_name} ILIKE '%TrafficDriving_CA/NV%' then 'California/Nevada'
 
+          ELSE 'Uncategorized'
+        END;;
+  }
+
+  dimension: creative_name {
+    type: string
+    label: "Creative Name"
+    group_label: "Client Dimensions"
+    sql:
+        CASE
+          WHEN  ${promoted_pin_name} ILIKE '%Your Guide to Fall in Mammoth%' then 'Your Guide to Fall in Mammoth'
+          WHEN  ${promoted_pin_name} ILIKE '%Top 7 Hikes for Leaf-Peepe%' then 'Top 7 Hikes for Leaf-Peepers'
+          WHEN  ${promoted_pin_name} ILIKE '%Fall Locals Guide%' then 'Fall Locals Guide'
+          WHEN  ${promoted_pin_name} ILIKE '%Fall Lakes%' then 'Fall Lakes'
+          WHEN  ${promoted_pin_name} ILIKE '%Fall Hikes%' then 'Fall Hikes'
+          WHEN  ${promoted_pin_name} ILIKE '%Fall Activities_Guide%' then 'Fall Activities Guide'
+          WHEN  ${promoted_pin_name} ILIKE '%A Local''s Guide to the Ultimat%' then 'A Local''s Guide to the Ultimat'
+          WHEN  ${promoted_pin_name} ILIKE '%5 Must-See Lakes in Mammoth La%' then '5 Must-See Lakes in Mammoth Lakes'
           ELSE 'Uncategorized'
         END;;
   }
