@@ -6,6 +6,7 @@ include: "/TrueView/**/*.view"
 include: "/DCM/**/*.view"
 include: "/Pinterest/**/*.view"
 include: "/Publisher_Passback/**/*.view"
+include: "/Facebook/**/*.view"
 
 ## Google Search ##
 
