@@ -27,59 +27,7 @@ view: pdt_summer_recovery_pin {
         value: "after 2020/08/24"
       }
     }
-    datagroup_trigger: mam_summer_recovery_datagroup
+    datagroup_trigger: 24hour_cache
     distribution_style: all
-  }
-
-  dimension: publisher {
-    type: string
-  }
-
-  dimension: campaign {
-    type: string
-  }
-
-  dimension: region {
-    type: string
-  }
-
-  dimension: placement {
-    type: string
-  }
-
-  dimension: date {
-    type: date
-  }
-
-  dimension: week {
-    type: date
-  }
-
-  dimension: month {
-    type: date
-  }
-
-  dimension: total_impressions {
-    type: number
-  }
-
-  dimension: total_clicks {
-    type: number
-  }
-
-  dimension: total_cost {
-    type: number
-  }
-
-  dimension: total_sessions {
-    type: number
-  }
-
-  dimension: total_session_duration {
-    type: number
-  }
-
-  dimension: total_views {
-    type: number
   }
 }

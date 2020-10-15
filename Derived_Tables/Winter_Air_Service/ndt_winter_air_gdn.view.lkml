@@ -23,59 +23,7 @@ view: ndt_winter_air_gdn {
         value: "2019/09/30 to 2020/03/17"
       }
     }
-    datagroup_trigger: mam_winter_air_datagroup
+    datagroup_trigger: 24hour_cache
     distribution_style: all
-  }
-
-  dimension: publisher {
-    type: string
-  }
-
-  dimension: campaign {
-    type: string
-  }
-
-  dimension: region {
-    type: string
-  }
-
-  dimension: placement {
-    type: string
-  }
-
-  dimension: date {
-    type: date
-  }
-
-  dimension: week {
-    type: date
-  }
-
-  dimension: month {
-    type: date
-  }
-
-  dimension: total_impressions {
-    type: number
-  }
-
-  dimension: total_clicks {
-    type: number
-  }
-
-  dimension: total_cost {
-    type: number
-  }
-
-  dimension: total_conversions {
-    type: number
-  }
-
-  dimension: total_sessions {
-    type: number
-  }
-
-  dimension: total_session_duration {
-    type: number
   }
 }
