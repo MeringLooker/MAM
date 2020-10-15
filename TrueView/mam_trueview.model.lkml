@@ -7,10 +7,10 @@ datagroup: mam_trueview_datagroup {
   max_cache_age: "24 hours"
 }
 
-explore: mam_yt_extended {
-  extends: [mam_yt]
-  hidden: no
-  label: "YouTube"
-  view_label: "YouTube"
-  group_label: "Mammoth Lakes Tourism"
-}
+# explore: mam_yt_extended {
+#   extends: [mam_yt]
+#   hidden: no
+#   label: "YouTube"
+#   view_label: "YouTube"
+#   group_label: "Mammoth Lakes Tourism"
+# }
