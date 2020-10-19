@@ -27,7 +27,7 @@ view: ndt_winter_air_amobee {
         value: "2019/09/30 to 2020/03/17"
       }
     }
-    datagroup_trigger: 24hour_cache
+    datagroup_trigger: mam_default_datagroup
     distribution_style: all
   }
 }

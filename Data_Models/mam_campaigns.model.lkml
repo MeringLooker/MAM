@@ -8,7 +8,7 @@ include: "/DCM/**/*.view"
 include: "/Pinterest/**/*.view"
 include: "/Publisher_Passback/**/*.view"
 
-datagroup: 24hour_cache {
+datagroup: mam_default_datagroup {
   sql_trigger: SELECT current_date;;
   max_cache_age: "24 hours"
 }

@@ -27,7 +27,7 @@ view: pdt_summer_recovery_yt {
         value: "after 2020/06/22"
       }
     }
-    datagroup_trigger: 24hour_cache
+    datagroup_trigger: mam_default_datagroup
     distribution_style: all
   }
 }
