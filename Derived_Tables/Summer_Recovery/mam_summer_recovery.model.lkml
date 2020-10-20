@@ -1,12 +1,12 @@
 connection: "mc_panoply"
 
-include: "*.view.lkml"
-include: "/AdWords/*.view"
-include: "/Pinterest/*.view"
-include: "/Google_Analytics/**/*.view"
-include: "/Facebook/**/*.view"
-include: "/DCM/**/*.view"
-include: "/TrueView/**/*.view"
+# include: "*.view.lkml"
+# include: "/AdWords/*.view"
+# include: "/Pinterest/*.view"
+# include: "/Google_Analytics/**/*.view"
+# include: "/Facebook/**/*.view"
+# include: "/DCM/**/*.view"
+# include: "/TrueView/**/*.view"
 
 # datagroup: mam_summer_recovery_datagroup {
 #   sql_trigger: SELECT current_date;;

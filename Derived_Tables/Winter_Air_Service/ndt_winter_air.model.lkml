@@ -1,10 +1,10 @@
 connection: "mc_panoply"
 
-include: "*.view.lkml"
-include: "/AdWords/*.view"
-include: "/Google_Analytics/**/*.view"
-include: "/Facebook/**/*.view"
-include: "/DCM/**/*.view"
+# include: "*.view.lkml"
+# include: "/AdWords/*.view"
+# include: "/Google_Analytics/**/*.view"
+# include: "/Facebook/**/*.view"
+# include: "/DCM/**/*.view"
 
 # datagroup: mam_winter_air_datagroup {
 #   sql_trigger: SELECT current_date;;
