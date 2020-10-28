@@ -218,7 +218,7 @@ view: pdt_summer_recovery_campaign {
   measure: avg_session_duration {
     label: "Avg. TOS"
     type: number
-    sql: (${total_session_duration}/nullif(${total_sessions}, 0))::float/86400 ;;
+    sql: (floor((${total_session_duration}::numeric(19,6))/nullif(${total_sessions}, 0)))::float/86400 ;;
     value_format: "m:ss"
   }
 
