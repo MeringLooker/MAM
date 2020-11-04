@@ -69,6 +69,7 @@ dimension: mam_campaign {
       when ${account} = 'MAM SEM - Northeast' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
       when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
       when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-07-13' AND '2020-10-31' then 'FY21 Summer Recovery'
+      when ${day_date} BETWEEN '2020-11-02' AND '2021-03-31' then 'FY21 Winter'
         ELSE 'Uncategorized'
         END
     ;;
@@ -88,6 +89,7 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
         when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-07-13' AND '2020-07-31' then 'Phase 1'
         when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-08-01' AND '2020-10-05' then 'Phase 2'
         when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-10-06' and '2020-10-31' then 'Phase 2.5'
+        when ${day_date} BETWEEN '2020-11-02' AND '2021-03-31' then 'Consideration - Traffic-Driving'
         ELSE 'Uncategorized'
         END
     ;;
@@ -98,6 +100,9 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
     group_label: "Client Dimensions"
     sql:
         CASE
+          when ${campaign} ilike '%New York%' then 'New York'
+          when ${campaign} ilike '%Boston%' then 'Boston'
+
           when ${account} = 'MAM SEM - Air Service - Denver' then 'Denver'
           when ${account} = 'MAM SEM - Air Service - Northeast' then 'Northeast'
           when ${account} = 'MAM SEM - Air Service - SF' then 'San Francisco'
@@ -129,6 +134,7 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
     group_label: "Client Dimensions"
     sql:
       case
+        when ${campaign} ilike 'Winter FY20 - Generic%' then 'Generic Winter'
         when ${campaign} ilike '%Aseasonal brand%' then 'Aseasonal Brand'
         when ${campaign} ilike '%Aseasonal activities%' then 'Aseasonal Activities'
         when ${campaign} ilike '%Aseasonal accommodations%' then 'Aseasonal Accomodations'

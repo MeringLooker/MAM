@@ -46,6 +46,7 @@ view: mam_fb_ga_view {
         WHEN ${campaign_name} = 'MAM_Winter_FY20_Conversions_AirService_FareSale' THEN 'Winter Air Service'
 
         WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' THEN 'FY21 Summer Recovery'
+        WHEN ${campaign_name} ilike 'MAM_FY21_Winter%' THEN 'FY21 Winter'
 
         WHEN ${campaign_name} ilike '%Summer%' THEN 'Summer'
         WHEN ${campaign_name} ilike '%Spring%' THEN 'Spring'
@@ -60,6 +61,8 @@ view: mam_fb_ga_view {
     type: string
     sql:
       CASE
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Video%' then 'Awareness'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Traffic%' then 'Consideration - Traffic-Driving'
         WHEN ${campaign_name} ilike '%AirService%' THEN 'Air Service'
         when ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' and ${date_start_date} between '2020-06-22' and '2020-08-23' then 'Phase 1'
         when ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' and ${date_start_date} between '2020-08-24' and '2020-10-05' then 'Phase 2'
@@ -102,6 +105,13 @@ view: mam_fb_ga_view {
     type: string
     sql:
       case
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Video%' then 'Facebook Video'
+        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_NewYork_LaLWebVisitors' then 'Traffic-Driving Single Image - Web Visitor Lookalikes'
+        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_NewYork_LaLPageEngagement' then 'Traffic-Driving Single Image - Page Engagement Lookalikes'
+        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_NewYork_BrandAudience' then 'Traffic-Driving Single Image - Brand Audience'
+        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_Boston_LaLWebVisitors' then 'Traffic-Driving Single Image - Web Visitor Lookalikes'
+        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_Boston_LaLPageEngagement' then 'Traffic-Driving Single Image - Page Engagement Lookalikes'
+
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_AirService%' then 'Single Image - Brand Audience'
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_Widget_AirService%' then 'Single Image - Retargeting/Site Lookalikes'
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversions_AirService_FareSale%' then 'Single Image - Fare Sale'
@@ -147,6 +157,23 @@ view: mam_fb_ga_view {
     type: string
     sql:
       CASE
+        when ${ad_name} ilike '%_Yeti' then 'Yeti Single Image'
+        when ${ad_name} ilike '%_Unicorns' then 'Unicorns Single Image'
+        when ${ad_name} ilike '%_TallestLifts2' then 'Tallest Lifts v2 Single Image'
+        when ${ad_name} ilike '%_TallestLifts1' then 'Tallest Lifts v1 Single Image'
+        when ${ad_name} ilike '%_SunnySkiesBluebirdRides' then 'Sunny Skies Bluebird Rides Single Image'
+        when ${ad_name} ilike '%_Family' then 'Family Single Image'
+
+        WHEN ${ad_name} ilike '%NSBHighPlaces' THEN 'No Small Backyard: High Places (:30)'
+        WHEN ${ad_name} ilike '%NSBGetLost' THEN 'No Small Backyard: Get Lost (:30)'
+        WHEN ${ad_name} ilike '%NSBAboveAvergae' THEN 'No Small Backyard: Above Average (:30)'
+        WHEN ${ad_name} ilike '%MaladiesUphillBattles' THEN 'Maladies: Uphill Battles (:15)'
+        WHEN ${ad_name} ilike '%MaladiesGettingOffTrack' THEN 'Maladies: Getting Off Track (:15)'
+        WHEN ${ad_name} ilike '%MaladiesTheMondays' THEN 'Maladies: Mondays (:15)'
+
+        WHEN ${ad_name} ilike 'MAM_FY21_Winter_Video_Boston_BrandVideo' THEN 'Find Flights Now (:30)'
+        WHEN ${ad_name} ilike 'MAM_FY21_Winter_Video_NewYork_BrandVideo' THEN 'Find Flights Now (:30)'
+
         WHEN ${ad_name} ilike '%\\_HighPlaces' THEN 'No Small Backyard: High Places (:30)'
         WHEN ${ad_name} ilike '%\\_GetLost' THEN 'No Small Backyard: Get Lost (:30)'
         WHEN ${ad_name} ilike '%\\_AboveAverage' THEN 'No Small Backyard: Above Average (:30)'
@@ -218,6 +245,7 @@ view: mam_fb_ga_view {
     type: string
     sql:
       CASE
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Traffic%' then 'Single Image'
         WHEN ${ad_name} ilike '%\\_Video\\_%' THEN 'Video'
         WHEN ${ad_name} ilike '%\\_SingleImage\\_%' THEN 'Single Image'
         WHEN ${ad_name} ilike '%\\_Carousel\\_%' THEN 'Carousel'
@@ -235,6 +263,10 @@ view: mam_fb_ga_view {
     type: string
     sql:
       CASE
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Traffic_NewYork' then 'New York'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Traffic_Boston' then 'Boston'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Video_NewYork' then 'New York'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Video_Boston' then 'Boston'
         WHEN ${campaign_name} ilike '%\\_SF\\_%' THEN 'San Francisco'
         WHEN ${campaign_name} ilike '%\\_NE\\_%' THEN 'Northeast'
         WHEN ${campaign_name} ilike '%\\_Denver\\_%' THEN 'Denver'

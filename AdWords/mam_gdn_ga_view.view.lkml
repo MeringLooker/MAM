@@ -41,6 +41,7 @@ view: mam_gdn_ga_view{
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'FY21 Winter'
         WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Winter Seasonal'
         WHEN ${campaign} ILIKE '%FY20 Winter - Conversion%' THEN 'Winter Seasonal'
         WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Winter Air Service'
@@ -60,6 +61,7 @@ view: mam_gdn_ga_view{
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'Consideration - Traffic-Driving'
         WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Seasonal'
         WHEN ${campaign} ILIKE '%FY20 Winter - Conversion%' THEN 'Seasonal'
         WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Air Service'
@@ -78,6 +80,10 @@ view: mam_gdn_ga_view{
     group_label: "Client Dimensions"
     sql:
       CASE
+        when ${campaign} ilike '%CANV%' then 'California/Nevada'
+        when ${campaign} ilike '%NewYork%' then 'New York'
+        when ${campaign} ilike '%Boston%' then 'Boston'
+        when ${campaign} ilike '%Denver%' then 'Denver'
         WHEN  ${campaign} ILIKE '%SF' then 'San Francisco'
         WHEN  ${campaign} ILIKE '%DEN' then 'Denver'
         WHEN  ${campaign} ILIKE '%NE' then 'Northeast'
@@ -105,6 +111,8 @@ view: mam_gdn_ga_view{
 
         WHEN ${campaign} ILIKE '%MAM - FY21 - Summer Recovery - Responsive%' THEN 'Traffic-Driving Responsive Display'
         WHEN ${campaign} ILIKE '%MAM - FY21 - Summer Recovery - Discovery%' THEN 'Traffic-Driving Google Discovery'
+
+        WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'Traffic-Driving Responsive Display'
 
         else  'Uncategorized'
         end;;
@@ -156,6 +164,7 @@ view: mam_gdn_ga_view{
       case
         when ${campaign} ilike '%Responsive%' then 'Responsive Display'
         when ${campaign} ilike '%Discovery%' then 'Discovery Display'
+        WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'Responsive Display'
         else 'Uncategorized'
         end
     ;;
@@ -164,7 +173,17 @@ view: mam_gdn_ga_view{
   dimension: creative_name {
     type:  string
     group_label: "Client Dimensions"
-    sql: 'Uncategorized' ;;
+    sql:
+      case
+        WHEN ${ad_group} ILIKE '%_Family%' THEN 'Family Responsive Display'
+        WHEN ${ad_group} ILIKE '%_Yeti%' THEN 'Yeti Responsive Display'
+        WHEN ${ad_group} ILIKE '%_Skiier%' THEN 'Skiier Responsive Display'
+        WHEN ${ad_group} ILIKE '%_Unicorns%' THEN 'Unicorns Responsive Display'
+        WHEN ${ad_group} ILIKE '%_StopSign%' THEN 'Stop Sign Responsive Display'
+        WHEN ${ad_group} ILIKE '%_Snowboarder%' THEN 'Snowboarder Responsive Display'
+        WHEN ${ad_group} ILIKE '%_Lake%' THEN 'Lake Responsive Display'
+        else 'Uncategorized'
+        end;;
   }
 
   dimension: publisher {

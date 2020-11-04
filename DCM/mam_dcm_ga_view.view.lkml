@@ -43,6 +43,7 @@ view: mam_dcm_ga_view {
       CASE
         when ${ad} = '(not set)' then 'Uncategorized'
         when ${ad} = 'Tracking Ad-AdTheorent_SummerRecovery_Phase2_PredictiveAudienceContextual_CA+NV_SeptemberVideo_0:15_1x1' then 'Uncategorized'
+        WHEN ${campaign_id} = '24922116' then 'FY21 Winter'
         WHEN ${campaign_id} = '23182329' then 'Winter Seasonal'
         WHEN ${campaign_id} = '23188164' then 'Winter Air Service'
         WHEN ${campaign_id} = '22311158' then 'Winter'
@@ -61,6 +62,9 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${placement} ilike 'AdTheorent_Winter_ConsiderationTD%' then 'Consideration - Traffic-Driving'
+        WHEN ${placement} ilike 'AdTheorent_Winter_Awareness%' then 'Awareness'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness%' then 'Awareness'
         WHEN ${campaign_id} = '23182329' then 'Seasonal'
         WHEN ${campaign_id} = '23188164' then 'Air Service'
         WHEN ${campaign_id} = '22311158' then 'Seasonal'
@@ -77,6 +81,21 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'In-Forecast Promotion Display'
+        when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_NYDMA_CrossDeviceDisplay%' then 'Cross-Device Display'
+        when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_BostonDMA_CrossDeviceDisplay%' then 'Cross-Device Display'
+        when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_DEN_CrossDeviceDisplay%' then 'Cross-Device Display'
+        when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_CA+NV_CrossDeviceDisplay%' then 'Cross-Device Display'
+
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Awareness Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_Video%' then 'Awareness Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_Video%' then 'Awareness Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_Video%' then 'Awareness Video'
+
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_MobileRichMedia%' then 'Mobile Rich Media'
 
         WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_Smartphone%' then '4 Screen Video - Smartphone'
         WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_Desktop%' then '4 Screen Video - Desktop'
@@ -145,6 +164,8 @@ view: mam_dcm_ga_view {
     sql:
     CASE
 
+    WHEN ${placement} ilike '%NYDMA%' then 'New York'
+    WHEN ${placement} ilike '%BostonDMA%' then 'Boston'
     WHEN ${placement} ilike '%\\_SF\\_%' then 'San Francisco'
     WHEN ${placement} ilike '%\\_NE\\_%' then 'Northeast'
     WHEN ${placement} ilike '%\\_DEN\\_%' then 'Denver'
@@ -154,6 +175,7 @@ view: mam_dcm_ga_view {
     WHEN ${placement} ilike '%\\_NE' then 'Northeast'
     WHEN ${placement} ilike '%\\_DEN' then 'Denver'
     WHEN ${placement} ilike '%\\_CA+NV' then 'California/Nevada'
+    when ${placement} ilike '%CA/NV%' then 'California/Nevada'
     WHEN ${placement} ilike '%\\_NTL\\_%' then 'National'
     WHEN ${placement} = 'Matador_Repromo Matador Content_Distribution_1x1' then 'National'
     WHEN ${placement} ilike '%Northeast%' then 'Northeast'
@@ -185,7 +207,7 @@ view: mam_dcm_ga_view {
       CASE
         WHEN ${site_dcm} ilike 'Matador%' then 'Matador'
         WHEN ${site_dcm} = 'Media Rhythm' then 'Snowboarder.com'
-        WHEN ${site_dcm} = 'Adtheorant' then 'AdTheorant'
+        WHEN ${site_dcm} = 'Adtheorant' then 'AdTheorent'
         ELSE ${site_dcm}
         END
         ;;
@@ -197,6 +219,26 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'Uncategorized_In-Forecast Promotion'
+        when ${creative} = 'MAM_Winter_Unicorns_728x90_STATIC' then 'Unicorns_728x90'
+        when ${creative} = 'MAM_Winter_Unicorns_300x250_STATIC' then 'Unicorns_300x250'
+        when ${creative} = 'MAM_Winter_Unicorns_160x600_STATIC' then 'Unicorns_160x600'
+
+        when ${creative} = 'MAM_Winter_Yeti_728x90_STATIC' then 'Yeti_728x90'
+        when ${creative} = 'MAM_Winter_Yeti_300x250_STATIC' then 'Yeti_300x250'
+        when ${creative} = 'MAM_Winter_Yeti_160x600_STATIC' then 'Yeti_160x600'
+        when ${creative} = 'MAM_Winter_Yeti_320x50_STATIC' then 'Yeti_320x50'
+
+        when ${creative} = 'MAM_Winter_Mammoths_728x90_STATIC' then 'Mammoths_728x90'
+        when ${creative} = 'MAM_Winter_Mammoths_300x250_STATIC' then 'Mammoths_300x250'
+        when ${creative} = 'MAM_Winter_Mammoths_160x600_STATIC' then 'Mammoths_160x600'
+        when ${creative} = 'MAM_Winter_Mammoths_320x50_STATIC' then 'Mammoths_320x50'
+
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_MobileRichMedia%' then 'Mobile Rich Media'
+
         when ${creative} ilike '%P2_728x90_YourAdventure' then 'YourAdventure_728x90'
         when ${creative} ilike '%P2_728x90_ReleaseYourself' then 'ReleaseYourself_728x90'
         when ${creative} ilike '%P2_728x90_ComeBack' then 'ComeBack_728x90'
@@ -231,6 +273,17 @@ view: mam_dcm_ga_view {
     label: "Ad Size"
     sql:
       CASE
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'Uncategorized_In-Forecast Promotion'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Awareness Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_Video%' then 'Awareness Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_Video%' then 'Awareness Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_Video%' then 'Awareness Video'
+
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_MobileRichMedia%' then 'Mobile Rich Media'
+
         when ${creative} ILIKE '%728x90%' then '728x90'
         when ${creative} ILIKE '%300x250%' then '300x250'
         when ${creative} ILIKE '%300x600%' then '300x600'

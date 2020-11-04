@@ -14,6 +14,15 @@ datagroup: mam_default_datagroup {
   max_cache_age: "24 hours"
 }
 
+## FY21 Winter Campaign ##
+
+explore: pdt_fy21_winter_campaign {
+  label: "FY21 Winter"
+  view_label: "FY21 Winter"
+  hidden: no
+  group_label: "Mammoth Lakes Tourism"
+}
+
 ## FY21 Summer Recovery Campaign ##
 
 explore: pdt_summer_recovery_campaign {

@@ -56,6 +56,7 @@ view: mam_yt_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${campaign} ilike 'MAM_FY21_Winter%' THEN 'FY21 Winter'
         WHEN ${campaign} ilike '%FY19/20 Fall%' THEN 'Fall'
         WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Winter Seasonal'
         WHEN ${campaign} ilike '%FY19/20 Summer%' THEN 'Summer'
@@ -70,6 +71,7 @@ view: mam_yt_ga_view {
     group_label: "Client Dimensions"
     sql:
         CASE
+        WHEN ${campaign} ilike 'MAM_FY21_Winter%' THEN 'Awareness'
         WHEN ${campaign} ilike '%Retargeting%' THEN 'Retargeting'
         WHEN ${campaign} ilike '%Prospecting%' THEN 'Prospecting'
         WHEN ${campaign_id} = '6542201483' then 'Prospecting'
@@ -95,7 +97,7 @@ view: mam_yt_ga_view {
       CASE
           WHEN ${campaign} ilike '%FY19/20 Winter - Retargeting%' THEN 'Skippable Pre-Roll Video - Retargeting'
           WHEN ${campaign} ilike '%FY19/20 Winter%' THEN 'Skippable Pre-Roll Video'
-
+          when ${campaign} ilike 'MAM_FY21_Winter%' then 'YouTube Skippable Pre-Roll Video'
           when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' then 'YouTube Skippable Pre-Roll Video'
           when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' then 'YouTube Skippable Pre-Roll Video'
           when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Locals' then 'YouTube Skippable Pre-Roll Video'
@@ -134,6 +136,10 @@ view: mam_yt_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        when ${campaign} ilike 'MAM_FY21_Winter_YT_NewYork%' THEN 'New York'
+        when ${campaign} ilike 'MAM_FY21_Winter_YT_Boston%' THEN 'Boston'
+        when ${campaign} ilike 'MAM_FY21_Winter_YT_CANV%' THEN 'California/Nevada'
+        when ${campaign} ilike 'MAM_FY21_Winter_YT_Denver%' THEN 'Denver'
         WHEN ${campaign} ilike '%SF' THEN 'San Francisco'
         WHEN ${campaign} ilike '%NE' THEN 'Northeast'
         WHEN ${campaign} ilike '%DEN' THEN 'Denver'
@@ -152,6 +158,10 @@ view: mam_yt_ga_view {
         WHEN ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' THEN 'Territory (:30)'
         WHEN ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' THEN 'Territory (:30)'
         when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Locals' then 'Locals Welcome (:30)'
+
+        when ${ad_group} ilike '%NSBGetLost' then 'No Small Backyard: Get Lost (:30)'
+        when ${ad_group} ilike '%NSBAboveAverage' then 'No Small Backyard: Above Average (:30)'
+        when ${ad_group} ilike '%NSBHighPlaces' then 'No Small Backyard: High Places (:30)'
 
         ELSE 'Uncategorized'
         END
