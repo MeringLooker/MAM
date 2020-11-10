@@ -63,6 +63,7 @@ view: mam_dcm_ga_view {
     sql:
       CASE
         WHEN ${placement} ilike 'AdTheorent_Winter_ConsiderationTD%' then 'Consideration - Traffic-Driving'
+        WHEN ${placement} ilike 'SNowBrains_Winter_Awareness%' then 'Awareness'
         WHEN ${placement} ilike 'AdTheorent_Winter_Awareness%' then 'Awareness'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness%' then 'Awareness'
         WHEN ${campaign_id} = '23182329' then 'Seasonal'
@@ -81,15 +82,23 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiVacation_%_CrossDeviceDisplay_Nov-Feb21_Display%' then 'Cross-Device Display'
+        WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiVacation_NE_CrossDeviceDisplay_Nov-Feb21_Display%' then 'Cross-Device Display'
+
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'In-Forecast Promotion Display'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_11-9_Display%' then 'In-Email Promotion Display (11/9)'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_DesktopSite_%_Display%' then 'Desktop Display'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_Nov-Feb21_Display%' then 'Mobile Website Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_Nov-Feb21_Display%' then 'Desktop Site Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileApp_Nov-Feb21_Display%' then 'Mobile App Marquee'
+
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_NYDMA_CrossDeviceDisplay%' then 'Cross-Device Display'
+        when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_NE_CrossDeviceDisplay_Nov-Mar21_AVDisplay%' then 'Cross-Device Display (AV)'
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_BostonDMA_CrossDeviceDisplay%' then 'Cross-Device Display'
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_DEN_CrossDeviceDisplay%' then 'Cross-Device Display'
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_CA+NV_CrossDeviceDisplay%' then 'Cross-Device Display'
 
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Awareness Video'
-        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_Video%' then 'Awareness Video'
-        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_Video%' then 'Awareness Video'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_Video%' then 'Awareness Video'
 
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_MobileRichMedia%' then 'Mobile Rich Media'
@@ -207,6 +216,7 @@ view: mam_dcm_ga_view {
       CASE
         WHEN ${site_dcm} ilike 'Matador%' then 'Matador'
         WHEN ${site_dcm} = 'Media Rhythm' then 'Snowboarder.com'
+        WHEN ${site_dcm} = 'snowbrains.com' then 'Snowbrains.com'
         WHEN ${site_dcm} = 'Adtheorant' then 'AdTheorent'
         ELSE ${site_dcm}
         END
@@ -219,14 +229,23 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
-        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'Uncategorized_In-Forecast Promotion'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'Yeti_1600x1000'
         when ${creative} = 'MAM_Winter_Unicorns_728x90_STATIC' then 'Unicorns_728x90'
         when ${creative} = 'MAM_Winter_Unicorns_300x250_STATIC' then 'Unicorns_300x250'
         when ${creative} = 'MAM_Winter_Unicorns_160x600_STATIC' then 'Unicorns_160x600'
 
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_%_Display%' then 'Yeti_Mobile Site Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_%_Display%' then 'Unicorns_Desktop Site Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileApp_%_Display%' then 'Unicorns_Mobile App Marquee'
+
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_%_Display%' then 'Uncategorized_Email Display'
+
+        WHEN ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_%_Video%' THEN 'Find Flights Now (:30)'
+
         when ${creative} = 'MAM_Winter_Yeti_728x90_STATIC' then 'Yeti_728x90'
         when ${creative} = 'MAM_Winter_Yeti_300x250_STATIC' then 'Yeti_300x250'
         when ${creative} = 'MAM_Winter_Yeti_160x600_STATIC' then 'Yeti_160x600'
+        when ${creative} = 'MAM_Winter_Yeti_300x600_STATIC' then 'Yeti_300x600'
         when ${creative} = 'MAM_Winter_Yeti_320x50_STATIC' then 'Yeti_320x50'
 
         when ${creative} = 'MAM_Winter_Mammoths_728x90_STATIC' then 'Mammoths_728x90'
@@ -273,7 +292,7 @@ view: mam_dcm_ga_view {
     label: "Ad Size"
     sql:
       CASE
-        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'Uncategorized_In-Forecast Promotion'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-ForecastPromo_%_Display%' then '1600x1000'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Awareness Video'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_Video%' then 'Awareness Video'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_Video%' then 'Awareness Video'
@@ -292,6 +311,10 @@ view: mam_dcm_ga_view {
         when ${creative} ILIKE '%970x250%' then '970x250'
         when ${creative} ILIKE '%300x50%' then '300x50'
         when ${placement} = 'AdTheorent_SummerRecovery_Phase2_PredictiveAudienceContextual_CA+NV_SeptemberVideo_0:15_1x1' then 'Video'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_%_Display%' then 'Mobile Site Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_%_Display%' then 'Desktop Site Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileApp_%_Display%' then 'Mobile App Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_%_Display%' then 'Email Display'
       ELSE 'Uncategorized'
       END;;
   }

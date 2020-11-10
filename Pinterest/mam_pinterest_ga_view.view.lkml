@@ -50,6 +50,7 @@ view: mam_pinterest_ga_view {
     sql:
       case
         when ${campaign_name} ilike 'MAM_FY20_Winter_%' then 'Winter Seasonal'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_%' then 'FY21 Winter'
         when ${campaign_name} ilike 'MAM_FY20Fall_%' then 'Fall Seasonal'
         when ${campaign_name} ilike 'MAM_FY21_SummerRecovery%' then 'FY21 Summer Recovery'
         else 'Uncategorized'
@@ -62,6 +63,7 @@ view: mam_pinterest_ga_view {
     group_label: "Client Dimensions"
     sql:
       case
+        when ${campaign_name} ilike 'MAM_FY21_Winter_%' then 'Awareness'
         when ${campaign_name} ilike 'MAM_FY21_SummerRecovery%' and ${date_date} between '2020-08-24' and '2020-10-05' then 'Phase 2'
         when ${campaign_name} ilike 'MAM_FY21_SummerRecovery%' and ${date_date} between '2020-10-06' and '2020-10-23' then 'Phase 2.5'
         else 'Uncategorized'
@@ -74,6 +76,8 @@ view: mam_pinterest_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN  ${campaign_name} ILIKE 'MAM_FY21_Winter_Traffic_Boston' then 'Boston'
+        WHEN  ${campaign_name} ILIKE 'MAM_FY21_Winter_Traffic_NewYork' then 'New York'
         WHEN  ${campaign_name} ILIKE '%Awareness_SF%' then 'San Francisco'
         WHEN  ${campaign_name} ILIKE '%Traffic_SF%' then 'San Francisco'
         WHEN  ${campaign_name} ILIKE '%TrafficDriving_SF%' then 'San Francisco'
@@ -117,6 +121,8 @@ view: mam_pinterest_ga_view {
           WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_KeywordTargeting%' then 'Awareness Pins - Keyword Targeted'
           WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_SiteLookalikeAudience%' then 'Awareness Pins - Site Lookalikes'
 
+          WHEN  ${ad_group_name} ILIKE 'MAM_FY21_Winter_Traffic_%_BrandAudience' then 'Traffic Driving Pins - Brand Audience'
+
 
           ELSE 'Uncategorized'
         END;;
@@ -159,6 +165,15 @@ view: mam_pinterest_ga_view {
           WHEN  ${promoted_pin_name} ILIKE '%Fall Activities_Guide%' then 'Fall Activities Guide'
           WHEN  ${promoted_pin_name} ILIKE '%A Local''s Guide to the Ultimat%' then 'A Local''s Guide to the Ultimat'
           WHEN  ${promoted_pin_name} ILIKE '%5 Must-See Lakes in Mammoth La%' then '5 Must-See Lakes in Mammoth Lakes'
+
+          WHEN  ${promoted_pin_name} ILIKE '%ElevateYourAttitude' then 'Elevate Your Attitude'
+          WHEN  ${promoted_pin_name} ILIKE '%BrandUnicorns' then 'Brand Unicorns'
+          WHEN  ${promoted_pin_name} ILIKE '%SnowPilesHigher' then 'Snow Piles Higher'
+          WHEN  ${promoted_pin_name} ILIKE '%DiscoverMidweek' then 'Discover Mid-week'
+          WHEN  ${promoted_pin_name} ILIKE '%Maladies' then 'Maladies'
+          WHEN  ${promoted_pin_name} ILIKE '%BrandYeti' then 'Yeti'
+
+
           ELSE 'Uncategorized'
         END;;
   }

@@ -106,11 +106,9 @@ view: mam_fb_ga_view {
     sql:
       case
         when ${campaign_name} ilike 'MAM_FY21_Winter_Video%' then 'Facebook Video'
-        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_NewYork_LaLWebVisitors' then 'Traffic-Driving Single Image - Web Visitor Lookalikes'
-        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_NewYork_LaLPageEngagement' then 'Traffic-Driving Single Image - Page Engagement Lookalikes'
-        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_NewYork_BrandAudience' then 'Traffic-Driving Single Image - Brand Audience'
-        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_Boston_LaLWebVisitors' then 'Traffic-Driving Single Image - Web Visitor Lookalikes'
-        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_Boston_LaLPageEngagement' then 'Traffic-Driving Single Image - Page Engagement Lookalikes'
+        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_LaLWebVisitors' then 'Traffic-Driving Single Image - Web Visitor Lookalikes'
+        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_LaLPageEngagement' then 'Traffic-Driving Single Image - Page Engagement Lookalikes'
+        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_BrandAudience' then 'Traffic-Driving Single Image - Brand Audience'
 
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_AirService%' then 'Single Image - Brand Audience'
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_Widget_AirService%' then 'Single Image - Retargeting/Site Lookalikes'
@@ -163,6 +161,11 @@ view: mam_fb_ga_view {
         when ${ad_name} ilike '%_TallestLifts1' then 'Tallest Lifts v1 Single Image'
         when ${ad_name} ilike '%_SunnySkiesBluebirdRides' then 'Sunny Skies Bluebird Rides Single Image'
         when ${ad_name} ilike '%_Family' then 'Family Single Image'
+        when ${ad_name} ilike '%_TimeToBookYourFlight2' then 'Time To Book Your Flight v2 Single Image'
+        when ${ad_name} ilike '%_TimeToBookYourFlight1' then 'Time To Book Your Flight v1 Single Image'
+        when ${ad_name} ilike '%_TimesChangeMagicRemainsNonSnow2' then 'Time Change Magic Remains v2 (Non-Snow) Single Image'
+        when ${ad_name} ilike '%_TimesChangeMagicRemainsNonSnow1' then 'Time Change Magic Remains v1 (Non-Snow) Single Image'
+        when ${ad_name} ilike '%_TimesChangeMagicRemains' then 'Time Change Magic Remains Single Image'
 
         WHEN ${ad_name} ilike '%NSBHighPlaces' THEN 'No Small Backyard: High Places (:30)'
         WHEN ${ad_name} ilike '%NSBGetLost' THEN 'No Small Backyard: Get Lost (:30)'
@@ -171,8 +174,7 @@ view: mam_fb_ga_view {
         WHEN ${ad_name} ilike '%MaladiesGettingOffTrack' THEN 'Maladies: Getting Off Track (:15)'
         WHEN ${ad_name} ilike '%MaladiesTheMondays' THEN 'Maladies: Mondays (:15)'
 
-        WHEN ${ad_name} ilike 'MAM_FY21_Winter_Video_Boston_BrandVideo' THEN 'Find Flights Now (:30)'
-        WHEN ${ad_name} ilike 'MAM_FY21_Winter_Video_NewYork_BrandVideo' THEN 'Find Flights Now (:30)'
+        WHEN ${ad_name} ilike 'MAM_FY21_Winter_Video_%_BrandVideo' THEN 'Find Flights Now (:30)'
 
         WHEN ${ad_name} ilike '%\\_HighPlaces' THEN 'No Small Backyard: High Places (:30)'
         WHEN ${ad_name} ilike '%\\_GetLost' THEN 'No Small Backyard: Get Lost (:30)'
@@ -267,6 +269,8 @@ view: mam_fb_ga_view {
         when ${campaign_name} ilike 'MAM_FY21_Winter_Traffic_Boston' then 'Boston'
         when ${campaign_name} ilike 'MAM_FY21_Winter_Video_NewYork' then 'New York'
         when ${campaign_name} ilike 'MAM_FY21_Winter_Video_Boston' then 'Boston'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Traffic_CANV' then 'California/Nevada'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_Video_CANV' then 'California/Nevada'
         WHEN ${campaign_name} ilike '%\\_SF\\_%' THEN 'San Francisco'
         WHEN ${campaign_name} ilike '%\\_NE\\_%' THEN 'Northeast'
         WHEN ${campaign_name} ilike '%\\_Denver\\_%' THEN 'Denver'
