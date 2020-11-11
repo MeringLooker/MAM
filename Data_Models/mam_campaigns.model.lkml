@@ -18,10 +18,18 @@ datagroup: mam_default_datagroup {
 
 explore: pdt_fy21_winter_campaign {
   label: "FY21 Winter"
-  view_label: "FY21 Winter"
+  view_label: "Campaign Delivery"
   hidden: no
   group_label: "Mammoth Lakes Tourism"
+
+    join: mam_fy21_winter_pacing {
+    view_label: "Campaign Pacing"
+    type: left_outer
+    sql_on: ${mam_fy21_winter_pacing.pacing_key} = ${pdt_fy21_winter_campaign.pacing_key} ;;
+    relationship: one_to_many
+    }
 }
+
 
 ## FY21 Summer Recovery Campaign ##
 

@@ -6,8 +6,8 @@ view: pdt_fy21_winter_pinterest {
       column: layer {field: mam_pinterest_ga_view.mam_layer}
       column: region {field: mam_pinterest_ga_view.mam_region}
       column: placement {field: mam_pinterest_ga_view.mam_placement}
-      column: creative_name {field: mam_pinterest_ga_view.mam_placement}
-      column: ad_size {field: mam_pinterest_ga_view.mam_placement}
+      column: creative_name {field: mam_pinterest_ga_view.creative_name}
+      column: ad_size {field: mam_pinterest_ga_view.ad_size}
       column: date {field: mam_pinterest_ga_view.date_date}
       column: week {field: mam_pinterest_ga_view.date_week}
       column: month {field: mam_pinterest_ga_view.date_month}
@@ -18,6 +18,7 @@ view: pdt_fy21_winter_pinterest {
       column: total_completes {field: mam_pinterest_ga_view.total_views_at_100}
       column: total_sessions {field: mam_pinterest_ga_view.total_sessions}
       column: total_session_duration {field: mam_pinterest_ga_view.total_session_duration}
+      column: total_flight_searches {field: mam_pinterest_ga_view.total_search_flights_button}
       filters: {
         field: mam_pinterest_ga_view.mam_campaign
         value: "FY21 Winter"

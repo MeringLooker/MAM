@@ -27,6 +27,10 @@ view: pdt_fy21_winter_sem {
         field: mam_sem_ga_view.day_date
         value: "after 2020/11/02"
       }
+      filters: {
+        field: mam_sem_ga_view.total_impressions
+        value: ">0"
+      }
     }
     datagroup_trigger: mam_default_datagroup
     distribution_style: all

@@ -30,6 +30,14 @@ view: pdt_fy21_winter_campaign {
     sql: ${publisher}||'_'||${campaign}||'_'||${region}||'_'||${layer}||'_'||${placement}||'_'||${ad_size}||'_'||${creative_name}||'_'||${date} ;;
   }
 
+#### Pacing Key Added ####
+
+  dimension: pacing_key {
+    type: string
+    hidden: yes
+    sql: ${publisher}||'_'||${region} ;;
+  }
+
 #### Dimensions below ####
 
   dimension: publisher {
@@ -301,5 +309,4 @@ view: pdt_fy21_winter_campaign {
     value_format_name: usd
     sql: ${video_cost}/nullif(${total_completes}, 0) ;;
   }
-
 }
