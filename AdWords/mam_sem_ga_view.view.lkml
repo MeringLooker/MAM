@@ -124,6 +124,9 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
           when ${ad_group_id} = '73000137340' then 'Los Angeles'
           when ${ad_group_id} = '73000137500' then 'Los Angeles'
 
+          when ${campaign_id} = '889031484' then 'California/Nevada'
+          when ${campaign_id} = '11006169119' then 'California/Nevada'
+
           ELSE 'Uncategorized'
           END;;
   }
