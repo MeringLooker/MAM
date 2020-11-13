@@ -84,13 +84,14 @@ view: mam_dcm_ga_view {
       CASE
         WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiVacation_%_CrossDeviceDisplay_Nov-Feb21_Display%' then 'Cross-Device Display'
         WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiVacation_NE_CrossDeviceDisplay_Nov-Feb21_Display%' then 'Cross-Device Display'
+        WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiTrippers_%_CrossDeviceDisplay_%_Display%' then 'Cross-Device Display'
 
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'In-Forecast Promotion Display'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_11-9_Display%' then 'In-Email Promotion Display (11/9)'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_DesktopSite_%_Display%' then 'Desktop Display'
-        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_Nov-Feb21_Display%' then 'Mobile Website Marquee'
-        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_Nov-Feb21_Display%' then 'Desktop Site Marquee'
-        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileApp_Nov-Feb21_Display%' then 'Mobile App Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_%_Display%' then 'Mobile Website Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_%_Display%' then 'Desktop Site Marquee'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileApp_%_Display%' then 'Mobile App Marquee'
 
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_NYDMA_CrossDeviceDisplay%' then 'Cross-Device Display'
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_NE_CrossDeviceDisplay_Nov-Mar21_AVDisplay%' then 'Cross-Device Display (AV)'

@@ -17,7 +17,7 @@ view: pdt_fy21_winter_campaign {
       union
     select * from ${pdt_fy21_winter_pinterest.SQL_TABLE_NAME}
     ;;
-    sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*1)/(60*60*24)) ;;
+    sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from GETDATE()) - 60*60*8)/(60*60*24)) ;;
     distribution_style: all
   }
 

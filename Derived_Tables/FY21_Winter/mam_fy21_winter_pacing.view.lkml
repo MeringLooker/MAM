@@ -23,6 +23,18 @@ view: mam_fy21_winter_pacing {
     sql: ${TABLE}.impressions_goal ;;
   }
 
+  dimension: start_date {
+    label: "Start Date"
+    type: date
+    sql: ${TABLE}.start_date ;;
+  }
+
+  dimension: end_date {
+    label: "End Date"
+    type: date
+    sql: ${TABLE}.end_date ;;
+  }
+
   dimension: publisher {
     type: string
     sql: ${TABLE}.publisher ;;
@@ -158,4 +170,24 @@ view: mam_fy21_winter_pacing {
     label: "% of Budget Delivered (Running Total)"
     value_format_name: percent_0
   }
+
+  ## Date Measures ##
+
+  # measure: days_in_flight {
+  #   group_label: "Flight Stats"
+  #   type: number
+  #   sql: diffdays(${end_date},${start_date}) ;;
+  # }
+
+  # measure: days_remaining {
+  #   group_label: "Flight Stats"
+  #   type: number
+  #   sql: DATEDIFF(${end_date}, GETDATE()) ;;
+  # }
+
+  # measure: days_passed {
+  #   group_label: "Flight Stats"
+  #   type: number
+  #   sql: DATEDIFF(GETDATE(), ${start_date}) ;;
+  # }
 }
