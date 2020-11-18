@@ -102,11 +102,11 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
         CASE
           when ${campaign} ilike '%New York%' then 'New York'
           when ${campaign} ilike '%Boston%' then 'Boston'
+          when ${campaign} ilike '%CA/NV FY21' then 'California/Nevada'
 
           when ${account} = 'MAM SEM - Air Service - Denver' then 'Denver'
           when ${account} = 'MAM SEM - Air Service - Northeast' then 'Northeast'
           when ${account} = 'MAM SEM - Air Service - SF' then 'San Francisco'
-
 
           WHEN  ${campaign} ILIKE '%SF' then 'San Francisco'
           WHEN  ${campaign} ILIKE '%DEN' then 'Denver'
@@ -137,6 +137,7 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
     group_label: "Client Dimensions"
     sql:
       case
+        when ${campaign_id} = '11545426925' then 'Generic Winter'
         when ${campaign} ilike 'Winter FY20 - Generic%' then 'Generic Winter'
         when ${campaign} ilike '%Aseasonal brand%' then 'Aseasonal Brand'
         when ${campaign} ilike '%Aseasonal activities%' then 'Aseasonal Activities'

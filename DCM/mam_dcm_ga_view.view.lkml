@@ -294,10 +294,10 @@ view: mam_dcm_ga_view {
     sql:
       CASE
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-ForecastPromo_%_Display%' then '1600x1000'
-        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Awareness Video'
-        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_Video%' then 'Awareness Video'
-        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_Video%' then 'Awareness Video'
-        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_Video%' then 'Awareness Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_Video%' then 'Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_Video%' then 'Video'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_Video%' then 'Video'
 
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_MobileRichMedia%' then 'Mobile Rich Media'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_MobileRichMedia%' then 'Mobile Rich Media'

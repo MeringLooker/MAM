@@ -42,6 +42,7 @@ view: mam_gdn_ga_view{
     sql:
       CASE
         WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'FY21 Winter'
+        WHEN ${campaign} ILIKE 'MAM_FY21_AirService%' THEN 'FY21 Winter'
         WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Winter Seasonal'
         WHEN ${campaign} ILIKE '%FY20 Winter - Conversion%' THEN 'Winter Seasonal'
         WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Winter Air Service'
@@ -62,6 +63,7 @@ view: mam_gdn_ga_view{
     sql:
       CASE
         WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'Consideration - Traffic-Driving'
+        WHEN ${campaign} ILIKE 'MAM_FY21_AirService%' THEN 'Air Service'
         WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Seasonal'
         WHEN ${campaign} ILIKE '%FY20 Winter - Conversion%' THEN 'Seasonal'
         WHEN ${campaign} ILIKE '%FY20 Winter - Air Service%' THEN 'Air Service'
@@ -80,6 +82,7 @@ view: mam_gdn_ga_view{
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN  ${campaign} ILIKE '%NYBostonDMA%' then 'Northeast'
         when ${campaign} ilike '%CANV%' then 'California/Nevada'
         when ${campaign} ilike '%NewYork%' then 'New York'
         when ${campaign} ilike '%Boston%' then 'Boston'
@@ -93,6 +96,9 @@ view: mam_gdn_ga_view{
         WHEN  ${campaign} ILIKE '%Sac' then 'Sacramento'
         WHEN  ${campaign} ILIKE '%SD' then 'San Diego'
         WHEN  ${campaign} ILIKE '%LA' then 'Los Angeles'
+        when ${campaign} ilike 'MAM_FY21_AirService_GDN_LADMA' then 'Los Angeles'
+        when ${campaign} ilike 'MAM_FY21_AirService_GDN_SFDMA' then 'San Francisco'
+        when ${campaign} ilike 'MAM_FY21_AirService_GDN_SDDMA' then 'San Diego'
         ELSE 'Uncategorized'
         END;;
   }
@@ -103,6 +109,7 @@ view: mam_gdn_ga_view{
     group_label: "Client Dimensions"
     sql:
       case
+        WHEN ${campaign} ILIKE 'MAM_FY21_AirService%' THEN 'Traffic-Driving Responsive Display - Air Service'
         when ${ad_group} ilike '%AirService - site Visitor lookalike%' then 'Responsive Display - Site Visitor Lookalikes'
         when ${ad_group} ilike '%AirService - retargeting%' then 'Responsive Display - Retargeting'
         when ${ad_group} ilike '%AirService - Competitive Destinations%' then 'Responsive Display - Competitive Destinations'
@@ -165,6 +172,7 @@ view: mam_gdn_ga_view{
         when ${campaign} ilike '%Responsive%' then 'Responsive Display'
         when ${campaign} ilike '%Discovery%' then 'Discovery Display'
         WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'Responsive Display'
+        WHEN ${campaign} ILIKE 'MAM_FY21_AirService%' THEN 'Responsive Display'
         else 'Uncategorized'
         end
     ;;
@@ -175,6 +183,10 @@ view: mam_gdn_ga_view{
     group_label: "Client Dimensions"
     sql:
       case
+        when ${ad_group} ilike '%GeneralAirplane' then 'General Airplane Responsive Display'
+        when ${ad_group} ilike '%Jump' then 'Jump Responsive Display'
+        when ${ad_group} ilike '%MinaretVista' then 'Minaret Vista Responsive Display'
+        WHEN ${ad_group} ILIKE '%_DownhillSnowboarder%' THEN 'Downhill Snowboarder Responsive Display'
         WHEN ${ad_group} ILIKE '%_Family%' THEN 'Family Responsive Display'
         WHEN ${ad_group} ILIKE '%_Yeti%' THEN 'Yeti Responsive Display'
         WHEN ${ad_group} ILIKE '%_Skiier%' THEN 'Skiier Responsive Display'

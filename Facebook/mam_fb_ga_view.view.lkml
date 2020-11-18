@@ -109,6 +109,7 @@ view: mam_fb_ga_view {
         when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_LaLWebVisitors' then 'Traffic-Driving Single Image - Web Visitor Lookalikes'
         when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_LaLPageEngagement' then 'Traffic-Driving Single Image - Page Engagement Lookalikes'
         when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_BrandAudience' then 'Traffic-Driving Single Image - Brand Audience'
+        when ${adset_name} ilike 'MAM_FY21_Winter_AirService_Traffic%' then 'Traffic-Driving Single Image - Air Service'
 
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_AirService%' then 'Single Image - Brand Audience'
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_Widget_AirService%' then 'Single Image - Retargeting/Site Lookalikes'
@@ -155,6 +156,10 @@ view: mam_fb_ga_view {
     type: string
     sql:
       CASE
+        when ${ad_name} ilike 'MAM_FY21_Winter_AirService_Traffic_%_General' then 'General United Airplane Single Image'
+        when ${ad_name} ilike 'MAM_FY21_Winter_AirService_Traffic_%_Jump' then 'Jump Single Image'
+        when ${ad_name} ilike 'MAM_FY21_Winter_AirService_Traffic_%_DownhillSkiier1' then 'Downhill Skiier v1 Single Image'
+        when ${ad_name} ilike 'MAM_FY21_Winter_AirService_Traffic_%_DownhillSkiier2' then 'Downhill Skiier v2 Single Image'
         when ${ad_name} ilike '%_Yeti' then 'Yeti Single Image'
         when ${ad_name} ilike '%_Unicorns' then 'Unicorns Single Image'
         when ${ad_name} ilike '%_TallestLifts2' then 'Tallest Lifts v2 Single Image'
@@ -248,6 +253,7 @@ view: mam_fb_ga_view {
     sql:
       CASE
         when ${campaign_name} ilike 'MAM_FY21_Winter_Traffic%' then 'Single Image'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic%' then 'Single Image'
         WHEN ${ad_name} ilike '%\\_Video\\_%' THEN 'Video'
         WHEN ${ad_name} ilike '%\\_SingleImage\\_%' THEN 'Single Image'
         WHEN ${ad_name} ilike '%\\_Carousel\\_%' THEN 'Carousel'
@@ -271,6 +277,10 @@ view: mam_fb_ga_view {
         when ${campaign_name} ilike 'MAM_FY21_Winter_Video_Boston' then 'Boston'
         when ${campaign_name} ilike 'MAM_FY21_Winter_Traffic_CANV' then 'California/Nevada'
         when ${campaign_name} ilike 'MAM_FY21_Winter_Video_CANV' then 'California/Nevada'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic_LADMA' then 'Los Angeles'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic_DenverDMA' then 'Denver'
+        when ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic_NYBostonDMA' then 'Northeast'
+        WHEN ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic_SFDMA' THEN 'San Francisco'
         WHEN ${campaign_name} ilike '%\\_SF\\_%' THEN 'San Francisco'
         WHEN ${campaign_name} ilike '%\\_NE\\_%' THEN 'Northeast'
         WHEN ${campaign_name} ilike '%\\_Denver\\_%' THEN 'Denver'

@@ -162,6 +162,7 @@ view: mam_yt_ga_view {
         when ${ad_group} ilike '%NSBGetLost' then 'No Small Backyard: Get Lost (:30)'
         when ${ad_group} ilike '%NSBAboveAverage' then 'No Small Backyard: Above Average (:30)'
         when ${ad_group} ilike '%NSBHighPlaces' then 'No Small Backyard: High Places (:30)'
+        WHEN ${ad_group} ilike 'MAM_FY21_Winter_YT_%_BrandVideo' THEN 'Find Flights Now (:30)'
 
         ELSE 'Uncategorized'
         END

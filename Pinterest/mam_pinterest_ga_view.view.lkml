@@ -78,6 +78,8 @@ view: mam_pinterest_ga_view {
       CASE
         WHEN  ${campaign_name} ILIKE 'MAM_FY21_Winter_Traffic_Boston' then 'Boston'
         WHEN  ${campaign_name} ILIKE 'MAM_FY21_Winter_Traffic_NewYork' then 'New York'
+        WHEN  ${campaign_name} ILIKE 'MAM_FY21_Winter_Traffic_CANV' then 'California/Nevada'
+        WHEN  ${campaign_name} ILIKE 'MAM_FY21_Winter_Traffic_Denver' then 'Denver'
         WHEN  ${campaign_name} ILIKE '%Awareness_SF%' then 'San Francisco'
         WHEN  ${campaign_name} ILIKE '%Traffic_SF%' then 'San Francisco'
         WHEN  ${campaign_name} ILIKE '%TrafficDriving_SF%' then 'San Francisco'
@@ -122,6 +124,7 @@ view: mam_pinterest_ga_view {
           WHEN  ${ad_group_name} ILIKE '%FY20_Winter_Awareness_SiteLookalikeAudience%' then 'Awareness Pins - Site Lookalikes'
 
           WHEN  ${ad_group_name} ILIKE 'MAM_FY21_Winter_Traffic_%_BrandAudience' then 'Traffic Driving Pins - Brand Audience'
+          WHEN  ${ad_group_name} ILIKE 'MAM_FY21_Winter_Traffic_%_Retargeting' then 'Traffic Driving Pins - Retargeting'
 
 
           ELSE 'Uncategorized'
