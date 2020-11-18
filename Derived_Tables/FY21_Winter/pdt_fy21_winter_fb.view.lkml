@@ -28,7 +28,7 @@ view: pdt_fy21_winter_fb {
         value: "after 2020/11/02"
       }
     }
-    datagroup_trigger: mam_default_datagroup
+    datagroup_trigger: mam_fb_datagroup
     distribution_style: all
   }
 }
