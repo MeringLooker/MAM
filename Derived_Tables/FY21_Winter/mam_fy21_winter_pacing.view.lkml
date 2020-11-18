@@ -54,7 +54,7 @@ view: mam_fy21_winter_pacing {
   ## Goal Measures ##
 
   measure: total_spend_goal {
-    group_label: "Spend Goals"
+    group_label: "Spend Goals (All Net)"
     type: sum_distinct
     sql_distinct_key: ${id} ;;
     sql: ${spend_goal} ;;
@@ -66,7 +66,7 @@ view: mam_fy21_winter_pacing {
     group_label: "Spend Goals"
     type: sum_distinct
     sql_distinct_key: ${pdt_fy21_winter_campaign.primary_key} ;;
-    sql: ${pdt_fy21_winter_campaign.cost}*1.17647 ;;
+    sql: ${pdt_fy21_winter_campaign.cost} ;;
     label: "Spend To Date"
     value_format_name: usd
   }
