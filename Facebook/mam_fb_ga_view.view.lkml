@@ -281,6 +281,7 @@ view: mam_fb_ga_view {
         when ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic_DenverDMA' then 'Denver'
         when ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic_NYBostonDMA' then 'Northeast'
         WHEN ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic_SFDMA' THEN 'San Francisco'
+        WHEN ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic_SDDMA' THEN 'San Diego'
         WHEN ${campaign_name} ilike '%\\_SF\\_%' THEN 'San Francisco'
         WHEN ${campaign_name} ilike '%\\_NE\\_%' THEN 'Northeast'
         WHEN ${campaign_name} ilike '%\\_Denver\\_%' THEN 'Denver'

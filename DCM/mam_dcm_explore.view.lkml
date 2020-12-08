@@ -22,4 +22,11 @@ explore: mam_dcm {
     sql_on: ${mam_fy20_winter_air_amobee.passback_join} = ${mam_dcm_ga_view.passback_join} ;;
     relationship: one_to_many
   }
+
+  join: mam_fy21_winter_dcm_view {
+    view_label: "FY21 Winter - AdTheorent Video Passback"
+    type: inner
+    sql_on: ${mam_dcm_ga_view.passback_join_ad} = ${mam_fy21_winter_dcm_view.passback_join} ;;
+    relationship: many_to_one
+  }
 }

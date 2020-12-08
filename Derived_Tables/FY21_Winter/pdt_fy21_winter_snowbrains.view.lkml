@@ -28,6 +28,10 @@ view: pdt_fy21_winter_snowbrains {
         value: "Snowbrains.com"
       }
       filters: {
+        field: mam_dcm_ga_view.ad
+        value: "-(not set)"
+      }
+      filters: {
         field: mam_dcm_ga_view.date_date
         value: "after 2020/11/09"
       }

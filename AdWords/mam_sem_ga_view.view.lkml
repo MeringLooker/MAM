@@ -89,6 +89,7 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
         when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-07-13' AND '2020-07-31' then 'Phase 1'
         when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-08-01' AND '2020-10-05' then 'Phase 2'
         when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-10-06' and '2020-10-31' then 'Phase 2.5'
+        when ${campaign} ilike 'Air Service FY21%' then 'Air Service'
         when ${day_date} BETWEEN '2020-11-02' AND '2021-03-31' then 'Consideration - Traffic-Driving'
         ELSE 'Uncategorized'
         END
@@ -126,6 +127,10 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
 
           when ${campaign_id} = '889031484' then 'California/Nevada'
           when ${campaign_id} = '11006169119' then 'California/Nevada'
+          when ${campaign_id} = '11661407724' then 'Los Angeles'
+          when ${campaign_id} = '11661407730' then 'San Diego'
+          when ${campaign_id} = '11661407727' then 'San Francisco'
+          when ${campaign_id} = '11665570231' then 'Denver'
 
           ELSE 'Uncategorized'
           END;;
@@ -138,6 +143,9 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
     sql:
       case
         when ${campaign_id} = '11545426925' then 'Generic Winter'
+        when ${campaign_id} = '11504736844' then 'Generic Winter'
+        when ${campaign_id} = '11504736856' then 'Generic Winter'
+
         when ${campaign} ilike 'Winter FY20 - Generic%' then 'Generic Winter'
         when ${campaign} ilike '%Aseasonal brand%' then 'Aseasonal Brand'
         when ${campaign} ilike '%Aseasonal activities%' then 'Aseasonal Activities'
@@ -175,6 +183,12 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
         when ${ad_group_id} = '82330405898' then 'Market-Specific Terms'
         when ${ad_group_id} = '82330405898' then 'Market-Specific Terms'
         when ${ad_group_id} = '82330405858' then 'Market-Specific Terms'
+
+        when ${ad_group_id} = '113722784819' then 'Generic Boston'
+        when ${ad_group_id} = '114437117278' then 'Generic Denver'
+        when ${ad_group_id} = '112887784545' then 'Generic SD'
+        when ${ad_group_id} = '112887784265' then 'Generic SF'
+        when ${ad_group_id} = '112887783985' then 'Generic LA'
 
 
         when ${ad_group_id} = '82330405658' then 'Mammoth Flights'

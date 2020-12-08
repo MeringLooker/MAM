@@ -28,6 +28,10 @@ view: pdt_fy21_winter_opensnow {
         value: "OpenSnow"
       }
       filters: {
+        field: mam_dcm_ga_view.ad
+        value: "-(not set)"
+      }
+      filters: {
         field: mam_dcm_ga_view.date_date
         value: "after 2020/11/02"
       }

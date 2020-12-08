@@ -96,9 +96,12 @@ view: mam_gdn_ga_view{
         WHEN  ${campaign} ILIKE '%Sac' then 'Sacramento'
         WHEN  ${campaign} ILIKE '%SD' then 'San Diego'
         WHEN  ${campaign} ILIKE '%LA' then 'Los Angeles'
-        when ${campaign} ilike 'MAM_FY21_AirService_GDN_LADMA' then 'Los Angeles'
-        when ${campaign} ilike 'MAM_FY21_AirService_GDN_SFDMA' then 'San Francisco'
-        when ${campaign} ilike 'MAM_FY21_AirService_GDN_SDDMA' then 'San Diego'
+        when ${campaign} ilike 'MAM_FY21_AirService_GDN_LADMA%' then 'Los Angeles'
+        when ${campaign} ilike 'MAM_FY21_AirService_GDN_SFDMA%' then 'San Francisco'
+        when ${campaign} ilike 'MAM_FY21_AirService_GDN_SDDMA%' then 'San Diego'
+        when ${campaign} ilike 'MAM_FY21_AirService_Discovery_LADMA%' then 'Los Angeles'
+        when ${campaign} ilike 'MAM_FY21_AirService_Discovery_SFDMA%' then 'San Francisco'
+        when ${campaign} ilike 'MAM_FY21_AirService_Discovery_SDDMA%' then 'San Diego'
         ELSE 'Uncategorized'
         END;;
   }
@@ -119,7 +122,10 @@ view: mam_gdn_ga_view{
         WHEN ${campaign} ILIKE '%MAM - FY21 - Summer Recovery - Responsive%' THEN 'Traffic-Driving Responsive Display'
         WHEN ${campaign} ILIKE '%MAM - FY21 - Summer Recovery - Discovery%' THEN 'Traffic-Driving Google Discovery'
 
-        WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'Traffic-Driving Responsive Display'
+        WHEN ${campaign} ILIKE 'MAM_FY21_Winter_GDN%' THEN 'Traffic-Driving Responsive Display'
+        WHEN ${campaign} ILIKE 'MAM_FY21_Winter_Discovery%' THEN 'Traffic-Driving Discovery Display'
+        WHEN ${campaign} ILIKE 'MAM_FY21_AirService_GDN%' THEN 'Traffic-Driving Responsive Display'
+        WHEN ${campaign} ILIKE 'MAM_FY21_AirService_Discovery%' THEN 'Traffic-Driving Discovery Display'
 
         else  'Uncategorized'
         end;;

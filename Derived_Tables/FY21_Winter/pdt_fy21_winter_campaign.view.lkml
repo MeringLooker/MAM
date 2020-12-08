@@ -11,6 +11,8 @@ view: pdt_fy21_winter_campaign {
       union
     select * from ${pdt_fy21_winter_adtheorent.SQL_TABLE_NAME}
       union
+    select * from ${pdt_fy21_winter_adtheorent_1p_video.SQL_TABLE_NAME}
+      union
     select * from ${pdt_fy21_winter_opensnow.SQL_TABLE_NAME}
       union
     select * from ${pdt_fy21_winter_snowbrains.SQL_TABLE_NAME}
@@ -41,7 +43,7 @@ view: pdt_fy21_winter_campaign {
 #### Dimensions below ####
 
   dimension: publisher {
-    drill_fields: [placement,region,creative_name]
+    drill_fields: [placement,region_clean,creative_name]
     type:  string
     sql:  ${TABLE}.publisher ;;
   }
@@ -53,9 +55,22 @@ view: pdt_fy21_winter_campaign {
   }
 
   dimension: region {
+    hidden: yes
     drill_fields: [publisher,placement,creative_name]
     type:  string
     sql:  ${TABLE}.region ;;
+  }
+
+  dimension: region_clean {
+    label: "Region"
+    drill_fields: [publisher,placement,creative_name]
+    type:  string
+    sql:
+        case
+          when ${region} ilike 'Boston' then 'Northeast'
+          when ${region} ilike 'New York' then 'Northeast'
+          else ${region}
+          end ;;
   }
 
   dimension: layer {
@@ -65,7 +80,7 @@ view: pdt_fy21_winter_campaign {
   }
 
   dimension: placement {
-    drill_fields: [creative_name,ad_size,region]
+    drill_fields: [creative_name,ad_size,region_clean]
     type:  string
     label: "Placement Name"
     sql:  ${TABLE}.placement ;;

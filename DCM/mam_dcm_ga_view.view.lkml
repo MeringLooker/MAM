@@ -18,6 +18,12 @@ view: mam_dcm_ga_view {
     sql: ${placement_id}||'_'||${date_date} ;;
   }
 
+  dimension: passback_join_ad {
+    hidden: yes
+    type: string
+    sql: ${ad_id}||'_'||${date_date} ;;
+  }
+
 ##### Dimensions added to this table via LookML ######
 
   dimension: fiscal_year {
@@ -86,8 +92,10 @@ view: mam_dcm_ga_view {
         WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiVacation_NE_CrossDeviceDisplay_Nov-Feb21_Display%' then 'Cross-Device Display'
         WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiTrippers_%_CrossDeviceDisplay_%_Display%' then 'Cross-Device Display'
 
-        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'In-Forecast Promotion Display'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'In-Forecast Promotion Display (11/2)'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_NewEnglandDailyShow_NE_In-ForecastPromo_12-7_Display%' then 'In-Forecast Promotion Display (12/7)'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_11-9_Display%' then 'In-Email Promotion Display (11/9)'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_11-20_Display%' then 'In-Email Promotion Display (11/20)'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_DesktopSite_%_Display%' then 'Desktop Display'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_%_Display%' then 'Mobile Website Marquee'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_%_Display%' then 'Desktop Site Marquee'
@@ -231,9 +239,23 @@ view: mam_dcm_ga_view {
     sql:
       CASE
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'Yeti_1600x1000'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_NewEnglandDailyShow_NE_In-ForecastPromo_12-7_Display%' then 'Yeti_1600x1000'
         when ${creative} = 'MAM_Winter_Unicorns_728x90_STATIC' then 'Unicorns_728x90'
         when ${creative} = 'MAM_Winter_Unicorns_300x250_STATIC' then 'Unicorns_300x250'
         when ${creative} = 'MAM_Winter_Unicorns_160x600_STATIC' then 'Unicorns_160x600'
+        when ${creative} = 'MAM_Winter_Unicorns_300x600_STATIC' then 'Unicorns_300x600'
+
+        when ${creative} = 'MAM_AirService_CA-NV-DEN_300x600' then 'AirService_300x600'
+        when ${creative} = 'MAM_AirService_CA-NV-DEN_728x90' then 'AirService_728x90'
+        when ${creative} = 'MAM_AirService_CA-NV-DEN_320x50' then 'AirService_320x50'
+        when ${creative} = 'MAM_AirService_CA-NV-DEN_300x250' then 'AirService_300x250'
+        when ${creative} = 'MAM_AirService_CA-NV-DEN_160x600' then 'AirService_160x600'
+
+        when ${creative} = 'MAM_AirService_NE_300x600' then 'AirService_300x600'
+        when ${creative} = 'MAM_AirService_NE_728x90' then 'AirService_728x90'
+        when ${creative} = 'MAM_AirService_NE_320x50' then 'AirService_320x50'
+        when ${creative} = 'MAM_AirService_NE_300x250' then 'AirService_300x250'
+        when ${creative} = 'MAM_AirService_NE_160x600' then 'AirService_160x600'
 
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_%_Display%' then 'Yeti_Mobile Site Marquee'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_%_Display%' then 'Unicorns_Desktop Site Marquee'
