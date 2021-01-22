@@ -32,7 +32,7 @@ view: pdt_fy21_winter_sem {
         value: ">0"
       }
     }
-    datagroup_trigger: mam_sem_datagroup
+    datagroup_trigger: mam_default_datagroup
     distribution_style: all
   }
 }

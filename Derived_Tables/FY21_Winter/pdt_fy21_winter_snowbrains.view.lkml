@@ -36,7 +36,7 @@ view: pdt_fy21_winter_snowbrains {
         value: "after 2020/11/09"
       }
     }
-    datagroup_trigger: mam_dcm_datagroup
+    datagroup_trigger: mam_default_datagroup
     distribution_style: all
   }
 }

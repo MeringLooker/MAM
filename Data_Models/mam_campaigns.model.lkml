@@ -14,36 +14,6 @@ datagroup: mam_default_datagroup {
   max_cache_age: "24 hours"
 }
 
-datagroup: mam_fb_datagroup {
-  sql_trigger: SELECT max(date_start) from mam_fb_ga_view ;;
-  max_cache_age: "24 hours"
-}
-
-datagroup: mam_gdn_datagroup {
-  sql_trigger: SELECT max(day) from mam_gdn_ga_view ;;
-  max_cache_age: "24 hours"
-}
-
-datagroup: mam_sem_datagroup {
-  sql_trigger: SELECT max(day) from mam_sem_ga_view ;;
-  max_cache_age: "24 hours"
-}
-
-datagroup: mam_dcm_datagroup {
-  sql_trigger: SELECT max(date) from mam_dcm_ga_view ;;
-  max_cache_age: "24 hours"
-}
-
-datagroup: mam_pin_datagroup {
-  sql_trigger: SELECT max(date) from mam_pinterest_ga_view ;;
-  max_cache_age: "24 hours"
-}
-
-datagroup: mam_yt_datagroup {
-  sql_trigger: SELECT max(day) from mam_yt_ga_view ;;
-  max_cache_age: "24 hours"
-}
-
 ## FY21 Winter Campaign ##
 
 explore: pdt_fy21_winter_campaign {
@@ -60,10 +30,9 @@ explore: pdt_fy21_winter_campaign {
     }
 }
 
-
 ## FY21 Summer Recovery Campaign ##
 
-explore: pdt_summer_recovery_campaign {
+explore: mam_fy21_summer_recovery_campaign {
   label: "FY21 Recovery"
   view_label: "FY21 Recovery"
   hidden: no

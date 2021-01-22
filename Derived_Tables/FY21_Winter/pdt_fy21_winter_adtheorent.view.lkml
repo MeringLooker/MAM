@@ -40,7 +40,7 @@ view: pdt_fy21_winter_adtheorent {
         value: "after 2020/11/02"
       }
     }
-    datagroup_trigger: mam_dcm_datagroup
+    datagroup_trigger: mam_default_datagroup
     distribution_style: all
   }
 }
