@@ -37,7 +37,7 @@ view: pdt_fy21_winter_adtheorent {
       }
       filters: {
         field: mam_dcm_ga_view.date_date
-        value: "after 2020/11/02"
+        value: "2020/11/02 to 2020/12/06,2021/02/08 to 2021/04/12"
       }
     }
     datagroup_trigger: mam_default_datagroup

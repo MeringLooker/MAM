@@ -33,7 +33,7 @@ view: pdt_fy21_winter_snowbrains {
       }
       filters: {
         field: mam_dcm_ga_view.date_date
-        value: "after 2020/11/09"
+        value: "2020/11/04 to 2020/12/06,2021/02/01 to 2021/04/12"
       }
     }
     datagroup_trigger: mam_default_datagroup

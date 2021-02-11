@@ -25,7 +25,7 @@ view: pdt_fy21_winter_pinterest {
       }
       filters: {
         field: mam_pinterest_ga_view.date_date
-        value: "after 2020/11/02"
+        value: "2020/11/02 to 2020/12/06"
       }
     }
     datagroup_trigger: mam_default_datagroup

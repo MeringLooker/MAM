@@ -25,7 +25,7 @@ view: pdt_fy21_winter_fb {
       }
       filters: {
         field: mam_fb_ga_view.date_start_date
-        value: "after 2020/11/02"
+        value: "2020/11/02 to 2020/12/06,2021/02/03 to 2021/04/12"
       }
     }
     datagroup_trigger: mam_default_datagroup

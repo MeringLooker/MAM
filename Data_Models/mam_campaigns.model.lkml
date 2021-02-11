@@ -22,12 +22,12 @@ explore: pdt_fy21_winter_campaign {
   hidden: no
   group_label: "Mammoth Lakes Tourism"
 
-    join: mam_fy21_winter_pacing {
-    view_label: "Campaign Pacing"
-    type: left_outer
-    sql_on: ${mam_fy21_winter_pacing.pacing_key} = ${pdt_fy21_winter_campaign.pacing_key} ;;
-    relationship: one_to_many
-    }
+    # join: mam_fy21_winter_pacing {
+    # view_label: "Campaign Pacing"
+    # type: left_outer
+    # sql_on: ${mam_fy21_winter_pacing.pacing_key} = ${pdt_fy21_winter_campaign.pacing_key} ;;
+    # relationship: one_to_many
+    # }
 }
 
 ## FY21 Summer Recovery Campaign ##

@@ -88,6 +88,11 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${placement_id} = '286278057' then 'In-Email Promotion Display'
+        WHEN ${placement_id} = '295140241' then 'Awareness Video'
+        WHEN ${placement_id} = '286278075' then 'In-Forecast Promotion Display'
+        WHEN ${placement_id} = '286167734' then 'In-Forecast Promotion Display'
+
         WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiVacation_%_CrossDeviceDisplay_Nov-Feb21_Display%' then 'Cross-Device Display'
         WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiVacation_NE_CrossDeviceDisplay_Nov-Feb21_Display%' then 'Cross-Device Display'
         WHEN ${placement} ilike 'SnowBrains_Winter_Awareness_SkiTrippers_%_CrossDeviceDisplay_%_Display%' then 'Cross-Device Display'
@@ -205,6 +210,10 @@ view: mam_dcm_ga_view {
     WHEN ${placement} ilike '%Native Display Added Value\\_CA & NV%' then 'California/Nevada'
     WHEN ${placement} ilike '%CA & NV%' then 'California/Nevada'
     WHEN ${placement_id} = '252643239' then 'California/Nevada'
+    WHEN ${placement_id} = '286278057' then 'California'
+    WHEN ${placement_id} = '295140241' then 'California'
+    WHEN ${placement_id} = '286278075' then 'California'
+    WHEN ${placement_id} = '286167734' then 'California'
     WHEN ${mam_placement} = 'Matador Experience Distribution' then 'National'
     WHEN ${mam_placement} = 'ROS Big Box' then 'National'
     WHEN ${placement} ilike '%Native Display\\_ San Diego%' then 'San Diego'
@@ -238,8 +247,11 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
-        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_TahoeDailyShow_CA/NV_In-ForecastPromo_11-2_Display%' then 'Yeti_1600x1000'
-        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_NewEnglandDailyShow_NE_In-ForecastPromo_12-7_Display%' then 'Yeti_1600x1000'
+        WHEN ${placement_id} = '286278075' then 'Uncategorized_Forcast Display'
+        WHEN ${placement_id} = '286167734' then 'Uncategorized_Forcast Display'
+        WHEN ${placement_id} = '286353049' then 'Uncategorized_Forcast Display'
+        WHEN ${placement_id} = '286278342' then 'Uncategorized_Forcast Display'
+
         when ${creative} = 'MAM_Winter_Unicorns_728x90_STATIC' then 'Unicorns_728x90'
         when ${creative} = 'MAM_Winter_Unicorns_300x250_STATIC' then 'Unicorns_300x250'
         when ${creative} = 'MAM_Winter_Unicorns_160x600_STATIC' then 'Unicorns_160x600'
@@ -315,7 +327,11 @@ view: mam_dcm_ga_view {
     label: "Ad Size"
     sql:
       CASE
-        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-ForecastPromo_%_Display%' then '1600x1000'
+        WHEN ${placement_id} = '286278075' then 'Forcast Display'
+        WHEN ${placement_id} = '286167734' then 'Forcast Display'
+        WHEN ${placement_id} = '286353049' then 'Forcast Display'
+        WHEN ${placement_id} = '286278342' then 'Forcast Display'
+
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Video'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_Video%' then 'Video'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_Video%' then 'Video'
@@ -333,11 +349,14 @@ view: mam_dcm_ga_view {
         when ${creative} ILIKE '%160x600%' then '160x600'
         when ${creative} ILIKE '%970x250%' then '970x250'
         when ${creative} ILIKE '%300x50%' then '300x50'
+        WHEN ${placement_id} = '295140241' then 'Video'
         when ${placement} = 'AdTheorent_SummerRecovery_Phase2_PredictiveAudienceContextual_CA+NV_SeptemberVideo_0:15_1x1' then 'Video'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_%_Display%' then 'Mobile Site Marquee'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_%_Display%' then 'Desktop Site Marquee'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileApp_%_Display%' then 'Mobile App Marquee'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_%_Display%' then 'Email Display'
+
+
       ELSE 'Uncategorized'
       END;;
   }

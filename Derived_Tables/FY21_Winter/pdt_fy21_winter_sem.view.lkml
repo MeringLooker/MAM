@@ -25,7 +25,7 @@ view: pdt_fy21_winter_sem {
       }
       filters: {
         field: mam_sem_ga_view.day_date
-        value: "after 2020/11/02"
+        value: "2020/11/02 to 2020/12/06,2021/02/03 to 2021/04/12"
       }
       filters: {
         field: mam_sem_ga_view.total_impressions

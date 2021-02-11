@@ -7,7 +7,7 @@ view: mam_fy21_winter_pacing {
     primary_key: yes
     type: string
     sql: ${TABLE}.id ;;
-  }
+}
 
 ## below used to join to campaign table ##
 

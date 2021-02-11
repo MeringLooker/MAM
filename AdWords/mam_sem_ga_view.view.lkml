@@ -69,7 +69,7 @@ dimension: mam_campaign {
       when ${account} = 'MAM SEM - Northeast' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
       when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
       when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-07-13' AND '2020-10-31' then 'FY21 Summer Recovery'
-      when ${day_date} BETWEEN '2020-11-02' AND '2021-03-31' then 'FY21 Winter'
+      when ${day_date} BETWEEN '2020-11-02' AND '2021-04-12' then 'FY21 Winter'
         ELSE 'Uncategorized'
         END
     ;;
@@ -127,6 +127,10 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
 
           when ${campaign_id} = '889031484' then 'California/Nevada'
           when ${campaign_id} = '11006169119' then 'California/Nevada'
+          when ${campaign_id} = '11545426922' then 'California'
+          when ${campaign_id} = '11545426925' then 'California'
+          when ${campaign_id} = '11545426799' then 'California'
+          when ${campaign_id} = '11545426796' then 'California'
           when ${campaign_id} = '11661407724' then 'Los Angeles'
           when ${campaign_id} = '11661407730' then 'San Diego'
           when ${campaign_id} = '11661407727' then 'San Francisco'

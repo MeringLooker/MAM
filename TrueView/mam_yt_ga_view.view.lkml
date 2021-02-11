@@ -144,6 +144,7 @@ view: mam_yt_ga_view {
         WHEN ${campaign} ilike '%NE' THEN 'Northeast'
         WHEN ${campaign} ilike '%DEN' THEN 'Denver'
         WHEN ${campaign} ilike '%CA/NV' THEN 'California/Nevada'
+        when ${campaign_id} = '12236438303' then 'California'
         ELSE 'Uncategorized'
         END
         ;;
