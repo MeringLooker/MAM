@@ -101,6 +101,9 @@ view: mam_dcm_ga_view {
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_NewEnglandDailyShow_NE_In-ForecastPromo_12-7_Display%' then 'In-Forecast Promotion Display (12/7)'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_11-9_Display%' then 'In-Email Promotion Display (11/9)'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_11-20_Display%' then 'In-Email Promotion Display (11/20)'
+
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_SkiTrippers_CA_In-EmailPromo_2-19_Display%' then 'In-Email Promotion Display (2/19)'
+
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_DesktopSite_%_Display%' then 'Desktop Display'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_%_Display%' then 'Mobile Website Marquee'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_%_Display%' then 'Desktop Site Marquee'
@@ -111,6 +114,7 @@ view: mam_dcm_ga_view {
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_BostonDMA_CrossDeviceDisplay%' then 'Cross-Device Display'
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_DEN_CrossDeviceDisplay%' then 'Cross-Device Display'
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_CA+NV_CrossDeviceDisplay%' then 'Cross-Device Display'
+        when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_CA_CrossDeviceDisplay_Feb-Apr21_Display%' then 'Cross-Device Display'
 
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Awareness Video'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_Video%' then 'Awareness Video'
@@ -119,6 +123,7 @@ view: mam_dcm_ga_view {
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_MobileRichMedia%' then 'Mobile Rich Media'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_MobileRichMedia%' then 'Mobile Rich Media'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA_MobileRichMedia_Feb-Apr21_RichMedia%' then 'Mobile Rich Media'
 
         WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_Smartphone%' then '4 Screen Video - Smartphone'
         WHEN ${placement} ilike '%\\_4ScreenVideoPackage\\_Desktop%' then '4 Screen Video - Desktop'
@@ -193,6 +198,13 @@ view: mam_dcm_ga_view {
     WHEN ${placement} ilike '%\\_NE\\_%' then 'Northeast'
     WHEN ${placement} ilike '%\\_DEN\\_%' then 'Denver'
     WHEN ${placement} ilike '%\\_CA+NV\_%' then 'California/Nevada'
+    when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_CA_CrossDeviceDisplay_Feb-Apr21_Display%' then 'California'
+    when ${placement} ilike 'SnowBrains_Winter_Awareness_SkiTrippers_CA_CrossDeviceDisplay_Nov-Mar21_Display%' then 'California'
+    when ${placement} ilike 'OpenSnow_Winter_Awareness_SkiTrippers_CA_MarqueeMobileApp_Feb-Apr21_Display%' then 'California'
+    when ${placement} ilike 'OpenSnow_Winter_Awareness_SkiTrippers_CA_In-EmailPromo_2-19_Display%' then 'California'
+    when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA_MobileRichMedia_Feb-Apr21_RichMedia%' then 'California'
+    when ${placement} ilike 'OpenSnow_Winter_Awareness_SkiTrippers_CA_MarqueeMobileSite_Feb-Apr21_Display%' then 'California'
+    when ${placement} ilike 'OpenSnow_Winter_Awareness_SkiTrippers_CA_MarqueeDesktop_Feb-Apr21_Display%' then 'California'
     WHEN ${placement} ilike '%\\_SF' then 'San Francisco'
     WHEN ${placement} ilike '%\\_ SF' then 'San Francisco'
     WHEN ${placement} ilike '%\\_NE' then 'Northeast'
@@ -257,6 +269,16 @@ view: mam_dcm_ga_view {
         when ${creative} = 'MAM_Winter_Unicorns_160x600_STATIC' then 'Unicorns_160x600'
         when ${creative} = 'MAM_Winter_Unicorns_300x600_STATIC' then 'Unicorns_300x600'
 
+        when ${creative} = 'MAM_Winter_Unicorns_REFRESHED_728x90_STATIC' then 'Unicorns_728x90'
+        when ${creative} = 'MAM_Winter_Unicorns_REFRESHED_300x250_STATIC' then 'Unicorns_300x250'
+        when ${creative} = 'MAM_Winter_Unicorns_REFRESHED_160x600_STATIC' then 'Unicorns_160x600'
+        when ${creative} = 'MAM_Winter_Unicorns_REFRESHED_300x600_STATIC' then 'Unicorns_300x600'
+
+        when ${creative} = 'MAM_Winter_Yeti_REFRESHED_728x90_STATIC' then 'Yeti_728x90'
+        when ${creative} = 'MAM_Winter_Yeti_REFRESHED_300x250_STATIC' then 'Yeti_300x250'
+        when ${creative} = 'MAM_Winter_Yeti_REFRESHED_160x600_STATIC' then 'Yeti_160x600'
+        when ${creative} = 'MAM_Winter_Yeti_REFRESHED_300x600_STATIC' then 'Yeti_300x600'
+
         when ${creative} = 'MAM_AirService_CA-NV-DEN_300x600' then 'AirService_300x600'
         when ${creative} = 'MAM_AirService_CA-NV-DEN_728x90' then 'AirService_728x90'
         when ${creative} = 'MAM_AirService_CA-NV-DEN_320x50' then 'AirService_320x50'
@@ -292,6 +314,7 @@ view: mam_dcm_ga_view {
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_MobileRichMedia%' then 'Mobile Rich Media'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_MobileRichMedia%' then 'Mobile Rich Media'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA_MobileRichMedia_Feb-Apr21_RichMedia%' then 'Mobile Rich Media'
 
         when ${creative} ilike '%P2_728x90_YourAdventure' then 'YourAdventure_728x90'
         when ${creative} ilike '%P2_728x90_ReleaseYourself' then 'ReleaseYourself_728x90'
@@ -341,6 +364,7 @@ view: mam_dcm_ga_view {
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_MobileRichMedia%' then 'Mobile Rich Media'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_NYDMA_MobileRichMedia%' then 'Mobile Rich Media'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_MobileRichMedia%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA_MobileRichMedia_Feb-Apr21_RichMedia%' then 'Mobile Rich Media'
 
         when ${creative} ILIKE '%728x90%' then '728x90'
         when ${creative} ILIKE '%300x250%' then '300x250'
@@ -355,7 +379,6 @@ view: mam_dcm_ga_view {
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeDesktop_%_Display%' then 'Desktop Site Marquee'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileApp_%_Display%' then 'Mobile App Marquee'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_%_Display%' then 'Email Display'
-
 
       ELSE 'Uncategorized'
       END;;
