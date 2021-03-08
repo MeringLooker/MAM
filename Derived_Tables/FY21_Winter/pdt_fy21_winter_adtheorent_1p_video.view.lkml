@@ -11,11 +11,11 @@ view: pdt_fy21_winter_adtheorent_1p_video {
       column: date {field: mam_dcm_ga_view.date_date}
       column: week {field: mam_dcm_ga_view.date_week}
       column: month {field: mam_dcm_ga_view.date_month}
-      column: total_impressions {field: mam_fy21_winter_dcm_view.total_impressions}
-      column: total_clicks {field: mam_fy21_winter_dcm_view.total_clicks}
-      column: total_cost {field: mam_fy21_winter_dcm_view.total_media_cost}
-      column: total_views {field: mam_fy21_winter_dcm_view.total_video_views}
-      column: total_completes {field: mam_fy21_winter_dcm_view.total_video_completes}
+      column: total_impressions {field: mam_fy21_winter_dcm_view_v2.total_impressions}
+      column: total_clicks {field: mam_fy21_winter_dcm_view_v2.total_clicks}
+      column: total_cost {field: mam_fy21_winter_dcm_view_v2.total_cost}
+      column: total_views {field: mam_fy21_winter_dcm_view_v2.total_views}
+      column: total_completes {field: mam_fy21_winter_dcm_view_v2.total_completes}
       column: total_sessions {field: mam_dcm_ga_view.total_sessions}
       column: total_session_duration {field: mam_dcm_ga_view.total_session_duration}
       column: total_flight_searches {field: mam_dcm_ga_view.total_search_flights_button}

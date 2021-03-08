@@ -23,10 +23,10 @@ explore: mam_dcm {
     relationship: one_to_many
   }
 
-  join: mam_fy21_winter_dcm_view {
+  join: mam_fy21_winter_dcm_view_v2 {
     view_label: "FY21 Winter - AdTheorent Video Passback"
     type: inner
-    sql_on: ${mam_dcm_ga_view.passback_join_ad} = ${mam_fy21_winter_dcm_view.passback_join} ;;
+    sql_on: ${mam_dcm_ga_view.passback_join_ad} = ${mam_fy21_winter_dcm_view_v2.dcm_join_id} ;;
     relationship: many_to_one
   }
 }
