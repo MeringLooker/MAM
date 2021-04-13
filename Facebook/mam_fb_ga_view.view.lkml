@@ -110,6 +110,7 @@ view: mam_fb_ga_view {
         when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_LaLPageEngagement' then 'Traffic-Driving Single Image - Page Engagement Lookalikes'
         when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_BrandAudience' then 'Traffic-Driving Single Image - Brand Audience'
         when ${adset_name} ilike 'MAM_FY21_Winter_AirService_Traffic%' then 'Traffic-Driving Single Image - Air Service'
+        when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_Retargeting' then 'Traffic-Driving Single Image - Retargeting'
 
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_AirService%' then 'Single Image - Brand Audience'
         when ${campaign_name} ilike 'MAM_Winter_FY20_Conversion_Widget_AirService%' then 'Single Image - Retargeting/Site Lookalikes'

@@ -90,7 +90,7 @@ dimension: mam_campaign_layer { # this may no longer be used 1/14 - JJ
         when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-08-01' AND '2020-10-05' then 'Phase 2'
         when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-10-06' and '2020-10-31' then 'Phase 2.5'
         when ${campaign} ilike 'Air Service FY21%' then 'Air Service'
-        when ${day_date} BETWEEN '2020-11-02' AND '2021-03-31' then 'Consideration - Traffic-Driving'
+        when ${day_date} BETWEEN '2020-11-02' AND '2021-04-12' then 'Consideration - Traffic-Driving'
         ELSE 'Uncategorized'
         END
     ;;

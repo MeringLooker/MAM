@@ -88,7 +88,7 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
-        WHEN ${placement_id} = '286278057' then 'In-Email Promotion Display'
+        WHEN ${placement_id} = '286278057' then 'In-Email Promotion Display (2/10)'
         WHEN ${placement_id} = '295140241' then 'Awareness Video'
         WHEN ${placement_id} = '286278075' then 'In-Forecast Promotion Display'
         WHEN ${placement_id} = '286167734' then 'In-Forecast Promotion Display'
@@ -103,6 +103,9 @@ view: mam_dcm_ga_view {
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_In-EmailPromo_11-20_Display%' then 'In-Email Promotion Display (11/20)'
 
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_SkiTrippers_CA_In-EmailPromo_2-19_Display%' then 'In-Email Promotion Display (2/19)'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_SkiTrippers_CA_In-EmailPromo_3-1_Display%' then 'In-Email Promotion Display (3/1)'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_SkiVacation_CA_In-EmailPromo_3-10_Display%' then 'In-Email Promotion Display (3/10)'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_SkiVacation_CA_In-EmailPromo_3-15_Display%' then 'In-Email Promotion Display (3/15)'
 
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_DesktopSite_%_Display%' then 'Desktop Display'
         WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_%_MarqueeMobileSite_%_Display%' then 'Mobile Website Marquee'
@@ -115,6 +118,7 @@ view: mam_dcm_ga_view {
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_DEN_CrossDeviceDisplay%' then 'Cross-Device Display'
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_CA+NV_CrossDeviceDisplay%' then 'Cross-Device Display'
         when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_CA_CrossDeviceDisplay_Feb-Apr21_Display%' then 'Cross-Device Display'
+        when ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_CA_CrossDeviceDisplay_Feb-Apr21_AVDisplay%' then 'Cross-Device Display (AV)'
 
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Awareness Video'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_CA+NV_Video%' then 'Awareness Video'
@@ -234,6 +238,9 @@ view: mam_dcm_ga_view {
     WHEN ${placement} ilike '%Native Display\\_ Fresno%' then 'Fresno'
     WHEN ${placement} ilike '%Native Display\\_ Sacramento%' then 'Sacramento'
     WHEN ${placement} ilike '%Native Display\\_ California & Nevada%' then 'San Diego'
+    WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_SkiTrippers_CA_In-EmailPromo%' then 'California'
+    WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_SkiVacation_CA_In-EmailPromo%' then 'California'
+    WHEN ${placement} ilike 'AdTheorent_Winter_ConsiderationTD_TravelEnthusiasts_CA_CrossDeviceDisplay_Feb-Apr21_AVDisplay_160x600%' then 'California'
         ELSE 'Uncategorized'
     END;;
   }
@@ -259,10 +266,12 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
-        WHEN ${placement_id} = '286278075' then 'Uncategorized_Forcast Display'
-        WHEN ${placement_id} = '286167734' then 'Uncategorized_Forcast Display'
-        WHEN ${placement_id} = '286353049' then 'Uncategorized_Forcast Display'
-        WHEN ${placement_id} = '286278342' then 'Uncategorized_Forcast Display'
+        WHEN ${placement_id} = '286278075' then 'Uncategorized_Forecast Display'
+        WHEN ${placement_id} = '286167734' then 'Uncategorized_Forecast Display'
+        WHEN ${placement_id} = '286353049' then 'Uncategorized_Forecast Display'
+        WHEN ${placement_id} = '286278342' then 'Uncategorized_Forecast Display'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_SkiTrippers_CA_In-EmailPromo%' then 'Uncategorized_Email Display'
+        WHEN ${placement} ilike 'OpenSnow_Winter_Awareness_SkiVacation_CA_In-EmailPromo%' then 'Uncategorized_Email Display'
 
         when ${creative} = 'MAM_Winter_Unicorns_728x90_STATIC' then 'Unicorns_728x90'
         when ${creative} = 'MAM_Winter_Unicorns_300x250_STATIC' then 'Unicorns_300x250'
@@ -350,10 +359,10 @@ view: mam_dcm_ga_view {
     label: "Ad Size"
     sql:
       CASE
-        WHEN ${placement_id} = '286278075' then 'Forcast Display'
-        WHEN ${placement_id} = '286167734' then 'Forcast Display'
-        WHEN ${placement_id} = '286353049' then 'Forcast Display'
-        WHEN ${placement_id} = '286278342' then 'Forcast Display'
+        WHEN ${placement_id} = '286278075' then 'Forecast Display'
+        WHEN ${placement_id} = '286167734' then 'Forecast Display'
+        WHEN ${placement_id} = '286353049' then 'Forecast Display'
+        WHEN ${placement_id} = '286278342' then 'Forecast Display'
 
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_DEN_Video%' then 'Video'
         when ${placement} ilike 'AdTheorent_Winter_Awareness_TravelEnthusiasts_BostonDMA_Video%' then 'Video'
