@@ -56,6 +56,7 @@ view: mam_dcm_ga_view {
         WHEN ${campaign_id} = '22439071' then 'Summer'
         WHEN ${campaign_id} = '23018327' then 'Fall'
         WHEN ${campaign_id} = '24464016' THEN 'FY21 Summer Recovery'
+        when ${campaign_id} = '25702236' then 'FY21 Spring/Summer'
 
         ELSE 'Uncategorized'
         END
@@ -88,6 +89,11 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        when ${placement} ilike 'AdTheorent_MAMFY21SpringSummer_Predictive-Targeting-RTS_CA+NV_StandardDisplay%' then 'Cross-Device Display'
+        when ${placement} ilike 'AdTheorent_MAMFY21SpringSummer_Predictive-Targeting-RTS_CA+NV_AVStandardDisplay%' then 'Cross-Device Display (AV)'
+        when ${placement} ilike 'AdTheorent_MAMFY21SpringSummer_Predictive-Targeting-RTS_CA+NV_RM%_1x1%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_MAMFY21SpringSummer_Predictive-Targeting-RTS_CA+NV_Cross Device_Video:30_1x1%' then 'Cross-Device Video'
+
         WHEN ${placement_id} = '286278057' then 'In-Email Promotion Display (2/10)'
         WHEN ${placement_id} = '295140241' then 'Awareness Video'
         WHEN ${placement_id} = '286278075' then 'In-Forecast Promotion Display'
@@ -266,6 +272,28 @@ view: mam_dcm_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        when ${creative} = 'MAM_Summer_Bigfoot_160x600_STATIC' then 'Summer_Bigfoot_160x600'
+        when ${creative} = 'MAM_Summer_Bigfoot_728x90_STATIC' then 'Summer_Bigfoot_728x90'
+        when ${creative} = 'MAM_Summer_Bigfoot_300x600_STATIC' then 'Summer_Bigfoot_300x600'
+        when ${creative} = 'MAM_Summer_Bigfoot_300x250_STATIC' then 'Summer_Bigfoot_300x250'
+        when ${creative} = 'MAM_Summer_Bigfoot_320x50_STATIC' then 'Summer_Bigfoot_320x50'
+
+        when ${creative} = 'MAM_Summer_Dragon_160x600_STATIC' then 'Summer_Dragon_160x600'
+        when ${creative} = 'MAM_Summer_Dragon_728x90_STATIC' then 'Summer_Dragon_728x90'
+        when ${creative} = 'MAM_Summer_Dragon_300x600_STATIC' then 'Summer_Dragon_300x600'
+        when ${creative} = 'MAM_Summer_Dragon_300x250_STATIC' then 'Summer_Dragon_300x250'
+        when ${creative} = 'MAM_Summer_Dragon_320x50_STATIC' then 'Summer_Dragon_320x50'
+
+        when ${creative} = 'MAM_Summer_Ogre_160x600_STATIC' then 'Summer_Ogre_160x600'
+        when ${creative} = 'MAM_Summer_Ogre_728x90_STATIC' then 'Summer_Ogre_728x90'
+        when ${creative} = 'MAM_Summer_Ogre_300x600_STATIC' then 'Summer_Ogre_300x600'
+        when ${creative} = 'MAM_Summer_Ogre_300x250_STATIC' then 'Summer_Ogre_300x250'
+        when ${creative} = 'MAM_Summer_Ogre_320x50_STATIC' then 'Summer_Ogre_320x50'
+
+        when ${placement} ilike 'AdTheorent_MAMFY21SpringSummer_Predictive-Targeting-RTS_CA+NV_RM%_1x1%' then 'Mobile Rich Media'
+        when ${placement} ilike 'AdTheorent_MAMFY21SpringSummer_Predictive-Targeting-RTS_CA+NV_Cross Device_Video:30_1x1' then 'Territory (:30)'
+
+
         WHEN ${placement_id} = '286278075' then 'Uncategorized_Forecast Display'
         WHEN ${placement_id} = '286167734' then 'Uncategorized_Forecast Display'
         WHEN ${placement_id} = '286353049' then 'Uncategorized_Forecast Display'
@@ -359,6 +387,8 @@ view: mam_dcm_ga_view {
     label: "Ad Size"
     sql:
       CASE
+        when ${placement} ilike 'AdTheorent_MAMFY21SpringSummer_Predictive-Targeting-RTS_CA+NV_RM%_1x1%' then 'Rich Media'
+        when ${placement} ilike 'AdTheorent_MAMFY21SpringSummer_Predictive-Targeting-RTS_CA+NV_Cross Device_Video:30_1x1' then 'Video'
         WHEN ${placement_id} = '286278075' then 'Forecast Display'
         WHEN ${placement_id} = '286167734' then 'Forecast Display'
         WHEN ${placement_id} = '286353049' then 'Forecast Display'

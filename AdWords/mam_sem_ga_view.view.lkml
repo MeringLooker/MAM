@@ -69,7 +69,8 @@ dimension: mam_campaign {
       when ${account} = 'MAM SEM - Northeast' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
       when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2019-09-28' AND '2020-04-05' then 'Winter Seasonal'
       when ${account} = 'MAM SEM - CA/NV' and ${day_date} BETWEEN '2020-07-13' AND '2020-10-31' then 'FY21 Summer Recovery'
-      when ${day_date} BETWEEN '2020-11-02' AND '2021-04-12' then 'FY21 Winter'
+      when ${day_date} BETWEEN '2020-11-02' AND '2021-04-11' then 'FY21 Winter'
+      when ${day_date} BETWEEN '2021-04-12' AND '2021-08-31' then 'FY21 Spring/Summer'
         ELSE 'Uncategorized'
         END
     ;;

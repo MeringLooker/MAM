@@ -47,6 +47,7 @@ view: mam_fb_ga_view {
 
         WHEN ${campaign_name} ilike 'MAM_SummerRecovery_FY21%' THEN 'FY21 Summer Recovery'
         WHEN ${campaign_name} ilike 'MAM_FY21_Winter%' THEN 'FY21 Winter'
+        WHEN ${campaign_name} ilike 'MAM_FY21_SpringSummer%' THEN 'FY21 Spring/Summer'
 
         WHEN ${campaign_name} ilike '%Summer%' THEN 'Summer'
         WHEN ${campaign_name} ilike '%Spring%' THEN 'Spring'
@@ -106,6 +107,11 @@ view: mam_fb_ga_view {
     sql:
       case
         when ${campaign_name} ilike 'MAM_FY21_Winter_Video%' then 'Facebook Video'
+        when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_VideoViews_Brand%' then 'Facebook Video (Brand)'
+        when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_VideoViews_LALSiteVisitors%' then 'Facebook Video (Lookalikes)'
+        when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_Brand%' then 'Facebook Single Image (Brand)'
+        when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_LALSiteVisitors%' then 'Facebook Single Image (Lookalikes)'
+        when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_Retargeting%' then 'Facebook Single Image (Lookalikes)'
         when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_LaLWebVisitors' then 'Traffic-Driving Single Image - Web Visitor Lookalikes'
         when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_LaLPageEngagement' then 'Traffic-Driving Single Image - Page Engagement Lookalikes'
         when ${adset_name} ilike 'MAM_FY21_Winter_Traffic_%_BrandAudience' then 'Traffic-Driving Single Image - Brand Audience'
@@ -231,6 +237,18 @@ view: mam_fb_ga_view {
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_Fall_HikeBikePaddle' then 'Hike, Bike, Paddle Single Image'
         when ${ad_name} = 'MAM_SummerRecovery_FY21_SingleImage_Brand_Fall_AmazingAutumn' then 'Amazing Autumn Single Image'
 
+        when ${ad_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_%_Hiking' then 'Hiking Single Image'
+        when ${ad_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_%_Pegasus' then 'Pegasus Single Image'
+        when ${ad_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_%_BearOnABike' then 'Bear On A Bike Single Image'
+        when ${ad_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_%_Dragon' then 'Dragon Single Image'
+        when ${ad_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_%_Biking' then 'Biking Single Image'
+        when ${ad_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_%_Sightseeing' then 'Sightseeing Single Image'
+        when ${ad_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_%_RainbowFalls' then 'Rainbow Falls Single Image'
+        WHEN ${ad_name} ilike 'MAM_FY21_SpringSummer_%_VideoViews_%_Terriroty' THEN 'Territory (:30)'
+        WHEN ${ad_name} ilike 'MAM_FY21_SpringSummer_%_VideoViews_%_NSBLikeALot' THEN 'NSB: Like A Lot (:30)'
+        WHEN ${ad_name} ilike 'MAM_FY21_SpringSummer_%_VideoViews_%_NSBNoSmallFeat' THEN 'NSB: No Small Feat (:30)'
+        WHEN ${ad_name} ilike 'MAM_FY21_SpringSummer_%_VideoViews_%_LocalsWelcome' THEN 'Locals Welcome (:40)'
+
         else 'Uncategorized'
         END
         ;;
@@ -258,7 +276,9 @@ view: mam_fb_ga_view {
     sql:
       CASE
         when ${campaign_name} ilike 'MAM_FY21_Winter_Traffic%' then 'Single Image'
-        when ${campaign_name} ilike 'MAM_FY21_Winter_AirService_Traffic%' then 'Single Image'
+        when ${campaign_name} ilike 'MAM_FY21_SpringSummer_%_Conversions%' then 'Single Image'
+        when ${campaign_name} ilike 'MAM_FY21_SpringSummer_%_Conversions%' then 'Video'
+        when ${campaign_name} ilike 'MAM_FY21_SpringSummer_%_VideoViews%' then 'Single Image'
         WHEN ${ad_name} ilike '%\\_Video\\_%' THEN 'Video'
         WHEN ${ad_name} ilike '%\\_SingleImage\\_%' THEN 'Single Image'
         WHEN ${ad_name} ilike '%\\_Carousel\\_%' THEN 'Carousel'

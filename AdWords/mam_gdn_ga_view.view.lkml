@@ -41,6 +41,7 @@ view: mam_gdn_ga_view{
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${campaign} ILIKE 'MAM_FY21_SpringSummer%' THEN 'FY21 Spring/Summer'
         WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'FY21 Winter'
         WHEN ${campaign} ILIKE 'MAM_FY21_AirService%' THEN 'FY21 Winter'
         WHEN ${campaign} ILIKE '%FY20 Winter - Traffic%' THEN 'Winter Seasonal'
@@ -114,6 +115,10 @@ view: mam_gdn_ga_view{
     group_label: "Client Dimensions"
     sql:
       case
+        WHEN ${campaign} ILIKE 'MAM_FY21_SpringSummer_%_Discovery%' THEN 'Discovery Display (Retargeting)'
+        WHEN ${ad_group} ILIKE 'MAM_FY21_SpringSummer_%_GDN_Retargeting%' THEN 'Responsive Display (Retargeting)'
+        WHEN ${ad_group} ILIKE 'MAM_FY21_SpringSummer_%_GDN_InMarketCA%' THEN 'Responsive Display (In-Market Travel)'
+
         WHEN ${campaign} ILIKE 'MAM_FY21_AirService%' THEN 'Traffic-Driving Responsive Display - Air Service'
         when ${ad_group} ilike '%AirService - site Visitor lookalike%' then 'Responsive Display - Site Visitor Lookalikes'
         when ${ad_group} ilike '%AirService - retargeting%' then 'Responsive Display - Retargeting'
@@ -181,6 +186,7 @@ view: mam_gdn_ga_view{
         when ${campaign} ilike '%Discovery%' then 'Discovery Display'
         WHEN ${campaign} ILIKE 'MAM_FY21_Winter%' THEN 'Responsive Display'
         WHEN ${campaign} ILIKE 'MAM_FY21_AirService%' THEN 'Responsive Display'
+        WHEN ${campaign} ILIKE 'MAM_FY21_SpringSummer_%_GDN%' THEN 'Responsive Display'
         else 'Uncategorized'
         end
     ;;
@@ -202,6 +208,14 @@ view: mam_gdn_ga_view{
         WHEN ${ad_group} ILIKE '%_StopSign%' THEN 'Stop Sign Responsive Display'
         WHEN ${ad_group} ILIKE '%_Snowboarder%' THEN 'Snowboarder Responsive Display'
         WHEN ${ad_group} ILIKE '%_Lake%' THEN 'Lake Responsive Display'
+        WHEN ${ad_group} ILIKE '%_Swinter%' THEN 'Swinter'
+        WHEN ${ad_group} ILIKE '%_Sightseeing%' THEN 'Sightseeing'
+        WHEN ${ad_group} ILIKE '%_RainbowFalls%' THEN 'Rainbow Falls'
+        WHEN ${ad_group} ILIKE '%_Pegasus%' THEN 'Pegasus'
+        WHEN ${ad_group} ILIKE '%_Dragon%' THEN 'Dragon'
+        WHEN ${ad_group} ILIKE '%_Biking%' THEN 'Biking'
+        WHEN ${ad_group} ILIKE '%_BearOnABike%' THEN 'Bear On A Bike'
+        WHEN ${ad_group} ILIKE '%_Hiking%' THEN 'Hiking'
         else 'Uncategorized'
         end;;
   }
