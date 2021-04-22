@@ -24,9 +24,16 @@ explore: mam_dcm {
   }
 
   join: mam_fy21_winter_dcm_view_v2 {
-    view_label: "FY21 Winter - AdTheorent Video Passback"
+    view_label: "FY21 Winter - AdTheorent Video"
     type: inner
     sql_on: ${mam_dcm_ga_view.passback_join_ad} = ${mam_fy21_winter_dcm_view_v2.dcm_join_id} ;;
+    relationship: many_to_one
+  }
+
+  join: mam_fy21_springsummer_dcm_view {
+    view_label: "FY21 Spring/Summer - AdTheorent Video"
+    type: inner
+    sql_on: ${mam_dcm_ga_view.passback_join_ad} = ${mam_fy21_springsummer_dcm_view.dcm_join_id} ;;
     relationship: many_to_one
   }
 }
