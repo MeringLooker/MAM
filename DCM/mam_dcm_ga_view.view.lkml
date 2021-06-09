@@ -676,6 +676,24 @@ view: mam_dcm_ga_view {
     sql: ${TABLE}.visitor_guide_order ;;
   }
 
+  dimension: video_views {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.video_views ;;
+  }
+
+  dimension: video_plays {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.video_plays ;;
+  }
+
+  dimension: video_completes {
+    type: number
+    hidden: yes
+    sql: ${TABLE}.video_completes ;;
+  }
+
 ######### All measures go below ########
 
   measure: total_impressions {
@@ -772,7 +790,15 @@ view: mam_dcm_ga_view {
     type: sum_distinct
     sql_distinct_key: ${comp_key} ;;
     label: "Video Views"
-    sql: 0 ;;
+    sql: ${video_views} ;;
+  }
+
+  measure: total_plays {
+    group_label: "3rd Party Measures"
+    type: sum_distinct
+    sql_distinct_key: ${comp_key} ;;
+    label: "Video Plays"
+    sql: ${video_plays} ;;
   }
 
   measure: total_completes {
@@ -780,7 +806,7 @@ view: mam_dcm_ga_view {
     type: sum_distinct
     sql_distinct_key: ${comp_key} ;;
     label: "Video Completes"
-    sql: 0 ;;
+    sql: ${video_completes} ;;
   }
 
   ### GA Measures ###
