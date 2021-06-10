@@ -158,6 +158,7 @@ view: mam_yt_ga_view {
     group_label: "Client Dimensions"
     sql:
       CASE
+        WHEN ${campaign} ilike 'MAM_FY21_SpringSummer_Flight1_TrueView_SustainabilityVideo' THEN 'Mammoth Lakes Love Song (1:30)'
         WHEN ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery' THEN 'Territory (:30)'
         WHEN ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Territory' THEN 'Territory (:30)'
         when ${campaign} ilike 'MAM - FY20/21 - Summer - Recovery - Locals' then 'Locals Welcome (:30)'

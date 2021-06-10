@@ -108,7 +108,9 @@ view: mam_fb_ga_view {
       case
         when ${campaign_name} ilike 'MAM_FY21_Winter_Video%' then 'Facebook Video'
         when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_VideoViews_Brand%' then 'Facebook Video (Brand)'
+        when ${adset_name} ilike 'MAM_FY21_SpringSummer_Flight1_VideoViews_SustainabilityVideo_Brand' then 'Facebook Video (Brand)'
         when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_VideoViews_LALSiteVisitors%' then 'Facebook Video (Lookalikes)'
+        when ${adset_name} ilike 'MAM_FY21_SpringSummer_Flight1_VideoViews_SustainabilityVideo_LALSiteVisitors' then 'Facebook Video (Lookalikes)'
         when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_Brand%' then 'Facebook Single Image (Brand)'
         when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_LALSiteVisitors%' then 'Facebook Single Image (Lookalikes)'
         when ${adset_name} ilike 'MAM_FY21_SpringSummer_%_Conversions_Retargeting%' then 'Facebook Single Image (Lookalikes)'
@@ -182,6 +184,9 @@ view: mam_fb_ga_view {
         when ${ad_name} ilike '%_TimesChangeMagicRemains2' then 'Time Change Magic Remains v2 Single Image'
         when ${ad_name} ilike '%_MaskUp1' then 'Mask Up v1 Single Image'
         when ${ad_name} ilike '%_MaskUp2' then 'Mask Up v2 Single Image'
+
+        WHEN ${ad_name} ilike '%MAM_FY21_SpringSummer_Flight1_VideoViews_SustainabilityVideo_LALSiteVisitors' THEN 'Mammoth Lakes Love Song (1:30)'
+        WHEN ${ad_name} ilike '%MAM_FY21_SpringSummer_Flight1_VideoViews_SustainabilityVideo_Brand' THEN 'Mammoth Lakes Love Song (1:30)'
 
         WHEN ${ad_name} ilike '%NSBHighPlaces' THEN 'No Small Backyard: High Places (:30)'
         WHEN ${ad_name} ilike '%NSBGetLost' THEN 'No Small Backyard: Get Lost (:30)'
