@@ -1,20 +1,21 @@
 view: mam_fb_ga_view {
   sql_table_name: public.mam_fb_ga_view ;;
-  drill_fields: [id]
+  # drill_fields: [id]
 
 ###### Primary Key #######
 
-  dimension: id {
-    primary_key: yes
-    hidden: yes
-    type: string
-    sql: ${TABLE}.id ;;
-  }
+  # dimension: id {
+  #   primary_key: yes
+  #   hidden: yes
+  #   type: string
+  #   sql: ${TABLE}.id ;;
+  # }
 
 ####### Join ID ########
 
   dimension: ga_join_id {
     type: string
+    primary_key: yes
     hidden: yes
     sql: ${TABLE}.ga_join_id ;;
   }
@@ -593,7 +594,7 @@ view: mam_fb_ga_view {
   measure: total_impressions {
     type: sum_distinct
     group_label: "Facebook Delivery"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     label: "Impressions"
     sql: ${impressions} ;;
   }
@@ -601,7 +602,7 @@ view: mam_fb_ga_view {
   measure: total_clicks {
     type: sum_distinct
     group_label: "Facebook Delivery"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     label: "Clicks"
     sql: ${inline_link_clicks} ;;
   }
@@ -617,7 +618,7 @@ view: mam_fb_ga_view {
   measure: total_spend {
     type: sum_distinct
     group_label: "Facebook Delivery"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     label: "Media Spend"
     sql: ${spend};;
     value_format_name: usd
@@ -643,7 +644,7 @@ view: mam_fb_ga_view {
 
   measure: video_impressions {
     type: sum_distinct
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql:
         case
         when ${views_to_25} > 0 then ${impressions}
@@ -654,7 +655,7 @@ view: mam_fb_ga_view {
 
   measure: video_spend {
     type: sum_distinct
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql:
         case
         when ${views_to_25} > 0 then ${impressions}
@@ -665,7 +666,7 @@ view: mam_fb_ga_view {
 
   measure: total_views_to_25 {
     type: sum_distinct
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     label: "Views to 25%"
     group_label: "Video Metrics"
     sql: ${views_to_25};;
@@ -681,7 +682,7 @@ view: mam_fb_ga_view {
 
   measure: total_views_to_50 {
     type: sum_distinct
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     label: "Views to 50%"
     group_label: "Video Metrics"
     sql: ${views_to_50};;
@@ -697,7 +698,7 @@ view: mam_fb_ga_view {
 
   measure: total_views_to_75 {
     type: sum_distinct
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     label: "Views to 75%"
     group_label: "Video Metrics"
   }
@@ -712,7 +713,7 @@ view: mam_fb_ga_view {
 
   measure: total_views_to_95 {
     type: sum_distinct
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     label: "Views to 95%"
     group_label: "Video Metrics"
   }
@@ -727,7 +728,7 @@ view: mam_fb_ga_view {
 
   measure: total_video_completes {
     type: sum_distinct
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     label: "Views to 100%"
     group_label: "Video Metrics"
     sql: ${views_to_100};;
@@ -751,7 +752,7 @@ view: mam_fb_ga_view {
 
   measure: total_thruplays {
     type: sum_distinct
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     label: "ThruPlays"
     group_label: "Video Metrics"
     sql: ${thruplays};;
@@ -779,7 +780,7 @@ view: mam_fb_ga_view {
     group_label: "Google Analytics Metrics"
     type: sum_distinct
     label: "Sessions"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${sessions} ;;
   }
 
@@ -795,7 +796,7 @@ view: mam_fb_ga_view {
     hidden: yes
     type: sum_distinct
     label: "Total Session Duration"
-    sql_distinct_key: ${id};;
+    sql_distinct_key: ${ga_join_id};;
     sql: ${sessionduration};;
   }
 
@@ -811,7 +812,7 @@ view: mam_fb_ga_view {
     group_label: "Google Analytics Metrics"
     type: sum_distinct
     label: "Pageviews"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${pageviews} ;;
   }
 
@@ -827,7 +828,7 @@ view: mam_fb_ga_view {
     group_label: "Google Analytics Metrics"
     type: sum_distinct
     label: "Bounces"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${bounces} ;;
   }
 
@@ -845,7 +846,7 @@ view: mam_fb_ga_view {
     group_label: "Google Analytics Goals"
     type: sum_distinct
     label: "Newsletter Sign-Ups"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${newsletter_signup} ;;
   }
 
@@ -861,7 +862,7 @@ view: mam_fb_ga_view {
     group_label: "Google Analytics Goals"
     type: sum_distinct
     label: "Visitor Guide Orders"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${visitor_guide_order} ;;
   }
 
@@ -877,7 +878,7 @@ view: mam_fb_ga_view {
     group_label: "Google Analytics Goals"
     type: sum_distinct
     label: "United Airline Referrals"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${united_airlines_referral} ;;
   }
 
@@ -893,7 +894,7 @@ view: mam_fb_ga_view {
     group_label: "Google Analytics Goals"
     type: sum_distinct
     label: "TOS Above :30"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${tos_above_30s} ;;
   }
 
@@ -909,7 +910,7 @@ view: mam_fb_ga_view {
     group_label: "Google Analytics Goals"
     type: sum_distinct
     label: "Search Flights Button"
-    sql_distinct_key: ${id} ;;
+    sql_distinct_key: ${ga_join_id} ;;
     sql: ${search_flights_button} ;;
   }
 
@@ -923,6 +924,6 @@ view: mam_fb_ga_view {
 
   measure: count {
     type: count
-    drill_fields: [id, ad_name, adset_name, campaign_name, account_name]
+    # drill_fields: [id, ad_name, adset_name, campaign_name, account_name]
   }
 }
